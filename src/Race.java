@@ -8,16 +8,4 @@ public class Race {
 	{
 		
 	}
-	
-	private String[] shuffleHints()
-	{
-		String[] shuffle;
-		return shuffle;
-	}
-	
-	private String[] shuffleAnswers()
-	{
-		String[] shuffle;
-		return shuffle;
-	}
 }

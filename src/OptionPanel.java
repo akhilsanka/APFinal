@@ -14,9 +14,19 @@ public class OptionPanel extends JPanel implements ActionListener {
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
 		p.add(Box.createVerticalStrut(300));
 		
-		JButton button = new JButton("Play the Game!");
+		JButton button = new JButton("Make A New Race!");
 		button.addActionListener(this);
 		p.add(button);
+		add(p);
+		
+		JButton button2 = new JButton("Start A Race!");
+		button2.addActionListener(this);
+		p.add(button2);
+		add(p);
+		
+		JButton button3 = new JButton("Instructions!");
+		button3.addActionListener(this);
+		p.add(button3);
 		add(p);
 	}
 	
