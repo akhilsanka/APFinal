@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Race {
 	
+
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
 
