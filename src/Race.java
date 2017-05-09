@@ -2,7 +2,7 @@
 public class Race {
 	private User[] Users;
 	private Map map;
-	private String[] hints, answers;
+	private Hint[] hints;
 	
 	public Race()
 	{
