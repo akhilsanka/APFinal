@@ -19,7 +19,7 @@ public class Race {
 	public Hint getHint()
 	{
 		if(usedHints.size() == hints.size()){
-			
+			return null;
 		}
 		int randHint;
 		boolean used = false;
@@ -38,6 +38,7 @@ public class Race {
 			
 		}
 		while(used == true);
+		return hints.get(0);
 		
 	}
 	
