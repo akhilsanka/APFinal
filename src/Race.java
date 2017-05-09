@@ -1,23 +1,31 @@
+import java.util.ArrayList;
 
 public class Race {
+	
+	private ArrayList<Hint> hints;
+	private ArrayList<Integer> usedHints;
+
 	private User[] Users;
 	private Map map;
-	private String[] hints, answers;
+
 	
 	public Race()
 	{
-		
+		hints = new ArrayList<Hint>();
 	}
 	
 	private String[] shuffleHints()
 	{
-		String[] shuffle;
-		return shuffle;
+		int randHint;
+		boolean used = false;
+		do{
+			randHint = (int)Math.random()*hints.size();
+		}
+		while(used != fale)
+//			
+//		}
+//		for(int i = 0; i<hints.length(); i++)
+//		
 	}
-	
-	private String[] shuffleAnswers()
-	{
-		String[] shuffle;
-		return shuffle;
-	}
+
 }
