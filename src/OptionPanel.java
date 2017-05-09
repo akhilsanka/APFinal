@@ -6,7 +6,7 @@ import java.awt.event.*;
 public class OptionPanel extends JPanel implements ActionListener {
 	
 	private Main w;
-	
+	//test
 	public OptionPanel(Main w) {
 		this.w = w;
 		JPanel p = new JPanel();
