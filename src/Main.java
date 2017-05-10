@@ -17,13 +17,16 @@ public class Main extends JFrame {
 	    
 		OptionPanel panel1 = new OptionPanel(this);    
 	    GamePanel panel2 = new GamePanel(this);
+	    GamePanel panel3 = new GamePanel(this);
+	    GamePanel panel4 = new GamePanel(this);
+	    GamePanel panel5 = new GamePanel(this);
 	    
 	
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    cardPanel.add(panel2,"2"); // Card is named "2"
-	    cardPanel.add(panel2,"3");
-	    cardPanel.add(panel2,"4");
-	    cardPanel.add(panel2,"5");
+	    cardPanel.add(panel3,"3");
+	    cardPanel.add(panel4,"4");
+	    cardPanel.add(panel5,"5");
 	    
 	    
 	    add(cardPanel);
