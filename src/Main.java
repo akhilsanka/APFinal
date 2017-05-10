@@ -21,6 +21,10 @@ public class Main extends JFrame {
 	
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    cardPanel.add(panel2,"2"); // Card is named "2"
+	    cardPanel.add(panel2,"3");
+	    cardPanel.add(panel2,"4");
+	    cardPanel.add(panel2,"5");
+	    
 	    
 	    add(cardPanel);
 	    addKeyListener(panel2);
