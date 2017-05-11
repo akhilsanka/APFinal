@@ -1,12 +1,13 @@
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Race {
+public class Race extends JPanel {
 	
 
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
 
-	private Map map;
+	private BufferedImage image;
 	private boolean isComplete;
 
 	
