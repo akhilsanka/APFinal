@@ -6,7 +6,7 @@ public class Race {
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
 
-	private User[] Users;
+	
 	private Map map;
 	private boolean isComplete;
 
