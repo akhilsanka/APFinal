@@ -6,10 +6,6 @@ public class Race {
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	private Map map;
 	private boolean isComplete;
 
