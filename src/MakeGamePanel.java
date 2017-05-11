@@ -7,13 +7,13 @@ import javax.swing.*;
 import java.util.*;
 
 
-public class GamePanel extends JPanel implements KeyListener
+public class MakeGamePanel extends JPanel implements KeyListener
 {
  // test 
 	private String message;
 	private Main m;
 
-	public GamePanel (Main m) {
+	public MakeGamePanel (Main m) {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);

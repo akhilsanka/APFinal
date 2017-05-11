@@ -16,10 +16,10 @@ public class Main extends JFrame {
 	    cardPanel.setLayout(cl);
 	    
 		OptionPanel panel1 = new OptionPanel(this);    
-	    GamePanel panel2 = new GamePanel(this);
-	    GamePanel panel3 = new GamePanel(this);
-	    GamePanel panel4 = new GamePanel(this);
-	    GamePanel panel5 = new GamePanel(this);
+	    PlayGamePanel panel2 = new PlayGamePanel(this);
+	    PlayGamePanel panel3 = new PlayGamePanel(this);
+	    PlayGamePanel panel4 = new PlayGamePanel(this);
+	    PlayGamePanel panel5 = new PlayGamePanel(this);
 	    
 	
 	    cardPanel.add(panel1,"1"); // Card is named "1"
