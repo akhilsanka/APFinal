@@ -1,3 +1,4 @@
+package GUI;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
@@ -7,13 +8,13 @@ import javax.swing.*;
 import java.util.*;
 
 
-public class PlayGamePanel extends JPanel implements KeyListener
+public class MakeGamePanel extends JPanel implements KeyListener
 {
  // test 
 	private String message;
 	private Main m;
 
-	public PlayGamePanel (Main m) {
+	public MakeGamePanel (Main m) {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);

@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class Hint {
 	private String hint;
-	private int answers;
+	private int answer;
 	private HintLocation loc;
 	
 	public Hint(HintLocation myLoc, String myHint, int myAnswers)
 	{
 		loc = myLoc;
-		answers = myAnswers;
+		answer = myAnswers;
 		hint = myHint;
 	}
 	
