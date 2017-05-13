@@ -140,6 +140,10 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		if (chooseB == button){
 			hintList.trimToSize();
 			r = new Race(nameText, hintList);	
+			
+			FileIO writer = new FileIO();
+			writer.writeObject(nameText + ".sch", r);
+			
 			m.changePanel("1");
 		}
 		

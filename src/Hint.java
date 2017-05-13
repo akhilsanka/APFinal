@@ -1,6 +1,10 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Hint {
+public class Hint implements Serializable{
+	
+	private static final long serialVersionUID = 1;
+	
 	private String hint;
 	private String answer;
 	private HintLocation loc;
