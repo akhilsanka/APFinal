@@ -18,6 +18,7 @@ public class MakeGamePanel extends JPanel implements KeyListener
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
+		message = "Make Game";
 	}
 
 

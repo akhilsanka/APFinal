@@ -20,7 +20,7 @@ public class InstructionPanel extends JPanel implements KeyListener {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
-		message = "This is the actual game screen! Press escape to quit.";
+		message = "Instructions";
 	}
 
 

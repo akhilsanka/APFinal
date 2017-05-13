@@ -19,14 +19,14 @@ public class PlayGamePanel extends JPanel implements KeyListener
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
-		message = "This is the game screen to play a scavenger hunt! Press escape to quit.";
+		message = "Play Game";
 	}
 	
 	public PlayGamePanel (Main m) {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
-		message = "This is the game screen to play a scavenger hunt! Press escape to quit.";
+		message = "Play Game";
 	}
 
 

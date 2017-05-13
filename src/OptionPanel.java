@@ -42,7 +42,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 			w.changePanel("2");
 		}
 		else if (chooseB == button3){
-			w.changePanel("2");
+			w.changePanel("4");
 		}
 		
 		
