@@ -14,21 +14,30 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	private String message;
 	private Main m;
 	protected JTextField nameField;
+	String nameText;
 	protected JTextField hintField;
 	protected JTextField answerField;
 	protected JTextArea hintArea;
 	protected JTextArea answerArea;
 	private final static String newline = "\n";
-
+	
+	private Race r;
+	private ArrayList<Hint> hintList = new ArrayList<Hint>();
+	private JButton button;
+	
 	public MakeGamePanel (Main m) {
+		
 		super(new GridBagLayout());
+		
+		JPanel p = new JPanel();
+		
 		this.m = m;
 		setBackground(Color.WHITE);
 		
-		JLabel name = new JLabel("Enter Name: ");
-		JLabel hint = new JLabel("Enter Hint: ");
-		JLabel answer = new JLabel("Enter Answer: ");
-		JLabel finish = new JLabel("Press Enter Key To Add Entered Hints And Answers To Race!");
+		JLabel name = new JLabel("Please enter the name of the Scavenger Hunt ");
+		JLabel hint = new JLabel("Enter Hint(s): ");
+		JLabel answer = new JLabel("Enter Answer(s): ");
+		JLabel finish = new JLabel("Press Enter Key To Add Current Hints And Answers To Race!");
 		nameField = new JTextField(20);
 		hintField = new JTextField(20);
 		answerField = new JTextField(20);
@@ -45,6 +54,9 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         answerArea = new JTextArea(5, 20);
 		answerArea.setEditable(false);
         JScrollPane scrollPane2 = new JScrollPane(answerArea);
+        
+        answerArea.append("Corresponding Answers: \n");
+        hintArea.append("Your Hints: \n");
  
         //Add Components to this panel.
         GridBagConstraints c = new GridBagConstraints();
@@ -65,6 +77,12 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         c.weighty = 1.0;
         add(scrollPane, c);
         add(scrollPane2, c);
+        
+        
+        button = new JButton("Finish Making Race!");
+		button.addActionListener(this);
+		p.add(button);
+		add(p);
 	}
 
 
@@ -98,9 +116,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			m.changePanel("1");
-		}
+		
 	}
 
 
@@ -120,14 +136,25 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-        String hintText = hintField.getText();
+		Object chooseB = e.getSource();
+		if (chooseB == button){
+			hintList.trimToSize();
+			r = new Race(nameText, hintList);	
+			m.changePanel("1");
+		}
+		
+		
+		nameText = nameField.getText();
+		String hintText = hintField.getText();
         hintArea.append(hintText + newline);
         hintField.selectAll();
         
         String answerText = answerField.getText();
         answerArea.append(answerText + newline);
         answerField.selectAll();
- 
+        Hint currentH = new Hint(hintText, answerText);
+        hintList.add(currentH);
+        
         //Make sure the new text is visible, even if there
         //was a selection in the text area.
         hintArea.setCaretPosition(hintArea.getDocument().getLength());

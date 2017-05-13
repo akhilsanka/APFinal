@@ -20,7 +20,7 @@ public class InstructionPanel extends JPanel implements KeyListener {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
-		message = "Instructions";
+		message = "To play a scavenger hunt, run the program and click Play. Enter a code to";
 	}
 
 

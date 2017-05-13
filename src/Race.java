@@ -1,11 +1,13 @@
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class Race extends JPanel {
-	
+public class Race extends JPanel implements Serializable{
+		
+	private static final long serialVersionUID = 1;
 
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
@@ -14,9 +16,9 @@ public class Race extends JPanel {
 	private boolean isComplete;
 
 	
-	public Race(String name)
+	public Race(String name, ArrayList<Hint> hints )
 	{
-		unusedHints = new ArrayList<Hint>();
+		unusedHints = hints;
 		usedHints = new ArrayList<Hint>();
 		isComplete = false;
 		this.name = name;
@@ -66,13 +68,13 @@ public class Race extends JPanel {
 		
 	}
 	
-	public void addHint(String hint, int answer)
+	public void addHint(String hint, String answer)
 	{
 		Hint newHint = new Hint(hint, answer);
 		unusedHints.add(newHint);
 	}
 	
-	public void addHint(HintLocation location, String hint, int answer)
+	public void addHint(HintLocation location, String hint, String answer)
 	{
 		Hint newHint = new Hint(location, hint, answer);
 		unusedHints.add(newHint);
