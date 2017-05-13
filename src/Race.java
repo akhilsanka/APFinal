@@ -9,18 +9,23 @@ public class Race extends JPanel {
 
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
-
+	private String name;
 	private BufferedImage image;
 	private boolean isComplete;
 
 	
-	public Race()
+	public Race(String name)
 	{
 		unusedHints = new ArrayList<Hint>();
 		usedHints = new ArrayList<Hint>();
 		isComplete = false;
+		this.name = name;
 	}
 	
+	public String getName()
+	{
+		return name;
+	}
 //	public Hint getHint()
 //	{
 //		if(usedHints.size() == hints.size()){
