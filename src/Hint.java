@@ -12,4 +12,9 @@ public class Hint {
 		hint = myHint;
 	}
 	
+	public Hint(String myHint, int myAnswers)
+	{
+		answer = myAnswers;
+		hint = myHint;
+	}
 }

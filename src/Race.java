@@ -61,5 +61,16 @@ public class Race extends JPanel {
 		
 	}
 	
+	public void addHint(String hint, int answer)
+	{
+		Hint newHint = new Hint(hint, answer);
+		unusedHints.add(newHint);
+	}
+	
+	public void addHint(HintLocation location, String hint, int answer)
+	{
+		Hint newHint = new Hint(location, hint, answer);
+		unusedHints.add(newHint);
+	}
 
 }
