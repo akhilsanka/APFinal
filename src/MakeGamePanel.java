@@ -18,6 +18,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextField answerField;
 	protected JTextArea hintArea;
 	protected JTextArea answerArea;
+	protected JButton addToArray;
 	private final static String newline = "\n";
 
 	public MakeGamePanel (Main m) {
@@ -28,7 +29,8 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		JLabel name = new JLabel("Enter Name: ");
 		JLabel hint = new JLabel("Enter Hint: ");
 		JLabel answer = new JLabel("Enter Answer: ");
-		JLabel finish = new JLabel("Press Enter Key To Add Entered Hints And Answers To Race!");
+		JLabel finish = new JLabel("Press Finish Button To Add Entered Hints And Answers To Race!");
+		addToArray = new JButton("Finish");
 		nameField = new JTextField(20);
 		hintField = new JTextField(20);
 		answerField = new JTextField(20);
@@ -36,14 +38,14 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		nameField.addActionListener(this);
 		hintField.addActionListener(this);
 		answerField.addActionListener(this);
-
+		addToArray.addActionListener(this);
  
 		hintArea = new JTextArea(5, 20);
-		hintArea.setEditable(false);
+		hintArea.setEditable(true);
         JScrollPane scrollPane = new JScrollPane(hintArea);
         
         answerArea = new JTextArea(5, 20);
-		answerArea.setEditable(false);
+		answerArea.setEditable(true);
         JScrollPane scrollPane2 = new JScrollPane(answerArea);
  
         //Add Components to this panel.
@@ -65,6 +67,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         c.weighty = 1.0;
         add(scrollPane, c);
         add(scrollPane2, c);
+        add(addToArray, c);
 	}
 
 
@@ -120,18 +123,36 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-        String hintText = hintField.getText();
-        hintArea.append(hintText + newline);
-        hintField.selectAll();
-        
-        String answerText = answerField.getText();
-        answerArea.append(answerText + newline);
-        answerField.selectAll();
- 
-        //Make sure the new text is visible, even if there
-        //was a selection in the text area.
-        hintArea.setCaretPosition(hintArea.getDocument().getLength());
-        answerArea.setCaretPosition(answerArea.getDocument().getLength());
+		Object chooseB = e.getSource();
+		if (chooseB == addToArray){
+			String raceName = nameField.getText();
+			Race createdRace = new Race(raceName);
+			System.out.println("button pressed");
+			String hints[] = hintArea.getText().split("\\r?\\n");
+		    ArrayList<String>hintList = new ArrayList<>(Arrays.asList(hints)) ;
+		    System.out.println(hintList);
+		    
+		    String answers[] = answerArea.getText().split("\\r?\\n");
+		    ArrayList<String>answerList = new ArrayList<>(Arrays.asList(answers)) ;
+		    System.out.println(answerList);
+		    
+		    createdRace.addHint(hintList, answerList);
+		}
+		else
+		{
+			String hintText = hintField.getText();
+	        hintArea.append(hintText + newline);
+	        hintField.selectAll();
+	        
+	        String answerText = answerField.getText();
+	        answerArea.append(answerText + newline);
+	        answerField.selectAll();
+	 
+	        //Make sure the new text is visible, even if there
+	        //was a selection in the text area.
+	        hintArea.setCaretPosition(hintArea.getDocument().getLength());
+	        answerArea.setCaretPosition(answerArea.getDocument().getLength());
+		}
 	}
 
 

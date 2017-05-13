@@ -66,10 +66,21 @@ public class Race extends JPanel {
 		
 	}
 	
-	public void addHint(String hint, int answer)
+	public void addHint(ArrayList<String> hint, ArrayList<String> answer)
 	{
-		Hint newHint = new Hint(hint, answer);
-		unusedHints.add(newHint);
+		if(hint.size() != answer.size())
+		{
+			System.out.println("Enter an equal number of hints and answers!");
+		}
+		else
+		{
+			for(int i = 0; i < hint.size(); i++)
+			{
+				Hint newHint = new Hint(hint.get(i), Integer.parseInt(answer.get(i)));
+				unusedHints.add(newHint);
+			}
+		}
+		
 	}
 	
 	public void addHint(HintLocation location, String hint, int answer)
