@@ -1,5 +1,8 @@
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import javax.swing.JPanel;
 
 public class Race extends JPanel {
 	

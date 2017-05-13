@@ -1,4 +1,4 @@
-package GUI;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
@@ -8,19 +8,25 @@ import javax.swing.*;
 import java.util.*;
 
 
-
-
-public class InstructionPanel extends JPanel implements KeyListener {
-
-
+public class PlayGamePanel extends JPanel implements KeyListener
+{
+ // test 
 	private String message;
 	private Main m;
+	private Race r;
 
-	public InstructionPanel (Main m) {
+	public PlayGamePanel (Main m, Race r) {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
-		message = "This is the actual game screen! Press escape to quit.";
+		message = "This is the game screen to play a scavenger hunt! Press escape to quit.";
+	}
+	
+	public PlayGamePanel (Main m) {
+		super();
+		this.m = m;
+		setBackground(Color.WHITE);
+		message = "This is the game screen to play a scavenger hunt! Press escape to quit.";
 	}
 
 
@@ -73,4 +79,3 @@ public class InstructionPanel extends JPanel implements KeyListener {
 
 
 }
-
