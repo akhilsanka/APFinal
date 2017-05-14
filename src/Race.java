@@ -75,7 +75,11 @@ public class Race extends JPanel implements Serializable{
 	
 	public void addHint(ArrayList<String> hint, ArrayList<String> answer)
 	{
-		if(hint.size() != answer.size())
+		if(hint.size() == 0 || answer.size() == 0)
+		{
+			System.out.println("Enter an equal number of hints and answers!");
+		}
+		else if(hint.size() != answer.size())
 		{
 			System.out.println("Enter an equal number of hints and answers!");
 		}

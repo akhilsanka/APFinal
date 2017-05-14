@@ -38,12 +38,8 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		JLabel name = new JLabel("Enter Name: ");
 		JLabel hint = new JLabel("Enter Hint: ");
 		JLabel answer = new JLabel("Enter Answer: ");
-		JLabel finish = new JLabel("Press Finish Button To Add Entered Hints And Answers To Race!");
-		addToArray = new JButton("Finish");
-		//JLabel name = new JLabel("Please enter the name of the Scavenger Hunt ");
-		//JLabel hint = new JLabel("Enter Hint(s): ");
-		//JLabel answer = new JLabel("Enter Answer(s): ");
-		//JLabel finish = new JLabel("Press Enter Key To Add Current Hints And Answers To Race!");
+		JLabel yourHints = new JLabel("The First Box Contains Your Hints And The Second Box Contains Corresponding Hints");
+		addToArray = new JButton("Add Entered Hints and Answers To Race");
 		nameField = new JTextField(20);
 		hintField = new JTextField(20);
 		answerField = new JTextField(20);
@@ -60,9 +56,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         answerArea = new JTextArea(5, 20);
 		answerArea.setEditable(true);
         JScrollPane scrollPane2 = new JScrollPane(answerArea);
-        
-        answerArea.append("Corresponding Answers: \n");
-        hintArea.append("Your Hints: \n");
  
         //Add Components to this panel.
         GridBagConstraints c = new GridBagConstraints();
@@ -76,15 +69,16 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         add(hintField, c);
         add(answer, c);
         add(answerField, c);
- 
-        add(finish, c);
+       // add(finish, c);
+        add(yourHints, c);
+        
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 1.0;
         c.weighty = 1.0;
         add(scrollPane, c);
         add(scrollPane2, c);
-        add(addToArray, c);
-        
+        //add(answers, c);
+        p.add(addToArray, c);
         
         button = new JButton("Finish Making Race!");
 		button.addActionListener(this);
@@ -110,14 +104,12 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("SansSerif",Font.BOLD,28));
-		//int strWidth = g.getFontMetrics().stringWidth(message);
-		//g.drawString(message, 400-strWidth/2, 300);
+		int strWidth = g.getFontMetrics().stringWidth("test");
+		g.drawString("test", 400-strWidth/2, 300);
 		
 		
 		
 		g2.setTransform(at);
-
-		// TODO Add any custom drawings here
 	}
 
 
@@ -155,8 +147,10 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		    String answers[] = answerArea.getText().split("\\r?\\n");
 		    ArrayList<String>answerList = new ArrayList<>(Arrays.asList(answers)) ;
 		    System.out.println(answerList);
-		    
-		    createdRace.addHint(hintList, answerList);
+		    if(answers.length == 0)
+		    	msgbox("Please enter a value for the answer before clicking finish");
+		    else
+		    	createdRace.addHint(hintList, answerList);
 		}
 		else
 		{
@@ -193,18 +187,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 			m.changePanel("1");
 		}
 		
-		
-		/*nameText = nameField.getText();
-		String hintText = hintField.getText();
-        hintArea.append(hintText + newline);
-        hintField.selectAll();
-        
-        String answerText = answerField.getText();
-        answerArea.append(answerText + newline);
-        answerField.selectAll();
-        Hint currentH = new Hint(hintText, answerText);
-        hintList.add(currentH);*/
-        
         //Make sure the new text is visible, even if there
         //was a selection in the text area.
         hintArea.setCaretPosition(hintArea.getDocument().getLength());
@@ -212,7 +194,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 
 	}
 	
-	private void msgbox(String s){
+	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}
 
