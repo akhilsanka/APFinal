@@ -174,7 +174,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			answerArea.setText("");
+			msgbox("Don't press enter after typing in your answer, just click the button when you are done.");
+		   }
 	}
 
 	@Override
