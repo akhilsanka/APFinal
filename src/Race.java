@@ -112,4 +112,19 @@ public class Race extends JPanel implements Serializable{
 	{
 		return isComplete;
 	}
+	
+	public int getFinishedHints()
+	{
+		return usedHints.size();
+	}
+	
+	public int getRemainingHints()
+	{
+		return unusedHints.size();
+	}
+	
+	public void finish()
+	{
+		isComplete = true;
+	}
 }
