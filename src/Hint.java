@@ -22,4 +22,14 @@ public class Hint implements Serializable{
 		hint = myHint;
 	}
 	
+	public String getHint()
+	{
+		return hint;
+	}
+	
+	public int getAnswer()
+	{
+		return answer;
+	}
+	
 }

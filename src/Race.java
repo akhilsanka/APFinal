@@ -27,6 +27,9 @@ public class Race extends JPanel implements Serializable{
 	public Race(String name)
 	{
 		this.name = name;
+		unusedHints = new ArrayList<Hint>();
+		usedHints = new ArrayList<Hint>();
+		isComplete = false;
 	}
 	
 	public String getName()
@@ -61,6 +64,7 @@ public class Race extends JPanel implements Serializable{
 	public Hint getHint()
 	{
 		if(unusedHints.size() == 0){
+			isComplete = true;
 			return null;
 		}
 		int randHint;
@@ -70,7 +74,6 @@ public class Race extends JPanel implements Serializable{
 		unusedHints.remove(randHint);	
 		
 		return shuffledHint;
-		
 	}
 	
 	public void addHint(ArrayList<String> hint, ArrayList<String> answer)
@@ -94,10 +97,19 @@ public class Race extends JPanel implements Serializable{
 		
 	}
 	
+	public void addHint(Hint hint)
+	{
+		unusedHints.add(hint);
+	}
+	
 	public void addHint(HintLocation location, String hint, int answer)
 	{
 		Hint newHint = new Hint(location, hint, answer);
 		unusedHints.add(newHint);
 	}
 
+	public boolean isFinished()
+	{
+		return isComplete;
+	}
 }

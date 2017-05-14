@@ -21,6 +21,11 @@ public class InstructionPanel extends JPanel implements KeyListener {
 		this.m = m;
 		setBackground(Color.WHITE);
 		message = "To play a scavenger hunt, run the program and click Play. Enter a code to";
+		JTextArea instructions = new JTextArea(5, 20);
+		instructions.append(message);
+		instructions.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(instructions);
+        add(scrollPane);
 	}
 
 
@@ -30,6 +35,7 @@ public class InstructionPanel extends JPanel implements KeyListener {
 
 		Graphics2D g2 = (Graphics2D)g;
 
+		
 		int width = getWidth();
 		int height = getHeight();
 
@@ -41,12 +47,9 @@ public class InstructionPanel extends JPanel implements KeyListener {
 
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("SansSerif",Font.BOLD,28));
-		int strWidth = g.getFontMetrics().stringWidth(message);
-		g.drawString(message, 400-strWidth/2, 300);
-
+		//int strWidth = g.getFontMetrics().stringWidth(message);
+		//g.drawString(message, 400-strWidth/2, 300);
 		g2.setTransform(at);
-
-		// TODO Add any custom drawings here
 	}
 
 

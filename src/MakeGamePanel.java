@@ -10,16 +10,16 @@ import java.util.*;
 
 public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 {
- // test 
-	private String message;
 	private Main m;
 	protected JTextField nameField;
-	String nameText;
+	private String nameText;
 	protected JTextField hintField;
 	protected JTextField answerField;
 	protected JTextArea hintArea;
 	protected JTextArea answerArea;
 	protected JButton addToArray;
+	protected JButton create;
+	private Race createdRace;
 	private final static String newline = "\n";
 	
 	private Race r;
@@ -35,11 +35,12 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		this.m = m;
 		setBackground(Color.WHITE);
 		
-		JLabel name = new JLabel("Enter Name: ");
+		JLabel name = new JLabel("Enter Name of Race: ");
 		JLabel hint = new JLabel("Enter Hint: ");
 		JLabel answer = new JLabel("Enter Answer: ");
 		JLabel yourHints = new JLabel("The First Box Contains Your Hints And The Second Box Contains Corresponding Hints");
 		addToArray = new JButton("Add Entered Hints and Answers To Race");
+		create = new JButton("Create Race");
 		nameField = new JTextField(20);
 		hintField = new JTextField(20);
 		answerField = new JTextField(20);
@@ -48,6 +49,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		hintField.addActionListener(this);
 		answerField.addActionListener(this);
 		addToArray.addActionListener(this);
+		create.addActionListener(this);
  
 		hintArea = new JTextArea(5, 20);
 		hintArea.setEditable(true);
@@ -60,11 +62,11 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         //Add Components to this panel.
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
-        //c.gridwidth = 100;
  
         c.fill = GridBagConstraints.HORIZONTAL;
         add(name, c);
         add(nameField, c);
+        add(create, c);
         add(hint, c);
         add(hintField, c);
         add(answer, c);
@@ -137,8 +139,8 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if (chooseB == addToArray){
-			String raceName = nameField.getText();
-			Race createdRace = new Race(raceName);
+			//String raceName = nameField.getText();
+			//Race createdRace = new Race(raceName);
 			System.out.println("button pressed");
 			String hints[] = hintArea.getText().split("\\r?\\n");
 		    ArrayList<String>hintList = new ArrayList<>(Arrays.asList(hints)) ;
@@ -151,6 +153,11 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		    	msgbox("Please enter a value for the answer before clicking finish");
 		    else
 		    	createdRace.addHint(hintList, answerList);
+		}
+		else if(chooseB == create)
+		{
+			createdRace = new Race(nameField.getText());
+			m.addRace(createdRace);
 		}
 		else
 		{

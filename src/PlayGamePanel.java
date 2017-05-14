@@ -24,6 +24,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private Race r;
 	private ArrayList<Hint> hintList = new ArrayList<Hint>();
 	private JButton button;
+	private JButton game;
+	private ArrayList<JButton> buttons;
+	private ArrayList<Race> races;
 	
 	public PlayGamePanel (Main m) {
 		
@@ -33,8 +36,29 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 		
 		this.m = m;
 		setBackground(Color.WHITE);
+		GridBagConstraints c = new GridBagConstraints();
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.fill = GridBagConstraints.HORIZONTAL;
 		
-		JLabel name = new JLabel("Please enter the name of the Scavenger Hunt you would like to play");
+		game = new JButton("Start Selected Race");
+		game.addActionListener(this);
+		
+		
+		races = m.getRaces();
+		System.out.println((races.size()));
+		buttons = new ArrayList<JButton>();
+		for(int i = 0; i < races.size(); i++)
+		{
+			System.out.println("test");
+			JButton button = new JButton(races.get(i).getName());
+			button.addActionListener(this);
+			add(button, c);
+			buttons.add(button);
+		}
+		
+		add(game, c);
+		//add(p, c);
+		//JLabel name = new JLabel("Please enter the name of the Scavenger Hunt you would like to play");
 		
 //		JLabel hint = new JLabel("Enter Hint(s): ");
 //		JLabel answer = new JLabel("Enter Answer(s): ");
@@ -44,7 +68,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 //		reader.readObject(nameText + ".sch", r);
 //		
 		
-		nameField = new JTextField(20);
+		/*nameField = new JTextField(20);
 		hintField = new JTextField(20);
 		answerField = new JTextField(20);
 		
@@ -88,7 +112,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         button = new JButton("Finish Making Race!");
 		button.addActionListener(this);
 		p.add(button);
-		add(p);
+		add(p);*/
 	}
 
 
@@ -143,7 +167,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
-		if (chooseB == button){
+		Race playRace; 
+		/*if (chooseB == button){
 			hintList.trimToSize();
 			r = new Race(nameText, hintList);	
 			
@@ -151,9 +176,20 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			writer.writeObject(nameText + ".sch", r);
 			
 			m.changePanel("1");
+		}*/
+		for(int i = 0; i < buttons.size(); i++)
+		{
+			if(chooseB == buttons.get(i))
+			{
+				m.changePanel("5");
+				m.setRace(races.get(i));
+			}
 		}
-		
-		
+		/*if(chooseB == game)
+		{
+			m.changePanel("5");
+		}*/
+		/*
 		nameText = nameField.getText();
 		String hintText = hintField.getText();
         hintArea.append(hintText + newline);
@@ -168,7 +204,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         //Make sure the new text is visible, even if there
         //was a selection in the text area.
         hintArea.setCaretPosition(hintArea.getDocument().getLength());
-        answerArea.setCaretPosition(answerArea.getDocument().getLength());
+        answerArea.setCaretPosition(answerArea.getDocument().getLength());*/
 	}
 
 
