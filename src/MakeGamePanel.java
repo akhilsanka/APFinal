@@ -144,8 +144,17 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	        hintArea.append(hintText + newline);
 	        hintField.selectAll();
 	        
-	        String answerText = answerField.getText();
-	        answerArea.append(answerText + newline);
+	        String answerText = "";
+	        try
+	        {
+		        answerText = answerField.getText();
+		        Integer.parseInt(answerText);
+		        answerArea.append(answerText + newline);
+	        }
+	        catch(NumberFormatException ex)
+	        {
+	        	msgbox("Invalid input, please change input to a number: ");
+	        }
 	        answerField.selectAll();
 	 
 	        //Make sure the new text is visible, even if there
@@ -154,6 +163,10 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	        answerArea.setCaretPosition(answerArea.getDocument().getLength());
 		}
 	}
+	
+	private void msgbox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+		}
 
 
 }
