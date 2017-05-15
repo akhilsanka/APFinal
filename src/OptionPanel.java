@@ -1,11 +1,14 @@
+
 import java.awt.*;
 import javax.swing.*;
+
 import java.awt.event.*;
 
 
 public class OptionPanel extends JPanel implements ActionListener {
 	
 	private Main w;
+	JButton button, button2, button3;
 	//test 
 	public OptionPanel(Main w) {
 		this.w = w;
@@ -14,24 +17,35 @@ public class OptionPanel extends JPanel implements ActionListener {
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
 		p.add(Box.createVerticalStrut(300));
 		
-		JButton button = new JButton("Make A New Race!");
+		button = new JButton("Make A New Race!");
 		button.addActionListener(this);
 		p.add(button);
 		add(p);
 		
-		JButton button2 = new JButton("Start A Race!");
+		button2 = new JButton("Start A Race!");
 		button2.addActionListener(this);
 		p.add(button2);
 		add(p);
 		
-		JButton button3 = new JButton("Instructions!");
+		button3 = new JButton("Instructions!");
 		button3.addActionListener(this);
 		p.add(button3);
 		add(p);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		w.changePanel("2");
+		Object chooseB = e.getSource();
+		if (chooseB == button){
+			w.changePanel("3");
+		}
+		else if (chooseB == button2){
+			w.changePanel("2");
+		}
+		else if (chooseB == button3){
+			w.changePanel("4");
+		}
+		
+		
 	}
 	
 }

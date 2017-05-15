@@ -1,47 +1,130 @@
+
+import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Race {
-	
-	private ArrayList<Hint> hints;
-	private ArrayList<Integer> usedHints;
+import javax.swing.JPanel;
 
-	private User[] Users;
-	private Map map;
+public class Race extends JPanel implements Serializable{
+		
+	private static final long serialVersionUID = 1;
+
+	private ArrayList<Hint> unusedHints;
+	private ArrayList<Hint> usedHints;
+	private String name;
+	private BufferedImage image;
 	private boolean isComplete;
 
 	
-	public Race()
+	public Race(String name, ArrayList<Hint> hints )
 	{
-		hints = new ArrayList<Hint>();
+		unusedHints = hints;
+		usedHints = new ArrayList<Hint>();
+		isComplete = false;
+		this.name = name;
+	}
+	
+	public Race(String name)
+	{
+		this.name = name;
+		unusedHints = new ArrayList<Hint>();
+		usedHints = new ArrayList<Hint>();
 		isComplete = false;
 	}
 	
+	public String getName()
+	{
+		return name;
+	}
+//	public Hint getHint()
+//	{
+//		if(usedHints.size() == hints.size()){
+//			return null;
+//		}
+//		int randHint;
+//		boolean used = false;
+//		do{
+//			randHint = (int)Math.random()*hints.size();
+//			for(int i = 0; i<usedHints.size(); i++){
+//				if(randHint == usedHints.get(i)){
+//					used = true;
+//					break;
+//				}
+//			}
+//			if(used == false){
+//				usedHints.add(randHint);
+//				return hints.get(randHint);
+//			}
+//			
+//		}
+//		while(used == true);
+//		return hints.get(0);
+//		
+//	}
 	public Hint getHint()
 	{
-		if(usedHints.size() == hints.size()){
+		if(unusedHints.size() == 0){
+			isComplete = true;
 			return null;
 		}
 		int randHint;
-		boolean used = false;
-		do{
-			randHint = (int)Math.random()*hints.size();
-			for(int i = 0; i<usedHints.size(); i++){
-				if(randHint == usedHints.get(i)){
-					used = true;
-					break;
-				}
-			}
-			if(used == false){
-				usedHints.add(randHint);
-				return hints.get(randHint);
-			}
-			
+		randHint = (int)Math.random()*unusedHints.size();
+		Hint shuffledHint = unusedHints.get(randHint);
+		usedHints.add(unusedHints.get(randHint));
+		unusedHints.remove(randHint);	
+		
+		return shuffledHint;
+	}
+	
+	public void addHint(ArrayList<String> hint, ArrayList<String> answer)
+	{
+		if(hint.size() == 0 || answer.size() == 0)
+		{
+			System.out.println("Enter an equal number of hints and answers!");
 		}
-		while(used == true);
-		return hints.get(0);
+		else if(hint.size() != answer.size())
+		{
+			System.out.println("Enter an equal number of hints and answers!");
+		}
+		else
+		{
+			for(int i = 0; i < hint.size(); i++)
+			{
+				Hint newHint = new Hint(hint.get(i), Integer.parseInt(answer.get(i)));
+				unusedHints.add(newHint);
+			}
+		}
 		
 	}
 	
+	public void addHint(Hint hint)
+	{
+		unusedHints.add(hint);
+	}
 	
+	public void addHint(HintLocation location, String hint, int answer)
+	{
+		Hint newHint = new Hint(location, hint, answer);
+		unusedHints.add(newHint);
+	}
 
+	public boolean isFinished()
+	{
+		return isComplete;
+	}
+	
+	public int getFinishedHints()
+	{
+		return usedHints.size();
+	}
+	
+	public int getRemainingHints()
+	{
+		return unusedHints.size();
+	}
+	
+	public void finish()
+	{
+		isComplete = true;
+	}
 }

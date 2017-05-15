@@ -1,15 +1,35 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Hint {
+public class Hint implements Serializable{
+	
+	private static final long serialVersionUID = 1;
+	
 	private String hint;
-	private int answers;
+	private int answer;
 	private HintLocation loc;
 	
 	public Hint(HintLocation myLoc, String myHint, int myAnswers)
 	{
 		loc = myLoc;
-		answers = myAnswers;
+		answer = myAnswers;
 		hint = myHint;
+	}
+	
+	public Hint(String myHint, int myAnswers)
+	{
+		answer = myAnswers;
+		hint = myHint;
+	}
+	
+	public String getHint()
+	{
+		return hint;
+	}
+	
+	public int getAnswer()
+	{
+		return answer;
 	}
 	
 }
