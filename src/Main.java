@@ -15,6 +15,7 @@ public class Main extends JFrame {
 	public Main(String title) {
 		super(title);
 		addDummyRace();
+		addDefaultRace();
 		setBounds(100, 100, 800, 600);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
@@ -66,6 +67,17 @@ public class Main extends JFrame {
 		dummy.addHint(hint2);
 		dummy.addHint(hint3);
 		addRace(dummy);
+	}
+	
+	public void addDefaultRace()
+	{
+		Race shelby = new Race("Shelby's Classroom");
+		Hint h1 = new Hint("Location of Shelby's desk (one)", 1);
+		Hint h2 = new Hint("You pick up the dinosaur at this location before going to the bathroom (three)", 3); 
+		
+		shelby.addHint(h1);
+		shelby.addHint(h2);
+		addRace(shelby);
 	}
 	
 	public Race getRace(String name)
