@@ -32,7 +32,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	private JTextField unused;
 	private JPanel p;
 	private JButton check;
-	
+	/**
+	 * Makes a GamePanel object where the game is played
+	 * @param m Main Class
+	 */
     public GamePanel(Main m) 
     {
     	super(new GridBagLayout());
@@ -69,28 +72,25 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
         add(guess, c);
         add(scrollPane2, c);
         add(check, c);
-        //System.out.println(game.getName());
-        //playGame();
-       // p.repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        //used = new JTextField("Number of Finished Hints: ");
-        //unused = new JTextField("Number of Hints Remaining: ");
-        //p.add(used);
-        //p.add(unused);
-       // g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+              
     }
-	
+	/**
+	 * Sets the race being played to the race object passed in.
+	 * @param race Race object that user selects to play
+	 */
     public void setRace(Race race)
     {
     	game = race;
     	//System.out.println("race: " + game.getName());
     	playGame();
     }
-    
+    /**
+     * Plays the race
+     */
     public void playGame()
     {
     	currHint = getHint();
@@ -102,7 +102,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
     	p.repaint();
     	//m.changePanel("5");
     }
-    
+    /**
+     * Gets the next hint in the race.
+     * @return the next hint of the race.
+     */
 	public String getHint()
 	{
 		if(game != null)
@@ -129,7 +132,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		}
 		return "Game Not Found";
 	}
-	
+	/**
+	 * Checks to see if the guess from the user is the same as the answer of the hint.
+	 * @param answer guess made by the user.
+	 * @return true if the answer is correct and false if not.
+	 */
 	public boolean checkAnswer(int answer)
 	{
 		System.out.println("answer: " + answer);
@@ -146,7 +153,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		return false;
 	}
 
-	@Override
+	/**
+	 * Calls checkAnswer method if the checkAnswer button is clicked.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		try
@@ -173,6 +182,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	}
 
 	@Override
+	/**
+	 * Causes a pop up box to appear if the user presses the enter key.
+	 */
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 			answerArea.setText("");
@@ -185,7 +197,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/**
+	 * Causes a pop up window to appear.
+	 * @param s message displayed in the pop up window.
+	 */
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}

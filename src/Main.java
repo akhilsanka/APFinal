@@ -51,12 +51,17 @@ public class Main extends JFrame {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
 		requestFocus();
 	}
-	
+	/**
+	 * Adds a race to the list of races stored in the main method.
+	 * @param r Race that is added to the list of races
+	 */
 	public void addRace(Race r)
 	{
 		races.add(r);
 	}
-  
+	/**
+	 * Adds a dummy race to the list of races to test.
+	 */
 	public void addDummyRace()
 	{
 		Race dummy = new Race("Dummy");
@@ -68,7 +73,9 @@ public class Main extends JFrame {
 		dummy.addHint(hint3);
 		addRace(dummy);
 	}
-	
+	/**
+	 * Adds a default race to test.
+	 */
 	public void addDefaultRace()
 	{
 		Race shelby = new Race("Shelby's Classroom");
@@ -79,7 +86,10 @@ public class Main extends JFrame {
 		shelby.addHint(h2);
 		addRace(shelby);
 	}
-	
+	/*
+	 * @param name Name of the race to be returned
+	 * @return Race that is asked to return
+	 */
 	public Race getRace(String name)
 	{
 		for(int i = 0; i < races.size(); i ++)
@@ -91,12 +101,17 @@ public class Main extends JFrame {
 		}
 		return null;
 	}
-	
+	/**
+	 * @return ArrayList of all the races stored in the main method
+	 */
 	public ArrayList<Race> getRaces()
 	{
 		return races;
 	}
-	
+	/**
+	 * 
+	 * @param r
+	 */
 	public void setRace(Race r)
 	{
 		panel5.setRace(r);
