@@ -26,6 +26,12 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	private ArrayList<Hint> hintList = new ArrayList<Hint>();
 	private JButton button;
 	
+	
+	/**
+	 * This constructor makes a panel where you can make scavenger hunts.
+	 * 
+	 * @param m the main class
+	 */
 	public MakeGamePanel (Main m) {
 		
 		super(new GridBagLayout());
@@ -88,7 +94,9 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		add(p);
 	}
 
-
+	/** Paints to the screen of MakeGamePanel
+	 * @param g the Graphics class used to paint to the screen
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
@@ -136,6 +144,10 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 
 
 	@Override
+	/** Checks the user input for adding hints and answers to the scavenger hunt.
+	 * 
+	 * @param e the action that is recorded by the program
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if (chooseB == addToArray){
@@ -201,6 +213,11 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 
 	}
 	
+	
+	/** Displays a pop up box
+	 * 
+	 * @param s the string to be shown
+	 */
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}

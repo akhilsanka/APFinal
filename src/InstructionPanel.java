@@ -16,6 +16,12 @@ public class InstructionPanel extends JPanel implements KeyListener {
 	private String message;
 	private Main m;
 
+
+	/**
+	 * This constructor makes a panel that shows the instructions.
+	 * 
+	 * @param m the main class
+	 */
 	public InstructionPanel (Main m) {
 		super();
 		this.m = m;
@@ -28,7 +34,9 @@ public class InstructionPanel extends JPanel implements KeyListener {
         add(scrollPane);
 	}
 
-
+	/** Paints to the screen of this panel
+	 * @param g the Graphics class used to paint to the screen
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
@@ -54,6 +62,9 @@ public class InstructionPanel extends JPanel implements KeyListener {
 
 
 	@Override
+    /**  Checks to see if the user wants to go back
+	* @param arg0  the key that is recorded by the program
+	 */
 	public void keyPressed(KeyEvent arg0) {
 		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			m.changePanel("1");
