@@ -13,18 +13,15 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	private Main m;
 	protected JTextField nameField;
 	private String nameText;
-	protected JTextField hintField;
-	protected JTextField answerField;
 	protected JTextArea hintArea;
 	protected JTextArea answerArea;
-	protected JButton addToArray;
 	protected JButton create;
 	private Race createdRace;
 	private final static String newline = "\n";
 	
 	private Race r;
 	private ArrayList<Hint> hintList = new ArrayList<Hint>();
-	private JButton button;
+	private JButton home;
 	
 	
 	/**
@@ -42,26 +39,26 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		setBackground(Color.WHITE);
 		
 		JLabel name = new JLabel("Enter Name of Race: ");
-		JLabel hint = new JLabel("Enter Hint: ");
-		JLabel answer = new JLabel("Enter Answer: ");
+		//JLabel hint = new JLabel("Enter Hint: ");
+		//JLabel answer = new JLabel("Enter Answer: ");
 		JLabel yourHints = new JLabel("The First Box Contains Your Hints And The Second Box Contains Corresponding Hints");
-		addToArray = new JButton("Add Entered Hints and Answers To Race");
-		create = new JButton("Create Race");
+		//addToArray = new JButton("Add Entered Hints and Answers To Race");
+		//create = new JButton("Create Race");
 		nameField = new JTextField(20);
-		hintField = new JTextField(20);
-		answerField = new JTextField(20);
+		//hintField = new JTextField(20);
+		//answerField = new JTextField(20);
 		
 		nameField.addActionListener(this);
-		hintField.addActionListener(this);
-		answerField.addActionListener(this);
-		addToArray.addActionListener(this);
-		create.addActionListener(this);
+		//hintField.addActionListener(this);
+		//answerField.addActionListener(this);
+		//addToArray.addActionListener(this);
+		//create.addActionListener(this);
  
-		hintArea = new JTextArea(5, 20);
+		hintArea = new JTextArea(10, 20);
 		hintArea.setEditable(true);
         JScrollPane scrollPane = new JScrollPane(hintArea);
         
-        answerArea = new JTextArea(5, 20);
+        answerArea = new JTextArea(10, 20);
 		answerArea.setEditable(true);
         JScrollPane scrollPane2 = new JScrollPane(answerArea);
  
@@ -72,11 +69,11 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         c.fill = GridBagConstraints.HORIZONTAL;
         add(name, c);
         add(nameField, c);
-        add(create, c);
-        add(hint, c);
-        add(hintField, c);
-        add(answer, c);
-        add(answerField, c);
+        //add(create, c);
+        //add(hint, c);
+        //add(hintField, c);
+        //add(answer, c);
+        //add(answerField, c);
        // add(finish, c);
         add(yourHints, c);
         
@@ -86,11 +83,15 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
         add(scrollPane, c);
         add(scrollPane2, c);
         //add(answers, c);
-        p.add(addToArray, c);
+       // p.add(addToArray, c);
         
-        button = new JButton("Finish Making Race!");
-		button.addActionListener(this);
-		p.add(button);
+        home = new JButton("Return to home screen");
+        home.addActionListener(this);
+        
+        create = new JButton("Finish Making Race!");
+		create.addActionListener(this);
+		p.add(create);
+		p.add(home);
 		add(p);
 	}
 
@@ -150,12 +151,13 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
-		if (chooseB == addToArray){
+		if (chooseB == create){
 			//String raceName = nameField.getText();
 			//Race createdRace = new Race(raceName);
 			System.out.println("button pressed");
-			String hints[] = hintArea.getText().split("\\r?\\n");
-		    ArrayList<String>hintList = new ArrayList<>(Arrays.asList(hints)) ;
+			String clues[] = hintArea.getText().split("\\r?\\n");
+		    ArrayList<String>hintList = new ArrayList<String>(Arrays.asList(clues));
+		    ArrayList<Hint> hints = new ArrayList<Hint>();
 		    System.out.println(hintList);
 		    
 		    String answers[] = answerArea.getText().split("\\r?\\n");
@@ -163,19 +165,44 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		    System.out.println(answerList);
 		    if(answers.length == 0)
 		    	msgbox("Please enter a value for the answer before clicking finish");
+		    else if(clues.length == 0)
+		    	msgbox("Please enter a value for the hint before clicking finish");
+		    else if(answers.length != clues.length)
+		    {
+		    	msgbox("Please enter the same number of hints and answers");
+		    }
 		    else
-		    	createdRace.addHint(hintList, answerList);
+		    {
+		    	for(int i = 0; i < hintList.size(); i++)
+		    	{
+		    		Hint temp;
+		    		try
+		    		{
+			    		temp = new Hint(hintList.get(i), Integer.parseInt(answerList.get(i)));
+		    		}
+		    		catch(NumberFormatException ex)
+		    		{
+		    			msgbox("Please enter only numbers for answers");
+		    			return; //correct? 
+		    		}
+		    		hints.add(temp);
+		    	}
+		    	createdRace = new Race(nameField.getText(), hints);
+		    	m.addRace(createdRace);
+		    	FileIO writer = new FileIO();
+				writer.writeObject(nameField.getText() + ".sch", r);
+		    }
 		}
-		else if(chooseB == create)
+		/*else if(chooseB == create)
 		{
 			createdRace = new Race(nameField.getText());
 			m.addRace(createdRace);
-		}
+		}*/
 		else
 		{
-			String hintText = hintField.getText();
+			/*//String hintText = hintField.getText();
 	        hintArea.append(hintText + newline);
-	        hintField.selectAll();
+	       // hintField.selectAll();
 	        
 	        String answerText = "";
 	        try
@@ -193,15 +220,15 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	        //Make sure the new text is visible, even if there
 	        //was a selection in the text area.
 	        hintArea.setCaretPosition(hintArea.getDocument().getLength());
-	        answerArea.setCaretPosition(answerArea.getDocument().getLength());
+	        answerArea.setCaretPosition(answerArea.getDocument().getLength());*/
 		}
 
-		if (chooseB == button){
-			hintList.trimToSize();
-			r = new Race(nameText, hintList);	
+		if (chooseB == home){
+			//hintList.trimToSize();
+			//r = new Race(nameText, hintList);	
 			
-			FileIO writer = new FileIO();
-			writer.writeObject(nameText + ".sch", r);
+			//FileIO writer = new FileIO();
+			//writer.writeObject(nameText + ".sch", r);
 			
 			m.changePanel("1");
 		}
