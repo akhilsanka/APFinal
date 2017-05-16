@@ -1,8 +1,7 @@
-//import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JPanel;
-import java.awt.Graphics;
+import java.util.ArrayList;
+import processing.core.PApplet;
 
 /* map of Shelby's classroom
  * each rectangle would represent basic classroom layout
@@ -10,22 +9,38 @@ import java.awt.Graphics;
  * all of these would be labeled with numbers
  * numbers would be the answers to the hint
  */
-public class Map extends JPanel implements MouseListener{
+public class Map extends PApplet implements MouseListener{
 	
+	ArrayList<Hint> hints;
+	String name;
 	
-	
-	public void paintComponent(Graphics g) 
-	{ 
-		super.paintComponent(g);
+	/**
+	 * 
+	 * @param n String name of Map
+	 * @param locations ArrayList of HintLocations that correspond with Hints
+	 */
+	public Map(String n, ArrayList<Hint> h)
+	{
+		super();
 		
-		//g.fillRect(x, y, width, height);
+		name = n;
+		this.hints = h;
 	}
 	
-	//method checks if click is in area
-	public boolean inRect()
+	public void draw()
 	{
+		background(0, 255, 255);
 		
-		return false;
+		int i = 0;
+		while(hints.size() != 0) //draws all the hint circles...
+		{
+			int x = hints.get(i).getHintLoc().getX();
+			int y = hints.get(i).getHintLoc().getY();
+			int radius = hints.get(i).getHintLoc().getRad();
+			
+			ellipse(x, y, radius, radius);
+		}
+		
 	}
 
 	@Override
