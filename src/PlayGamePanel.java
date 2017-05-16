@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
+	private GamePanel gp;
 	private BufferedImage image;
 	private Race game;
 	private String currHint;
@@ -39,6 +40,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public PlayGamePanel(Main m) 
     {
     	super(new GridBagLayout());
+    	
+    	FileIO reader = new FileIO();
+		//game = (Race)reader.readObject(gp.getRaceName() + ".sch");
+    	
     	p = new JPanel();
     	this.m = m;
 		setBackground(Color.WHITE);
