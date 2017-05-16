@@ -229,7 +229,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 			
 			//FileIO writer = new FileIO();
 			//writer.writeObject(nameText + ".sch", r);
-			
 			m.changePanel("1");
 		}
 		

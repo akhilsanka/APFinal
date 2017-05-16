@@ -13,8 +13,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
  // test 
 	private String message;
 	private Main m;
+	
+	
 	protected JTextField nameField;
 	String nameText;
+	
+	
 	protected JTextField hintField;
 	protected JTextField answerField;
 	protected JTextArea hintArea;
@@ -42,10 +46,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
-		
-		game = new JButton("Start Selected Race");
+        nameField = new JTextField(20);
+		game = new JButton("Enter this Race");
+		nameField.addActionListener(this);
 		game.addActionListener(this);
-		
+		add(nameField, c);
+		add(game, c);
 		
 		races = m.getRaces();
 		System.out.println((races.size()));
@@ -53,12 +59,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		for(int i = 0; i < races.size(); i++)
 		{
 			System.out.println("test");
-			JButton button = new JButton(races.get(i).getName());
+			 button = new JButton(races.get(i).getName());
 			button.addActionListener(this);
 			add(button, c);
 			buttons.add(button);
 		}
-		add(game, c);
+	
 	}
 
 
@@ -106,8 +112,20 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	 * Changes the panel based on what button is pressed
 	 */
 	public void actionPerformed(ActionEvent e) {
+		nameText = nameField.getText();
 		Object chooseB = e.getSource();
 		Race playRace; 
+		if(chooseB == game){
+			FileIO reader = new FileIO();
+			if(reader.readObject(nameText + ".sch") == null){
+				msgbox("Race not found");
+				//m.changePanel("5");
+			}
+			else{
+				m.changePanel("5");
+			}
+
+		}
 		for(int i = 0; i < buttons.size(); i++)
 		{
 			if(chooseB == buttons.get(i))
@@ -117,6 +135,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 			}
 		}
 	}
+	
+	public String getRaceName(){
+		return nameText;
+	}
+
+	public void msgbox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+		}
 
 
 }
