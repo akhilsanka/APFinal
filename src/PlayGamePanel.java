@@ -42,7 +42,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	super(new GridBagLayout());
     	
     	FileIO reader = new FileIO();
-		//game = (Race)reader.readObject(gp.getRaceName() + ".sch");
+		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));
     	
     	p = new JPanel();
     	this.m = m;
