@@ -117,7 +117,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		Race playRace; 
 		if(chooseB == game){
 			FileIO reader = new FileIO();
-			if(reader.readObject(nameText + ".sch") == null){
+			if((Race)reader.readObject(nameText + ".sch") == null){
 				msgbox("Race not found");
 				//m.changePanel("5");
 			}
