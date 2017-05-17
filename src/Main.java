@@ -10,7 +10,7 @@ public class Main extends JFrame {
 	//test 
 	JPanel cardPanel;
 	ArrayList<Race> races = new ArrayList<Race>();
-	private GamePanel panel5;
+	private PlayGamePanel panel5;
 	
 	public Main(String title) {
 		super(title);
@@ -26,7 +26,7 @@ public class Main extends JFrame {
 	    PlayGamePanel panel2 = new PlayGamePanel(this);
 	    MakeGamePanel panel3 = new MakeGamePanel(this);
 	    InstructionPanel panel4 = new InstructionPanel(this);
-	    panel5 = new GamePanel(this);
+	    panel5 = new PlayGamePanel(this);
 	    
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    cardPanel.add(panel2,"2"); // Card is named "2"
@@ -87,6 +87,6 @@ public class Main extends JFrame {
 	
 	public void setRace(Race r)
 	{
-		panel5.setRace(r);
+		//panel5.setRace(r);
 	}
 }
