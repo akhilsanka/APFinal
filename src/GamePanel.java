@@ -158,7 +158,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	
 	
 	public String getRaceName(){
-		return nameText;
+		return nameField.getText();
 	}
 
 	public void msgbox(String s){
