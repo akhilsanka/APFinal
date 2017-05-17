@@ -15,6 +15,7 @@ public class Main extends JFrame {
 	public Main(String title) {
 		super(title);
 		addDummyRace();
+		addDefaultRace();
 		setBounds(100, 100, 800, 600);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
@@ -23,7 +24,7 @@ public class Main extends JFrame {
 	    cardPanel.setLayout(cl);
 	    
 		OptionPanel panel1 = new OptionPanel(this);    
-	    PlayGamePanel panel2 = new PlayGamePanel(this);
+	    GamePanel panel2 = new GamePanel(this);
 	    MakeGamePanel panel3 = new MakeGamePanel(this);
 	    InstructionPanel panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this);
@@ -50,12 +51,17 @@ public class Main extends JFrame {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
 		requestFocus();
 	}
-	
+	/**
+	 * Adds a race to the list of races stored in the main method.
+	 * @param r Race that is added to the list of races
+	 */
 	public void addRace(Race r)
 	{
 		races.add(r);
 	}
-  
+	/**
+	 * Adds a dummy race to the list of races to test.
+	 */
 	public void addDummyRace()
 	{
 		Race dummy = new Race("Dummy");
@@ -67,7 +73,23 @@ public class Main extends JFrame {
 		dummy.addHint(hint3);
 		addRace(dummy);
 	}
-	
+	/**
+	 * Adds a default race to test.
+	 */
+	public void addDefaultRace()
+	{
+		Race shelby = new Race("Shelby's Classroom");
+		Hint h1 = new Hint("Location of Shelby's desk (one)", 1);
+		Hint h2 = new Hint("You pick up the dinosaur at this location before going to the bathroom (three)", 3); 
+		
+		shelby.addHint(h1);
+		shelby.addHint(h2);
+		addRace(shelby);
+	}
+	/*
+	 * @param name Name of the race to be returned
+	 * @return Race that is asked to return
+	 */
 	public Race getRace(String name)
 	{
 		for(int i = 0; i < races.size(); i ++)
@@ -79,12 +101,17 @@ public class Main extends JFrame {
 		}
 		return null;
 	}
-	
+	/**
+	 * @return ArrayList of all the races stored in the main method
+	 */
 	public ArrayList<Race> getRaces()
 	{
 		return races;
 	}
-	
+	/**
+	 * 
+	 * @param r
+	 */
 	public void setRace(Race r)
 	{
 		//panel5.setRace(r);

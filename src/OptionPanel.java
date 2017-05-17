@@ -10,6 +10,10 @@ public class OptionPanel extends JPanel implements ActionListener {
 	private Main w;
 	JButton button, button2, button3;
 	//test 
+	/**
+	 * Makes an OptionPanel object which displays the different options the user can make.
+	 * @param w Main class
+	 */
 	public OptionPanel(Main w) {
 		this.w = w;
 		JPanel p = new JPanel();
@@ -32,7 +36,9 @@ public class OptionPanel extends JPanel implements ActionListener {
 		p.add(button3);
 		add(p);
 	}
-	
+	/**
+	 * Changes the panel based on the button pressed
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if (chooseB == button){

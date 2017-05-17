@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class FileIO {
 	
 	public Object readObject(String filename){
 		
-		Object output =null;
+		Object output = null;
 		FileInputStream fis;
 		ObjectInputStream ois = null;
 		
