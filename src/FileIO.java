@@ -16,7 +16,7 @@ public class FileIO {
 	public static final String lineSeparator = System.getProperty("line.separator");
 	
 	
-	public Object readObject(String filename){
+	public Object readObject(String filename) throws IOException{
 		
 		Object output = null;
 		FileInputStream fis;
@@ -31,7 +31,7 @@ public class FileIO {
 			return output;
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			 throw new IOException();
 		} 
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
