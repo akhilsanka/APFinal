@@ -32,6 +32,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JTextField unused;
 	private JPanel p;
 	private JButton check;
+	
+	private TimerPanel timer;
 	/**
 	 * Makes a GamePanel object where the game is played
 	 * @param m Main Class
