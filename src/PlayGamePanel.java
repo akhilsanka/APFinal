@@ -9,7 +9,6 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -42,10 +41,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
     public PlayGamePanel(Main m, GamePanel gp) 
     {
-    	super(new GridBagLayout());
-   
-    	this.gp = gp;
-    	
+    	super(new GridBagLayout());    	
+    	//FileIO reader = new FileIO();
+		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));   
+    	this.gp = gp;    	
     	p = new JPanel();
     	this.m = m;
 		
