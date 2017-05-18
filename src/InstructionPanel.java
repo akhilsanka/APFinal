@@ -15,6 +15,8 @@ public class InstructionPanel extends JPanel implements KeyListener {
 
 	private String message;
 	private Main m;
+	
+	protected JTextArea instructionArea;
 
 
 	/**
@@ -26,11 +28,11 @@ public class InstructionPanel extends JPanel implements KeyListener {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
-		message = "To play a scavenger hunt, run the program and click Play. Enter a code to";
-		JTextArea instructions = new JTextArea(5, 20);
-		instructions.append(message);
-		instructions.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(instructions);
+		message = "To play a scavenger hunt, run the program and click Play. Enter a code tofasldkfasdf asdjf ;askdfj a;slkdfja;skdfja;skdfjasfk;";
+		instructionArea =new JTextArea(90, 70);
+		instructionArea.append(message);
+		instructionArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(instructionArea);
         add(scrollPane);
 	}
 
