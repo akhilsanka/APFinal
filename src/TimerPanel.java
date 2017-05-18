@@ -31,4 +31,7 @@ public class TimerPanel {
 		return ((System.currentTimeMillis() - startTime) % 60000) / 1000;
 	}
 
+	public void reset(){
+		startTime = System.currentTimeMillis();
+	}
 }
