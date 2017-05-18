@@ -8,13 +8,18 @@ import java.awt.event.*;
 public class OptionPanel extends JPanel implements ActionListener {
 	
 	private Main w;
-	JButton button, button2, button3;
+	private JButton button, button2, button3;
+
 	//test 
 	/**
 	 * Makes an OptionPanel object which displays the different options the user can make.
 	 * @param w Main class
 	 */
 	public OptionPanel(Main w) {
+		
+		super();
+
+		
 		this.w = w;
 		JPanel p = new JPanel();
 		

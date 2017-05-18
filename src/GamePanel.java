@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextField nameField;
 	String nameText;
 	
+	private TimerPanel tp;
 	
 	protected JTextField hintField;
 	protected JTextField answerField;
@@ -36,7 +37,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		
 		super(new GridBagLayout());
 		
-
+		tp = new TimerPanel();
 		JPanel p = new JPanel();
 		
 		this.m = m;
@@ -121,19 +122,27 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 			else{
 				m.setRace((Race)reader.readObject(nameText + ".sch"));
 				m.changePanel("5");
+				tp.reset();
+				System.out.println(tp.getSeconds());
+				System.out.println("reset");
 				
 			}
 
 		}
-		/*for(int i = 0; i < buttons.size(); i++)
-		{
-			if(chooseB == buttons.get(i))
-			{
-				m.changePanel("5");
-				m.setRace(races.get(i));
-			}
-		}*/
+
 	}
+	
+	public long getMins(){
+		return tp.getMins();
+	}
+	
+	public long getSeconds(){
+		System.out.println(tp.getSeconds());
+		return tp.getSeconds();
+
+	}
+	
+	
 	
 	public String getRaceName(){
 		return nameText;

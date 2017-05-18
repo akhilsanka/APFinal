@@ -21,6 +21,9 @@ import javax.swing.JTextField;
 public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
+	
+	private GamePanel gp;
+	
 	private BufferedImage image;
 	private Race game;
 	private String currHint;
@@ -31,22 +34,19 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JTextField unused;
 	private JPanel p;
 	private JButton check;
-	private JButton time;
-	private TimerPanel timer;
+
 	/**
 	 * Makes a GamePanel object where the game is played
 	 * @param m Main Class
 	 */
-    public PlayGamePanel(Main m) 
+    public PlayGamePanel(Main m, GamePanel gp) 
     {
-    	super(new GridBagLayout());
-    	
+    	super(new GridBagLayout());    	
     	//FileIO reader = new FileIO();
-		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));
-    	
+		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));   
+    	this.gp = gp;    	
     	p = new JPanel();
     	this.m = m;
-		setBackground(Color.WHITE);
 		
 		hintArea = new JTextArea(5, 20);
 		hintArea.setEditable(false);
@@ -65,10 +65,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         used.setEditable(false);
         unused.setEditable(false);
         
-        time = new JButton("Start Timer");
-        time.addActionListener(this);
+      //  time = new JButton("Start Timer");
+       // time.addActionListener(this);
         
-        timer = new TimerPanel();
         
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
@@ -82,14 +81,16 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(guess, c);
         add(scrollPane2, c);
         add(check, c);
-        add(time, c);
+        
+        setBackground(Color.WHITE);
+
     }
 
     
     
     @Override
     protected void paintComponent(Graphics g) {
-              
+    	super.paintComponent(g);
     }
 	/**
 	 * Sets the race being played to the race object passed in.
@@ -116,13 +117,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	//m.changePanel("5");
     }
     
-    
-//    
-//    public void startTime(){
-//    	timer.startTimer();
-//    }
-//    
-//    
+
     /**
      * Gets the next hint in the race.
      * @return the next hint of the race.
@@ -135,9 +130,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			{
 				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
 		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
-				//msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins()
-				//+ ":" + timer.getSeconds() + ":" + timer.getMillis());
-		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins() + " minutes and " + timer.getSeconds() + " seconds");
+		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + gp.getMins() + " minutes and " + gp.getSeconds() + " seconds");
 				m.changePanel("1");
 				return "Race is Complete!";
 				

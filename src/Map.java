@@ -19,8 +19,8 @@ public class Map extends PApplet implements MouseListener{
 	 * @param n String name of Map
 	 * @param locations ArrayList of HintLocations that correspond with Hints
 	 */
-	public Map(String n, ArrayList<Hint> h)
-	{
+	public Map(String n, ArrayList<Hint> h) //ArrayList of unused hints
+	{ 
 		super();
 		
 		name = n;
