@@ -2,8 +2,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.*;
 
@@ -27,8 +25,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextArea answerArea;
 	private final static String newline = "\n";
 	
-	private Race r;
-	private ArrayList<Hint> hintList = new ArrayList<Hint>();
 	private JButton button;
 	private JButton game;
 	private ArrayList<JButton> buttons;
@@ -56,16 +52,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		add(game, c);
 		
 		races = m.getRaces();
-//		System.out.println((races.size()));
-//		buttons = new ArrayList<JButton>();
-//		for(int i = 0; i < races.size(); i++)
-//		{
-//			System.out.println("test");
-//			 button = new JButton(races.get(i).getName());
-//			button.addActionListener(this);
-//			add(button, c);
-//			buttons.add(button);
-//		}
+		System.out.println((races.size()));
+		buttons = new ArrayList<JButton>();
+		for(int i = 0; i < races.size(); i++)
+		{
+			System.out.println("test");
+			 button = new JButton(races.get(i).getName());
+			button.addActionListener(this);
+			add(button, c);
+			buttons.add(button);
+		}
 	
 	}
 
@@ -116,54 +112,35 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		nameText = nameField.getText();
 		Object chooseB = e.getSource();
-		Race playRace; 
 		if(chooseB == game){
 			FileIO reader = new FileIO();
-//			Race userRace;
-			Hint userHint;
-				try {
-					//userRace = (Race)reader.readObject(nameText + ".sch");
-					userHint = (Hint)reader.readObject(nameText + ".sch");
-				} catch (IOException e1) {
-					msgbox("Race not found");
-					m.changePanel("1");
-				}
+			if((Race)reader.readObject(nameText + ".sch") == null){
+				System.out.println("TEST");
+				msgbox("Race not found");
+			}
+			else{
+				m.setRace((Race)reader.readObject(nameText + ".sch"));
 				m.changePanel("5");
-			
-		
-				
-			
-			
-//			if(userRace.getName() == "null"){
-//				System.out.println("TEST");
-//				
-//			}
-//			if((Race)reader.readObject(nameText + ".sch") == null){
-//				
-//			}
-				
-		}
+			}
 
-//		for(int i = 0; i < buttons.size(); i++)
-//		{
-//			if(chooseB == buttons.get(i))
-//			{
-//				m.changePanel("5");
-//				m.setRace(races.get(i));
-//			}
-//		}
-		
+		}
+		/*for(int i = 0; i < buttons.size(); i++)
+		{
+			if(chooseB == buttons.get(i))
+			{
+				m.changePanel("5");
+				m.setRace(races.get(i));
+			}
+		}*/
 	}
 	
-	
-	
 	public String getRaceName(){
-		return nameField.getText();
+		return nameText;
 	}
 
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}
+
+
 }
-
-

@@ -17,7 +17,7 @@ public class Hint implements Serializable{
 	 */
 	public Hint(HintLocation myLoc, String myHint, int myAnswers)
 	{
-		//loc = myLoc;
+		loc = myLoc;
 		answer = myAnswers;
 		hint = myHint;
 	}

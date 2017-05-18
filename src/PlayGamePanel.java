@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
-	private GamePanel gp;
 	private BufferedImage image;
 	private Race game;
 	private String currHint;
@@ -41,16 +40,19 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
     public PlayGamePanel(Main m) 
     {
-    	gp = new GamePanel(m);
-
+    	super(new GridBagLayout());
+    	
+    	FileIO reader = new FileIO();
+		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));
+    	
     	p = new JPanel();
     	this.m = m;
 		setBackground(Color.WHITE);
 		
-		hintArea = new JTextArea(2, 15);
+		hintArea = new JTextArea(5, 20);
 		hintArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(hintArea);  
-        answerArea = new JTextArea(2, 15);
+        answerArea = new JTextArea(5, 20);
         answerArea.setEditable(true);
         answerArea.addKeyListener(this);;
         JScrollPane scrollPane2 = new JScrollPane(answerArea);
@@ -82,19 +84,21 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     protected void paintComponent(Graphics g) {
               
     }
-
+	/**
+	 * Sets the race being played to the race object passed in.
+	 * @param race Race object that user selects to play
+	 */
+    public void setRace(Race race)
+    {
+    	game = race;
+    	//System.out.println("race: " + game.getName());
+    	playGame();
+    }
     /**
      * Plays the race
      */
     public void playGame()
     {
-    	FileIO reader = new FileIO();
-		try {	
-			game = (Race)(reader.readObject(gp.getRaceName() + ".sch"));
-		} catch (IOException e) {
-			msgbox("Race not found");
-			m.changePanel("1");
-		}
     	currHint = getHint();
     	if(currHint.equals("Race is Complete!"))
     		return;
