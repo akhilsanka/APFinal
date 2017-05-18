@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class Hint implements Serializable{
 	
-	private static final long serialVersionUID = 1;
-	
+
+	private static final long serialVersionUID = 7206532398665898388L;
 	private String hint;
 	private int answer;
 	private HintLocation loc;
@@ -48,6 +48,11 @@ public class Hint implements Serializable{
 	public int getAnswer()
 	{
 		return answer;
+	}
+	
+	public HintLocation getHintLoc()
+	{
+		return loc;
 	}
 	
 }

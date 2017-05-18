@@ -13,8 +13,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
  // test 
 	private String message;
 	private Main m;
-	
-	
+
 	protected JTextField nameField;
 	String nameText;
 	
@@ -25,8 +24,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextArea answerArea;
 	private final static String newline = "\n";
 	
-	private Race r;
-	private ArrayList<Hint> hintList = new ArrayList<Hint>();
 	private JButton button;
 	private JButton game;
 	private ArrayList<JButton> buttons;
@@ -39,6 +36,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		
 		super(new GridBagLayout());
 		
+
 		JPanel p = new JPanel();
 		
 		this.m = m;
@@ -114,30 +112,32 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		nameText = nameField.getText();
 		Object chooseB = e.getSource();
-		Race playRace; 
 		if(chooseB == game){
 			FileIO reader = new FileIO();
-			if(reader.readObject(nameText + ".sch") == null){
+			if((Race)reader.readObject(nameText + ".sch") == null){
+				System.out.println("TEST");
 				msgbox("Race not found");
-				//m.changePanel("5");
 			}
 			else{
+				m.setRace((Race)reader.readObject(nameText + ".sch"));
 				m.changePanel("5");
+				
 			}
 
 		}
-		for(int i = 0; i < buttons.size(); i++)
+		/*for(int i = 0; i < buttons.size(); i++)
 		{
 			if(chooseB == buttons.get(i))
 			{
 				m.changePanel("5");
 				m.setRace(races.get(i));
 			}
-		}
+		}*/
 	}
 	
 	public String getRaceName(){
 		return nameText;
+		
 	}
 
 	public void msgbox(String s){

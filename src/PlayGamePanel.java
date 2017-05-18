@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
-	private GamePanel gp;
 	private BufferedImage image;
 	private Race game;
 	private String currHint;
@@ -33,6 +32,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JTextField unused;
 	private JPanel p;
 	private JButton check;
+	private JButton time;
+	private TimerPanel timer;
 	/**
 	 * Makes a GamePanel object where the game is played
 	 * @param m Main Class
@@ -42,7 +43,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	super(new GridBagLayout());
     	
     	FileIO reader = new FileIO();
-		//game = (Race)reader.readObject(gp.getRaceName() + ".sch");
+		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));
     	
     	p = new JPanel();
     	this.m = m;
@@ -65,6 +66,11 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         used.setEditable(false);
         unused.setEditable(false);
         
+        time = new JButton("Start Timer");
+        time.addActionListener(this);
+        
+        timer = new TimerPanel();
+        
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -77,8 +83,11 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(guess, c);
         add(scrollPane2, c);
         add(check, c);
+        add(time, c);
     }
 
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
               
@@ -107,6 +116,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	p.repaint();
     	//m.changePanel("5");
     }
+    
+    
+//    
+//    public void startTime(){
+//    	timer.startTimer();
+//    }
+//    
+//    
     /**
      * Gets the next hint in the race.
      * @return the next hint of the race.
@@ -117,10 +134,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 		{
 			if(game.isFinished() == true)
 			{
-				used.setText("Number of Finished Hints: " + (game.getFinishedHints()-1));
-		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()+1));
-				msgbox("Congratulations, You Finished The Race!");
+				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
+		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
+				//msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins()
+				//+ ":" + timer.getSeconds() + ":" + timer.getMillis());
+		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins() + " minutes and " + timer.getSeconds() + " seconds");
+				m.changePanel("1");
 				return "Race is Complete!";
+				
 			}
 			else
 			{
@@ -163,19 +184,27 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		try
+		Object chooseB = e.getSource();
+		if(chooseB == check)
 		{
-			int guess = Integer.parseInt(answerArea.getText());
-			checkAnswer(guess);
+			try
+			{
+				int guess = Integer.parseInt(answerArea.getText());
+				checkAnswer(guess);
+			}
+			catch(NumberFormatException ex)
+			{
+	        	msgbox("Invalid input, please change input to a number!");
+			}
+			finally
+			{
+				answerArea.setText("");
+			}
 		}
-		catch(NumberFormatException ex)
-		{
-        	msgbox("Invalid input, please change input to a number!");
-		}
-		finally
-		{
-			answerArea.setText("");
-		}
+//		if(chooseB == time)
+//		{
+//			timer.startTimer();
+//		}
 		//System.out.println("guess: " + guess);
 		
 	}

@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 
 public class Race extends JPanel implements Serializable{
 		
-	private static final long serialVersionUID = 1;
 
+	private static final long serialVersionUID = -1379850089802977302L;
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
 	private String name;
