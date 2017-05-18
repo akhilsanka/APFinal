@@ -32,7 +32,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		
 		super(new GridBagLayout());
 		
-		JPanel p = new JPanel();
+		JPanel p = new JPanel(); 
 		
 		this.m = m;
 		setBackground(Color.WHITE);
