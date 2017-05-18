@@ -40,7 +40,7 @@ public class Map extends PApplet {
 		hhs = loadImage("Homestead Map.jpg");
 	}
 	
-	public void draw(int index) //index of the hint to be drawn
+	public void draw(int index) //index of the hint to be drawn 
 	{
 		background(hhs);
 		clear(); 

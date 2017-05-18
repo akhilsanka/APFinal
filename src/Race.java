@@ -109,7 +109,7 @@ public class Race extends JPanel implements Serializable{
 		unusedHints.remove(randHint);	
 		if(this.hasMap = true)
 		{
-			map.draw(unusedHints.indexOf(shuffledHint));
+			map.draw(unusedHints.indexOf(shuffledHint)); 
 		}
 		return shuffledHint;
 	}

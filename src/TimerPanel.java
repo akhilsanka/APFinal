@@ -16,7 +16,7 @@ public class TimerPanel extends JFrame implements ActionListener {
 	private JButton resume, pause, reset;
 	
 	private byte msec, sec;
-	private short minutes;
+	private short minutes; 
 
 	public TimerPanel()
 	{		
