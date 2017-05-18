@@ -14,6 +14,7 @@ public class Map extends PApplet implements MouseListener{
 	ArrayList<Hint> hints;
 	String name;
 	
+	
 	/**
 	 * 
 	 * @param n String name of Map
@@ -27,10 +28,22 @@ public class Map extends PApplet implements MouseListener{
 		this.hints = h;
 	}
 	
-	public void draw()
+	/**
+	 *
+	 * @param index int index of the Hint's circle to be drawn on the Map 
+	 */
+	public void draw(int index)
 	{
+		clear(); //clear any previous circles drawn 
 		background(0, 255, 255);
 		
+		int x = hints.get(index).getHintLoc().getX();
+		int y = hints.get(index).getHintLoc().getY();
+		int radius = hints.get(index).getHintLoc().getRad();
+		
+		ellipse(x, y, radius, radius);
+		
+		/*
 		int i = 0;
 		while(hints.size() != 0) //draws all the hint circles...
 		{
@@ -40,6 +53,7 @@ public class Map extends PApplet implements MouseListener{
 			
 			ellipse(x, y, radius, radius);
 		}
+		*/
 		
 	}
 
