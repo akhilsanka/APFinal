@@ -13,10 +13,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
  // test 
 	private String message;
 	private Main m;
-	
-	private PlayGamePanel pgp;
-	
-	
+
 	protected JTextField nameField;
 	String nameText;
 	
@@ -39,7 +36,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		
 		super(new GridBagLayout());
 		
-		pgp = new PlayGamePanel(m);
+
 		JPanel p = new JPanel();
 		
 		this.m = m;
@@ -124,7 +121,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 			else{
 				m.setRace((Race)reader.readObject(nameText + ".sch"));
 				m.changePanel("5");
-				pgp.startTime();
+				
 			}
 
 		}

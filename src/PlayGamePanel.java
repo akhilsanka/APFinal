@@ -118,12 +118,12 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     }
     
     
-    
-    public void startTime(){
-    	timer.startTimer();
-    }
-    
-    
+//    
+//    public void startTime(){
+//    	timer.startTimer();
+//    }
+//    
+//    
     /**
      * Gets the next hint in the race.
      * @return the next hint of the race.
@@ -138,7 +138,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
 				//msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins()
 				//+ ":" + timer.getSeconds() + ":" + timer.getMillis());
-		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getSeconds() + " seconds");
+		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins() + " minutes and " + timer.getSeconds() + " seconds");
 				m.changePanel("1");
 				return "Race is Complete!";
 				
@@ -201,10 +201,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 				answerArea.setText("");
 			}
 		}
-		if(chooseB == time)
-		{
-			timer.startTimer();
-		}
+//		if(chooseB == time)
+//		{
+//			timer.startTimer();
+//		}
 		//System.out.println("guess: " + guess);
 		
 	}
