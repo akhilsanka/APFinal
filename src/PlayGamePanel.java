@@ -70,6 +70,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
         
+        timer = new TimerPanel();
+        
         p.add(used);
         p.add(unused);
         add(p, c);
@@ -78,6 +80,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(guess, c);
         add(scrollPane2, c);
         add(check, c);
+        
+        p.add(timer);
     }
 
     @Override

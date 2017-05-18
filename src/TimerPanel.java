@@ -19,7 +19,7 @@ public class TimerPanel extends JFrame implements ActionListener {
 	private short minutes;
 
 	public TimerPanel()
-	{
+	{		
 		msec = 0;
 		sec = 0;
 		minutes =  0;
