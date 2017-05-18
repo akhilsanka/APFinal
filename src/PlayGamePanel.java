@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
+	private GamePanel gp;
 	private BufferedImage image;
 	private Race game;
 	private String currHint;
@@ -32,6 +33,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JTextField unused;
 	private JPanel p;
 	private JButton check;
+	
+	private TimerPanel timer;
 	/**
 	 * Makes a GamePanel object where the game is played
 	 * @param m Main Class
@@ -39,13 +42,19 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public PlayGamePanel(Main m) 
     {
     	super(new GridBagLayout());
-<<<<<<< HEAD
+    	gp = new GamePanel(m);
     	
-    	FileIO reader = new FileIO();
-		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));
+    	if(gp.fileFound() == true){
+    		game = gp.getRace();
+    		System.out.println(game.getName());
+    	}
+    	else{
+    		System.out.println("NOT FOUND YET");
+    	}
+		
     	
-=======
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
+    	
+    	
     	p = new JPanel();
     	this.m = m;
 		setBackground(Color.WHITE);
@@ -85,21 +94,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     protected void paintComponent(Graphics g) {
               
     }
-	/**
-	 * Sets the race being played to the race object passed in.
-	 * @param race Race object that user selects to play
-	 */
-    public void setRace(Race race)
-    {
-    	game = race;
-    	//System.out.println("race: " + game.getName());
-    	playGame();
-    }
+    
     /**
      * Plays the race
      */
     public void playGame()
     {
+    	System.out.println("PlayGame");
+    	System.out.println(game);
     	currHint = getHint();
     	if(currHint.equals("Race is Complete!"))
     		return;
@@ -115,18 +117,22 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
      */
 	public String getHint()
 	{
+		System.out.println("GeTHint");
 		if(game != null)
 		{
 			if(game.isFinished() == true)
 			{
-				used.setText("Number of Finished Hints: " + (game.getFinishedHints()-1));
-		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()+1));
+				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
+		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
 				msgbox("Congratulations, You Finished The Race!");
+				m.changePanel("1");
 				return "Race is Complete!";
 			}
 			else
 			{
+				System.out.println(game.getRemainingHints());
 				Hint currHint = game.getHint();
+				System.out.println(currHint);
 				currAnswer = currHint.getAnswer();
 				System.out.println("Hint: " + currHint.getHint());
 				System.out.println("Answer: " + currHint.getAnswer());
@@ -146,6 +152,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public boolean checkAnswer(int answer)
 	{
+		System.out.println("CheckAnswer");
 		System.out.println("answer: " + answer);
 		System.out.println("Current answer: " + currAnswer);
 		if(answer == currAnswer)
@@ -165,6 +172,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("performed");
+		game = gp.getRace();
+		
 		try
 		{
 			int guess = Integer.parseInt(answerArea.getText());
