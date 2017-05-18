@@ -18,8 +18,13 @@ public class TimerPanel extends JFrame implements ActionListener {
 	private byte msec, sec;
 	private short minutes;
 
+	private long startTime;
+	
 	public TimerPanel()
 	{
+		timer = new Timer(0, null);
+		
+		startTime = System.currentTimeMillis();
 		msec = 0;
 		sec = 0;
 		minutes =  0;
@@ -73,19 +78,22 @@ public class TimerPanel extends JFrame implements ActionListener {
 		timer.start();
 	}
 	
-	public short getMins()
+//	public long getMins()
+//	{
+//		return 0;
+//		//return minutes;
+//		//return (System.currentTimeMillis() - startTime);
+//	}
+//	
+	public long getSeconds()
 	{
-		return minutes;
+		return (System.currentTimeMillis() - startTime) / 1000;
 	}
 	
-	public byte getSeconds()
-	{
-		return sec;
-	}
-	
-	public byte getMillis()
-	{
-		return msec;
-	}
+//	public long getMillis()
+//	{
+//		return 0;
+//		//return (System.currentTimeMillis() - startTime);
+//	}
 
 }

@@ -86,6 +86,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(time, c);
     }
 
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
               
@@ -114,6 +116,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	p.repaint();
     	//m.changePanel("5");
     }
+    
+    
+    
+    public void startTime(){
+    	timer.startTimer();
+    }
+    
+    
     /**
      * Gets the next hint in the race.
      * @return the next hint of the race.
@@ -124,11 +134,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 		{
 			if(game.isFinished() == true)
 			{
-				used.setText("Number of Finished Hints: " + (game.getFinishedHints()-1));
-		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()+1));
-				msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins()
-				+ ":" + timer.getSeconds() + ":" + timer.getMillis());
+				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
+		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
+				//msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins()
+				//+ ":" + timer.getSeconds() + ":" + timer.getMillis());
+		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getSeconds() + " seconds");
+				m.changePanel("1");
 				return "Race is Complete!";
+				
 			}
 			else
 			{
