@@ -13,9 +13,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
  // test 
 	private String message;
 	private Main m;
-	private boolean fileFound;
 	
-	private Race chosenR;
 	
 	protected JTextField nameField;
 	String nameText;
@@ -38,8 +36,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	public GamePanel (Main m) {
 		
 		super(new GridBagLayout());
-		
-		fileFound = false;
 		
 		JPanel p = new JPanel();
 		
@@ -123,11 +119,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 				msgbox("Race not found");
 			}
 			else{
-
-				chosenR = (Race)reader.readObject(nameText + ".sch");
-				fileFound = true;
-
-//				m.setRace((Race)reader.readObject(nameText + ".sch"));
+				m.setRace((Race)reader.readObject(nameText + ".sch"));
 				m.changePanel("5");
 			}
 
@@ -142,14 +134,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		}*/
 	}
 	
-	public Race getRace(){
-		return chosenR;
+	public String getRaceName(){
+		return nameText;
 	}
 
-	public boolean fileFound(){
-		return fileFound;
-	}
-	
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}

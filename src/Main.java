@@ -27,7 +27,7 @@ public class Main extends JFrame {
 	    GamePanel panel2 = new GamePanel(this);
 	    MakeGamePanel panel3 = new MakeGamePanel(this);
 	    InstructionPanel panel4 = new InstructionPanel(this);
-	    PlayGamePanel panel5 = new PlayGamePanel(this);
+	    panel5 = new PlayGamePanel(this);
 	    
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    cardPanel.add(panel2,"2"); // Card is named "2"
@@ -108,5 +108,12 @@ public class Main extends JFrame {
 	{
 		return races;
 	}
-	
+	/**
+	 * 
+	 * @param r
+	 */
+	public void setRace(Race r)
+	{
+		panel5.setRace(r);
+	}
 }

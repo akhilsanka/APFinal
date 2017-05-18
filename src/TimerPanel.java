@@ -16,10 +16,10 @@ public class TimerPanel extends JFrame implements ActionListener {
 	private JButton resume, pause, reset;
 	
 	private byte msec, sec;
-	private short minutes; 
+	private short minutes;
 
 	public TimerPanel()
-	{		
+	{
 		msec = 0;
 		sec = 0;
 		minutes =  0;
@@ -66,6 +66,26 @@ public class TimerPanel extends JFrame implements ActionListener {
 			label.setText("Your time: " + minutes + ":" + sec + ":" + msec);
 		}
 		
+	}
+	
+	public void startTimer()
+	{
+		timer.start();
+	}
+	
+	public short getMins()
+	{
+		return minutes;
+	}
+	
+	public byte getSeconds()
+	{
+		return sec;
+	}
+	
+	public byte getMillis()
+	{
+		return msec;
 	}
 
 }

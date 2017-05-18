@@ -11,12 +11,9 @@ public class Race extends JPanel implements Serializable{
 	private static final long serialVersionUID = -1379850089802977302L;
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
-	private String name, mapName;
+	private String name;
 	private BufferedImage image;
-	private boolean isComplete, hasMap;
-	
-	private Map map;
-	private Main main;
+	private boolean isComplete;
 
 	/**
 	 * This constructs a Race object with the race's name and 
@@ -29,7 +26,6 @@ public class Race extends JPanel implements Serializable{
 		unusedHints = hints;
 		usedHints = new ArrayList<Hint>();
 		isComplete = false;
-		hasMap = false;
 		this.name = name;
 	}
 	
@@ -43,19 +39,6 @@ public class Race extends JPanel implements Serializable{
 		unusedHints = new ArrayList<Hint>();
 		usedHints = new ArrayList<Hint>();
 		isComplete = false;
-		hasMap = false;
-	}
-	
-	public Race(String name, Map map)
-	{
-		this.name = name;
-		unusedHints = new ArrayList<Hint>();
-		usedHints = new ArrayList<Hint>();
-		isComplete = false;
-		hasMap = true;
-		
-		map = new Map(mapName, unusedHints, main);
-		this.map = map;
 	}
 	
 	/**
@@ -107,10 +90,7 @@ public class Race extends JPanel implements Serializable{
 		Hint shuffledHint = unusedHints.get(randHint);
 		usedHints.add(unusedHints.get(randHint));
 		unusedHints.remove(randHint);	
-		if(this.hasMap = true)
-		{
-			map.draw(unusedHints.indexOf(shuffledHint)); 
-		}
+		
 		return shuffledHint;
 	}
 	

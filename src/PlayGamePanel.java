@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
- 
+
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
-	private GamePanel gp;
 	private BufferedImage image;
 	private Race game;
 	private String currHint;
@@ -33,7 +32,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JTextField unused;
 	private JPanel p;
 	private JButton check;
-	
+	private JButton time;
 	private TimerPanel timer;
 	/**
 	 * Makes a GamePanel object where the game is played
@@ -42,21 +41,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public PlayGamePanel(Main m) 
     {
     	super(new GridBagLayout());
-
-    	gp = new GamePanel(m);
-
-
     	
-    	if(gp.fileFound() == true){
-    		game = gp.getRace();
-    		System.out.println(game.getName());
-    	}
-    	else{
-    		System.out.println("NOT FOUND YET");
-    	}
-		
-
-
+    	FileIO reader = new FileIO();
+		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));
+    	
     	p = new JPanel();
     	this.m = m;
 		setBackground(Color.WHITE);
@@ -78,11 +66,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         used.setEditable(false);
         unused.setEditable(false);
         
+        time = new JButton("Start Timer");
+        time.addActionListener(this);
+        
+        timer = new TimerPanel();
+        
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
-        
-        //timer = new TimerPanel();
         
         p.add(used);
         p.add(unused);
@@ -92,22 +83,28 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(guess, c);
         add(scrollPane2, c);
         add(check, c);
-        
-        //p.add(timer);
+        add(time, c);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
               
     }
-    
+	/**
+	 * Sets the race being played to the race object passed in.
+	 * @param race Race object that user selects to play
+	 */
+    public void setRace(Race race)
+    {
+    	game = race;
+    	//System.out.println("race: " + game.getName());
+    	playGame();
+    }
     /**
      * Plays the race
      */
     public void playGame()
     {
-    	System.out.println("PlayGame");
-    	System.out.println(game);
     	currHint = getHint();
     	if(currHint.equals("Race is Complete!"))
     		return;
@@ -123,22 +120,19 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
      */
 	public String getHint()
 	{
-		System.out.println("GeTHint");
 		if(game != null)
 		{
 			if(game.isFinished() == true)
 			{
-				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
-		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
-				msgbox("Congratulations, You Finished The Race!");
-				m.changePanel("1");
+				used.setText("Number of Finished Hints: " + (game.getFinishedHints()-1));
+		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()+1));
+				msgbox("Congratulations, You Finished The Race!" + " Time: " + timer.getMins()
+				+ ":" + timer.getSeconds() + ":" + timer.getMillis());
 				return "Race is Complete!";
 			}
 			else
 			{
-				System.out.println(game.getRemainingHints());
 				Hint currHint = game.getHint();
-				System.out.println(currHint);
 				currAnswer = currHint.getAnswer();
 				System.out.println("Hint: " + currHint.getHint());
 				System.out.println("Answer: " + currHint.getAnswer());
@@ -158,7 +152,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public boolean checkAnswer(int answer)
 	{
-		System.out.println("CheckAnswer");
 		System.out.println("answer: " + answer);
 		System.out.println("Current answer: " + currAnswer);
 		if(answer == currAnswer)
@@ -178,21 +171,26 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("performed");
-		game = gp.getRace();
-		
-		try
+		Object chooseB = e.getSource();
+		if(chooseB == check)
 		{
-			int guess = Integer.parseInt(answerArea.getText());
-			checkAnswer(guess);
+			try
+			{
+				int guess = Integer.parseInt(answerArea.getText());
+				checkAnswer(guess);
+			}
+			catch(NumberFormatException ex)
+			{
+	        	msgbox("Invalid input, please change input to a number!");
+			}
+			finally
+			{
+				answerArea.setText("");
+			}
 		}
-		catch(NumberFormatException ex)
+		if(chooseB == time)
 		{
-        	msgbox("Invalid input, please change input to a number!");
-		}
-		finally
-		{
-			answerArea.setText("");
+			timer.startTimer();
 		}
 		//System.out.println("guess: " + guess);
 		
