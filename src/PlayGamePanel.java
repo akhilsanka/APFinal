@@ -42,7 +42,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public PlayGamePanel(Main m) 
     {
     	super(new GridBagLayout());
+
     	gp = new GamePanel(m);
+
+
     	
     	if(gp.fileFound() == true){
     		game = gp.getRace();
@@ -52,9 +55,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     		System.out.println("NOT FOUND YET");
     	}
 		
-    	
-    	
-    	
+
+
     	p = new JPanel();
     	this.m = m;
 		setBackground(Color.WHITE);

@@ -123,8 +123,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 				msgbox("Race not found");
 			}
 			else{
+
 				chosenR = (Race)reader.readObject(nameText + ".sch");
 				fileFound = true;
+
+//				m.setRace((Race)reader.readObject(nameText + ".sch"));
 				m.changePanel("5");
 			}
 
