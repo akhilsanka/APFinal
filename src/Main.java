@@ -11,6 +11,7 @@ public class Main extends JFrame {
 	JPanel cardPanel;
 	ArrayList<Race> races = new ArrayList<Race>();
 	private PlayGamePanel panel5;
+	private Map map;
 	
 	public Main(String title) {
 		super(title);
@@ -29,11 +30,15 @@ public class Main extends JFrame {
 	    InstructionPanel panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this);
 	    
+	    
+	    
+	    
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    cardPanel.add(panel2,"2"); // Card is named "2"
 	    cardPanel.add(panel3,"3");
 	    cardPanel.add(panel4,"4");
 	    cardPanel.add(panel5, "5");
+	    
 	    
 	    add(cardPanel);
 	    addKeyListener(panel2);

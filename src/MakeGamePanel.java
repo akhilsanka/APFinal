@@ -38,6 +38,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		setBackground(Color.WHITE);
 		
 		JLabel name = new JLabel("Enter Name of Race: ");
+		
 		JLabel yourHints = new JLabel("The First Box Contains Your Hints And The Second Box Contains Corresponding Hints");
 		nameField = new JTextField(20);
 		nameField.addActionListener(this);
