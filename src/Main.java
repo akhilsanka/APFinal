@@ -11,11 +11,12 @@ public class Main extends JFrame {
 	JPanel cardPanel;
 	ArrayList<Race> races = new ArrayList<Race>();
 	private PlayGamePanel panel5;
-	private MapJPanel map;
-	InstructionPanel panel4;
-	GamePanel panel2;
-	MakeGamePanel panel3 ;
-	OptionPanel panel1;
+	//private MapJPanel map;
+	private InstructionPanel panel4;
+	private GamePanel panel2;
+	//MakeGamePanel panel3 ;
+	private OptionPanel panel1;
+	private TabOptionPanel panelTab;
 	//private Map map;
 	
 	public Main(String title) {
@@ -29,12 +30,13 @@ public class Main extends JFrame {
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
 	    
-	    map = new MapJPanel(this);
+	   // map = new MapJPanel(this);
 		panel1 = new OptionPanel(this);    
-		panel3 = new MakeGamePanel(this);
+		//panel3 = new MakeGamePanel(this);
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this, panel2);
+	    panelTab = new TabOptionPanel(this);
 	    
 	    
 	    
@@ -42,7 +44,7 @@ public class Main extends JFrame {
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    //cardPanel.add(map, "1");
 	    cardPanel.add(panel2,"2"); // Card is named "2"
-	    cardPanel.add(panel3,"3");
+	    cardPanel.add(panelTab,"3");
 	    cardPanel.add(panel5, "5");
 	    cardPanel.add(panel4,"4");
 	  
