@@ -18,6 +18,8 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	private Race createdRace;
 	private final static String newline = "\n";
 	
+	private MapJPanel mapPanel;
+	
 	private Race r;
 	private ArrayList<Hint> hintList = new ArrayList<Hint>();
 	private JButton home;
@@ -33,6 +35,8 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		super(new GridBagLayout());
 		
 		JPanel p = new JPanel(); 
+		
+		mapPanel = new MapJPanel(m);
 		
 		this.m = m;
 		setBackground(Color.WHITE);
@@ -153,7 +157,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		    		Hint temp;
 		    		try
 		    		{
-			    		temp = new Hint(hintList.get(i), Integer.parseInt(answerList.get(i)));
+		    			temp = new Hint( new HintLocation(mapPanel.getHintLocationPoints().get(i)), hintList.get(i), Integer.parseInt(answerList.get(i)));
 		    		}
 		    		catch(NumberFormatException ex)
 		    		{

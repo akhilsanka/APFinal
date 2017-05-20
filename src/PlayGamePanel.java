@@ -24,6 +24,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	
 	private GamePanel gp;
 	
+	private MapJPanelPlay mapPanelPlay;
+	
 	private BufferedImage image;
 	private Race game;
 	private String currHint;
@@ -48,6 +50,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	p = new JPanel();
     	this.m = m;
 		
+    	mapPanelPlay = new MapJPanelPlay(m, true);
+    	
+    	
 		hintArea = new JTextArea(5, 20);
 		hintArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(hintArea);  

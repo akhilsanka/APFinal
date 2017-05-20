@@ -3,21 +3,22 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-public class TabOptionPanel extends JPanel {
+public class TabOptionPanelPlay extends JPanel {
 
 	private Main m;
-	private MakeGamePanel gamePanel;
-    private MapJPanel mapPanel;
+	private PlayGamePanel gamePanel;
+    private MapJPanelPlay mapPanel;
     
     private JTabbedPane tabbedPane;
     
     
-    public TabOptionPanel(Main m) {
+    public TabOptionPanelPlay(Main m, GamePanel gp) {
 
     	this.m = m;
-        mapPanel = new MapJPanel(m);
 
-        gamePanel = new MakeGamePanel(m);
+        gamePanel = new PlayGamePanel(m, gp);
+    	mapPanel = new MapJPanelPlay(m);
+
 
         setLayout(new BorderLayout());
         tabbedPane = new JTabbedPane();

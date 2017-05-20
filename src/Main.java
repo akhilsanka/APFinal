@@ -16,7 +16,8 @@ public class Main extends JFrame {
 	private GamePanel panel2;
 	//MakeGamePanel panel3 ;
 	private OptionPanel panel1;
-	private TabOptionPanel panelTab;
+	private TabOptionPanelMake panelTabM;
+	private TabOptionPanelPlay panelTabP;
 	//private Map map;
 	
 	public Main(String title) {
@@ -35,8 +36,9 @@ public class Main extends JFrame {
 		//panel3 = new MakeGamePanel(this);
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
-	    panel5 = new PlayGamePanel(this, panel2);
-	    panelTab = new TabOptionPanel(this);
+	   panel5 = new PlayGamePanel(this, panel2);
+	    panelTabM = new TabOptionPanelMake(this);
+	    panelTabP = new TabOptionPanelPlay(this, panel2);
 	    
 	    
 	    
@@ -44,8 +46,8 @@ public class Main extends JFrame {
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    //cardPanel.add(map, "1");
 	    cardPanel.add(panel2,"2"); // Card is named "2"
-	    cardPanel.add(panelTab,"3");
-	    cardPanel.add(panel5, "5");
+	    cardPanel.add(panelTabM,"3");
+	    cardPanel.add(panelTabP, "5");
 	    cardPanel.add(panel4,"4");
 	  
 	    

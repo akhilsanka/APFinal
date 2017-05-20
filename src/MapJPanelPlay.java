@@ -16,15 +16,33 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MapJPanel extends JPanel implements MouseListener, KeyListener, ActionListener
+public class MapJPanelPlay extends JPanel implements MouseListener, KeyListener, ActionListener
 {
-	Main m;
-	ArrayList<Point> hintLocationPoints;
+	private Main m;
+	private ArrayList<Point> hintLocationPoints;
+	private boolean showLoc;
 	
-	public MapJPanel(Main m)
+	public MapJPanelPlay(Main m)
 	{
 		super(new GridBagLayout());
 		
+		hintLocationPoints = new ArrayList<Point>();
+		
+		GridBagConstraints c = new GridBagConstraints();
+	    c.gridwidth = GridBagConstraints.REMAINDER;
+	    c.fill = GridBagConstraints.HORIZONTAL;
+		this.m = m;
+		ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
+		JLabel thumb = new JLabel();
+		thumb.setIcon(icon);
+		add(thumb, c);
+	}
+	
+	public MapJPanelPlay(Main m, boolean show)
+	{
+		super(new GridBagLayout());
+		
+		showLoc = show;
 		hintLocationPoints = new ArrayList<Point>();
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -41,6 +59,10 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	{
 		super.paintComponent(g);
 		//g.drawImage(w, 0,0, getWidth(), getHeight(), null );
+		
+		if(showLoc){
+			//draw all circles here
+		}
 		Image background = Toolkit.getDefaultToolkit().createImage("HomesteadMap.jpg");
 		g.drawImage(background, 0, 0, null);
 		for(int i = 0; i < hintLocationPoints.size(); i++){
@@ -49,6 +71,9 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 		repaint();
 
 	}
+	
+	
+	
 	
 	public ArrayList<Point> getHintLocationPoints(){
 		return hintLocationPoints;
