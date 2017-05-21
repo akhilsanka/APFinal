@@ -29,8 +29,8 @@ public class Race extends JPanel implements Serializable{
 		usedHints = new ArrayList<Hint>();
 		isComplete = false;
 		this.name = name;
-		
 		hasMap = false;
+		System.out.println("No map");
 	}
 	
 	/**
@@ -45,6 +45,7 @@ public class Race extends JPanel implements Serializable{
 		isComplete = false;
 		
 		hasMap = false;
+		System.out.println("No map");
 	}
 	
 	public Race(String name, Map m)
@@ -53,6 +54,7 @@ public class Race extends JPanel implements Serializable{
 		map = m;
 		
 		hasMap = true;
+		System.out.println("Yes map");
 	}
 	
 	public Race(String name, Map m, ArrayList<Hint> h)
@@ -62,6 +64,7 @@ public class Race extends JPanel implements Serializable{
 		unusedHints = h;
 		
 		hasMap = true;
+		System.out.println("Yes map");
 	}
 	
 	
@@ -115,11 +118,11 @@ public class Race extends JPanel implements Serializable{
 		Hint shuffledHint = unusedHints.get(randHint);
 		usedHints.add(unusedHints.get(randHint));
 		unusedHints.remove(randHint);	
-		
-//		if(hasMap = true)
-//		{
-//			map.draw(unusedHints.indexOf(shuffledHint));
-//		}
+		System.out.println("hasMap: " + hasMap);
+		if(hasMap == true)
+		{
+			map.draw(unusedHints.indexOf(shuffledHint));
+		}
 		
 		return shuffledHint;
 	}

@@ -105,7 +105,11 @@ public class MapJPanelPlay extends JPanel implements MouseListener, KeyListener,
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		
+		System.out.println("aksdjf;");
+		// TODO Auto-generated method stub
+		Point hintPoint = arg0.getLocationOnScreen();
+		hintLocationPoints.add(hintPoint);
+		System.out.println(hintPoint);
 	}
 
 	@Override

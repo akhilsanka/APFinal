@@ -80,7 +80,11 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		
+		System.out.println("aksdjf;");
+		// TODO Auto-generated method stub
+		Point hintPoint = arg0.getLocationOnScreen();
+		hintLocationPoints.add(hintPoint);
+		System.out.println(hintPoint);
 	}
 
 	@Override
@@ -108,7 +112,11 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("aksdjf;");
+		// TODO Auto-generated method stub
+		Point hintPoint = arg0.getLocationOnScreen();
+		hintLocationPoints.add(hintPoint);
+		System.out.println(hintPoint);
 	}
 	
 }

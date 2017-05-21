@@ -116,10 +116,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	if(currHint.equals("Race is Complete!"))
     		return;
     	hintArea.append(currHint);
-    	//used.setText("Number of Finished Hints: " + game.getFinishedHints());
-    	//unused.setText("Number of Finished Hints: " + game.getFinishedHints());
+    	used.setText("Number of Finished Hints: " + game.getFinishedHints());
+    	unused.setText("Number of Finished Hints: " + game.getFinishedHints());
     	p.repaint();
-    	//m.changePanel("5");
+    	m.changePanel("5");
     }
     
 
@@ -144,10 +144,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			{
 				Hint currHint = game.getHint();
 				currAnswer = currHint.getAnswer();
-				System.out.println("Hint: " + currHint.getHint());
+				/*System.out.println("Hint: " + currHint.getHint());
 				System.out.println("Answer: " + currHint.getAnswer());
 				System.out.println("UsedHints: " + game.getFinishedHints());
-				System.out.println("UnusedHints: " + game.getRemainingHints());
+				System.out.println("UnusedHints: " + game.getRemainingHints());*/
 				used.setText("Number of Finished Hints: " + (game.getFinishedHints()-1));
 		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()+1));
 				return currHint.getHint();
