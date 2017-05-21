@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,6 +37,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JTextField unused;
 	private JPanel p;
 	private JButton check;
+	private JLabel picLabel;
 
 	/**
 	 * Makes a GamePanel object where the game is played
@@ -78,6 +80,15 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
         
+        try {
+			image = ImageIO.read(new File("HomesteadMap.jpg"));
+			picLabel = new JLabel(new ImageIcon(image));
+			add(picLabel, c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         p.add(used);
         p.add(unused);
         add(p, c);
@@ -88,7 +99,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(check, c);
         
         setBackground(Color.WHITE);
-
     }
 
     
@@ -104,7 +114,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public void setRace(Race race)
     {
     	game = race;
-    	//System.out.println("race: " + game.getName());
+    	System.out.println("race: " + game.getName());
     	playGame();
     }
     /**
@@ -113,12 +123,13 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public void playGame()
     {
     	currHint = getHint();
+    	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
     	if(currHint.equals("Race is Complete!"))
     		return;
     	hintArea.append(currHint);
-    	used.setText("Number of Finished Hints: " + game.getFinishedHints());
-    	unused.setText("Number of Finished Hints: " + game.getFinishedHints());
-    	p.repaint();
+    	used.setText("Number of Finished Hints: " + (game.getFinishedHints() - 1));
+    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints() + 1));
+    	//p.repaint();
     	m.changePanel("5");
     }
     
@@ -148,8 +159,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 				System.out.println("Answer: " + currHint.getAnswer());
 				System.out.println("UsedHints: " + game.getFinishedHints());
 				System.out.println("UnusedHints: " + game.getRemainingHints());*/
-				used.setText("Number of Finished Hints: " + (game.getFinishedHints()-1));
-		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()+1));
+				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
+		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
 				return currHint.getHint();
 			}
 		}

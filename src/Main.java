@@ -14,10 +14,12 @@ public class Main extends JFrame {
 	private MapJPanel map;
 	private InstructionPanel panel4;
 	private GamePanel panel2;
-	//MakeGamePanel panel3 ;
+	MakeGamePanel panel3 ;
 	private OptionPanel panel1;
 	private TabOptionPanelMake panelTabM;
 	private TabOptionPanelPlay panelTabP;
+	private JScrollPane mapScrollPanel;
+	private JScrollPane gameScrollPanel;
 	//private Map map;
 	
 	public Main(String title) {
@@ -32,24 +34,26 @@ public class Main extends JFrame {
 	    cardPanel.setLayout(cl);
 	    
 	    map = new MapJPanel(this);
+	    mapScrollPanel = new JScrollPane(map);
 		panel1 = new OptionPanel(this);    
-		//panel3 = new MakeGamePanel(this);
+		panel3 = new MakeGamePanel(this);
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this, panel2);
 	    panelTabM = new TabOptionPanelMake(this);
-	    panelTabP = new TabOptionPanelPlay(this, panel2);
-	    
-	    
+	    //panelTabP = new TabOptionPanelPlay(this, panel2);
+	    gameScrollPanel = new JScrollPane(panel5);
 	    
 	    
 	    cardPanel.add(panel1,"1"); // Card is named "1"
 	    //cardPanel.add(map, "1");
 	    cardPanel.add(panel2,"2"); // Card is named "2"
-	    cardPanel.add(panelTabM,"3");
-	    cardPanel.add(panelTabP, "5");
+	    cardPanel.add(panel3, "3");
+	    //cardPanel.add(panelTabM,"3");
+	    //cardPanel.add(panelTabP, "5");
+	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
-	  
+	    cardPanel.add(mapScrollPanel, "6");
 	    
 	    
 	    add(cardPanel);
@@ -132,6 +136,5 @@ public class Main extends JFrame {
 	public void setRace(Race r)
 	{
 		panel5.setRace(r);
-		System.out.println("Race set is: " + r.getName());
 	}
 }

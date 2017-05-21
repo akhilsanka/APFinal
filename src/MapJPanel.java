@@ -10,16 +10,24 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MapJPanel extends JPanel implements MouseListener, KeyListener, ActionListener
 {
-	Main m;
-	ArrayList<Point> hintLocationPoints;
+	private Main m;
+	private ArrayList<Point> hintLocationPoints;
+	private BufferedImage image;
+	private JLabel picLabel;
+	private JButton home;
 	
 	public MapJPanel(Main m)
 	{
@@ -30,23 +38,36 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 		GridBagConstraints c = new GridBagConstraints();
 	    c.gridwidth = GridBagConstraints.REMAINDER;
 	    c.fill = GridBagConstraints.HORIZONTAL;
+	    
+	    try {
+			image = ImageIO.read(new File("HomesteadMap.jpg"));
+			picLabel = new JLabel(new ImageIcon(image));
+			picLabel.addMouseListener(this);
+			add(picLabel, c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    home = new JButton("Return to home screen");
+	    home.addActionListener(this);
+	    add(home, c);
 		this.m = m;
-		ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
-		JLabel thumb = new JLabel();
-		thumb.setIcon(icon);
-		add(thumb, c);
+		//ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
+		//JLabel thumb = new JLabel();
+		//thumb.setIcon(icon);
+		//add(thumb, c);
 	}
 	
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		//g.drawImage(w, 0,0, getWidth(), getHeight(), null );
-		Image background = Toolkit.getDefaultToolkit().createImage("HomesteadMap.jpg");
+		/*Image background = Toolkit.getDefaultToolkit().createImage("HomesteadMap.jpg");
 		g.drawImage(background, 0, 0, null);
 		for(int i = 0; i < hintLocationPoints.size(); i++){
 			g.drawOval((int)hintLocationPoints.get(i).getX(), (int)hintLocationPoints.get(i).getY(), 5, 5);
 		}
-		repaint();
+		repaint();*/
 
 	}
 	
@@ -56,8 +77,9 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		Object chooseB = e.getSource();
+		if(chooseB == home)
+			m.changePanel("1");
 	}
 
 	@Override
@@ -102,21 +124,13 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("aksdjf;");
-		// TODO Auto-generated method stub
-		Point hintPoint = arg0.getLocationOnScreen();
-		hintLocationPoints.add(hintPoint);
-		System.out.println(hintPoint);
+		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("aksdjf;");
-		// TODO Auto-generated method stub
-		Point hintPoint = arg0.getLocationOnScreen();
-		hintLocationPoints.add(hintPoint);
-		System.out.println(hintPoint);
+		
 	}
 	
 }

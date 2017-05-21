@@ -8,7 +8,7 @@ import java.awt.event.*;
 public class OptionPanel extends JPanel implements ActionListener {
 	
 	private Main w;
-	private JButton button, button2, button3;
+	private JButton button, button2, button3, button4;
 
 	//test 
 	/**
@@ -26,9 +26,14 @@ public class OptionPanel extends JPanel implements ActionListener {
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
 		p.add(Box.createVerticalStrut(300));
 		
-		button = new JButton("Make A New Race!");
+		button = new JButton("Make A New Race Without Locations!");
 		button.addActionListener(this);
 		p.add(button);
+		add(p);
+		
+		button4 = new JButton("Make A New Race With Locations!");
+		button4.addActionListener(this);
+		p.add(button4);
 		add(p);
 		
 		button2 = new JButton("Start A Race!");
@@ -55,7 +60,10 @@ public class OptionPanel extends JPanel implements ActionListener {
 		else if (chooseB == button3){
 			w.changePanel("4");
 		}
-		
+		else if(chooseB == button4)
+		{
+			w.changePanel("6");
+		}
 		
 	}
 	
