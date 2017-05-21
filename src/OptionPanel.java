@@ -63,6 +63,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		else if(chooseB == button4)
 		{
 			w.changePanel("6");
+			w.getMap().makeRace();
 		}
 		
 	}

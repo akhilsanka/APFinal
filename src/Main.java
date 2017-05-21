@@ -137,4 +137,9 @@ public class Main extends JFrame {
 	{
 		panel5.setRace(r);
 	}
+	
+	public MapJPanel getMap()
+	{
+		return map;
+	}
 }
