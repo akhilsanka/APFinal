@@ -16,10 +16,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextArea answerArea;
 	protected JButton create;
 	private Race createdRace;
-	private final static String newline = "\n";
-	
-	private Race r;
-	private ArrayList<Hint> hintList = new ArrayList<Hint>();
 	private JButton home;
 	
 	
@@ -33,7 +29,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		super(new GridBagLayout());
 		
 		JPanel p = new JPanel(); 
-		
+				
 		this.m = m;
 		setBackground(Color.WHITE);
 		
@@ -129,15 +125,14 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if (chooseB == create){
-			//System.out.println("button pressed");
 			String clues[] = hintArea.getText().split("\\r?\\n");
 		    ArrayList<String>hintList = new ArrayList<String>(Arrays.asList(clues));
 		    ArrayList<Hint> hints = new ArrayList<Hint>();
-		    //System.out.println(hintList);
+		    System.out.println(hintList);
 		    
 		    String answers[] = answerArea.getText().split("\\r?\\n");
 		    ArrayList<String>answerList = new ArrayList<>(Arrays.asList(answers)) ;
-		    //System.out.println(answerList);
+		    System.out.println(answerList);
 		    if(answers.length == 0)
 		    	msgbox("Please enter a value for the answer before clicking finish");
 		    else if(clues.length == 0)
@@ -153,12 +148,12 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		    		Hint temp;
 		    		try
 		    		{
-			    		temp = new Hint(hintList.get(i), Integer.parseInt(answerList.get(i)));
+		    			temp = new Hint(hintList.get(i), Integer.parseInt(answerList.get(i)));
 		    		}
 		    		catch(NumberFormatException ex)
 		    		{
 		    			msgbox("Please enter only numbers for answers");
-		    			return; //correct? 
+		    			return; 
 		    		}
 		    		hints.add(temp);
 		    	}
@@ -172,9 +167,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		if (chooseB == home){
 			m.changePanel("1");
 		}
-		
-        //Make sure the new text is visible, even if there
-        //was a selection in the text area.
         hintArea.setCaretPosition(hintArea.getDocument().getLength());
         answerArea.setCaretPosition(answerArea.getDocument().getLength());
 

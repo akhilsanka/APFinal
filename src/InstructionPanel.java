@@ -10,11 +10,12 @@ import java.util.*;
 
 
 
-public class InstructionPanel extends JPanel implements KeyListener {
+public class InstructionPanel extends JPanel implements KeyListener, ActionListener {
 
 
 	private String message;
 	private Main m;
+	private JButton home;
 	
 	protected JTextArea instructionArea;
 
@@ -28,12 +29,33 @@ public class InstructionPanel extends JPanel implements KeyListener {
 		super();
 		this.m = m;
 		setBackground(Color.WHITE);
-		message = "To play a scavenger hunt, run the program and click Play. Enter a code tofasldkfasdf asdjf ;askdfj a;slkdfja;skdfja;skdfjasfk;";
-		instructionArea =new JTextArea(90, 70);
-		instructionArea.append(message);
+		message = "To make a Scavenger Hunt click the make game button with locations \nor without."
+				+ " If you are making a Scavenger Hunt without locations \nenter the name in the first"
+				+ "text box and all hints and answers into \ntheir respective textboxes, then press the "
+				+ "finish making race button to \nmake the race."
+				+ " If you are making a Scavenger Hunt with locations enter the \nname of the race into"
+				+ "the popup window that appears right after clicking the \nmake race with locations"
+				+ " button. Then add hints by clicking the spot on the \nimage that contains the location "
+				+ "you want the hint to be located at. Next, \nenter the hints and answers in their"
+				+ "respective places in the popup window."
+				+ "\n\n To play a race, click the play race button and enter the name of the race \nyou"
+				+ " want to play. If the screen does not change, try to enter a different race. \nWhen the"
+				+ " race starts, see the hint that shows up in the hint text box and \nthe general location"
+				+ " of the answer if there are locations in the race. Enter \nyour number guess for the "
+				+ "answer in the answer text box and click check \nanswer. If the answer is correct a "
+				+ "new hint and location will appear.";
+		instructionArea = new JTextArea(message, 30, 40);
 		instructionArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(instructionArea);
-        add(scrollPane);
+        
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        add(scrollPane, c);
+        
+        home = new JButton("Return to home screen");
+        home.addActionListener(this);
+        add(home, c);
 	}
 
 	/** Paints to the screen of this panel
@@ -57,8 +79,6 @@ public class InstructionPanel extends JPanel implements KeyListener {
 
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("SansSerif",Font.BOLD,28));
-		//int strWidth = g.getFontMetrics().stringWidth(message);
-		//g.drawString(message, 400-strWidth/2, 300);
 		g2.setTransform(at);
 	}
 
@@ -68,9 +88,7 @@ public class InstructionPanel extends JPanel implements KeyListener {
 	* @param arg0  the key that is recorded by the program
 	 */
 	public void keyPressed(KeyEvent arg0) {
-		if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			m.changePanel("1");
-		}
+		
 	}
 
 
@@ -85,6 +103,14 @@ public class InstructionPanel extends JPanel implements KeyListener {
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object chooseB = e.getSource();
+		if(chooseB == home)
+			m.changePanel("1");
 	}
 
 

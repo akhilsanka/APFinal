@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,7 +8,7 @@ public class Hint implements Serializable{
 	private static final long serialVersionUID = 7206532398665898388L;
 	private String hint;
 	private int answer;
-	private HintLocation loc;
+	private Point loc;
 	
 	/** Creates a constructor that has a hint, location, and answer
 	 * 
@@ -15,10 +16,10 @@ public class Hint implements Serializable{
 	 * @param myHint the hint message
 	 * @param myAnswers the answer to the hint
 	 */
-	public Hint(HintLocation myLoc, String myHint, int myAnswers)
+	public Hint(Point myLoc, String myHint, int myAnswer)
 	{
 		loc = myLoc;
-		answer = myAnswers;
+		answer = myAnswer;
 		hint = myHint;
 	}
 	/** Creates a constructor that has a hint and answer
@@ -50,11 +51,15 @@ public class Hint implements Serializable{
 		return answer;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * 
 	 * @return HintLocation object (the Hint's Location)
 	 */
 	public HintLocation getHintLoc()
+=======
+	public Point getHintLoc()
+>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	{
 		return loc;
 	}

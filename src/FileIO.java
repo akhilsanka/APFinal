@@ -36,9 +36,6 @@ public class FileIO {
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-//		catch (InvalidClassException e) {
-//			e.printStackTrace();
-//		}
 		finally{
 			try{
 				if(ois != null){

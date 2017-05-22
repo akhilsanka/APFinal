@@ -10,8 +10,6 @@ import java.util.*;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener
 {
- // test 
-	private String message;
 	private Main m;
 
 	protected JTextField nameField;
@@ -23,12 +21,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextField answerField;
 	protected JTextArea hintArea;
 	protected JTextArea answerArea;
-	private final static String newline = "\n";
 	
-	private JButton button;
 	private JButton game;
-	private ArrayList<JButton> buttons;
-	private ArrayList<Race> races;
+	private JButton home;
 	/**
 	 * Makes a PlayGamePanel object that allows the user to select which game they want to play
 	 * @param m Main Class
@@ -38,7 +33,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		super(new GridBagLayout());
 		
 		tp = new TimerPanel();
-		JPanel p = new JPanel();
 		
 		this.m = m;
 		setBackground(Color.WHITE);
@@ -47,23 +41,13 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
         c.fill = GridBagConstraints.HORIZONTAL;
         nameField = new JTextField(20);
 		game = new JButton("Enter this Race");
+		home = new JButton("Return to home screen");
 		nameField.addActionListener(this);
 		game.addActionListener(this);
+		home.addActionListener(this);
 		add(nameField, c);
 		add(game, c);
-		
-		races = m.getRaces();
-		System.out.println((races.size()));
-		buttons = new ArrayList<JButton>();
-		for(int i = 0; i < races.size(); i++)
-		{
-			System.out.println("test");
-			 button = new JButton(races.get(i).getName());
-			button.addActionListener(this);
-			add(button, c);
-			buttons.add(button);
-		}
-	
+		add(home, c);
 	}
 
 	/**
@@ -122,16 +106,14 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 				msgbox("Race not found");
 			}
 			else{
-				m.setRace((Race)reader.readObject(nameText + ".sch"));
+				Race race = (Race)reader.readObject(nameText + ".sch");
+				m.setRace(race);
 				m.changePanel("5");
 				tp.reset();
-				System.out.println(tp.getSeconds());
-				System.out.println("reset");
-				
 			}
-
 		}
-
+		if(chooseB == home)
+			m.changePanel("1");
 	}
 	
 	/**
@@ -147,7 +129,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	 * @return long value of the seconds, after each minute, that has passed
 	 */
 	public long getSeconds(){
-		System.out.println(tp.getSeconds());
 		return tp.getSeconds();
 
 	}

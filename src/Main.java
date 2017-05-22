@@ -12,15 +12,17 @@ public class Main extends JFrame {
 	ArrayList<Race> races = new ArrayList<Race>();
 	private PlayGamePanel panel5;
 	private MapJPanel map;
-	InstructionPanel panel4;
-	GamePanel panel2;
+	private InstructionPanel panel4;
+	private GamePanel panel2;
 	MakeGamePanel panel3 ;
-	OptionPanel panel1;
-	//private Map map;
+	private OptionPanel panel1;
+	private JScrollPane mapScrollPanel;
+	private JScrollPane gameScrollPanel;
+	//private MapJPanelPlay panel6;
+	//private JScrollPane mapPlayScroll;
 	
 	public Main(String title) {
 		super(title);
-		addDummyRace();
 		addDefaultRace();
 		setBounds(100, 100, 800, 600);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,29 +32,26 @@ public class Main extends JFrame {
 	    cardPanel.setLayout(cl);
 	    
 	    map = new MapJPanel(this);
+	    mapScrollPanel = new JScrollPane(map);
 		panel1 = new OptionPanel(this);    
 		panel3 = new MakeGamePanel(this);
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this, panel2);
+	    gameScrollPanel = new JScrollPane(panel5);
 	    
 	    
-	    
-	    
-	    cardPanel.add(panel1,"1"); // Card is named "1"
-	    //cardPanel.add(map, "1");
-	    cardPanel.add(panel2,"2"); // Card is named "2"
-	    cardPanel.add(panel3,"3");
-	    cardPanel.add(panel5, "5");
+	    cardPanel.add(panel1,"1"); 
+	    cardPanel.add(panel2,"2"); 
+	    cardPanel.add(panel3, "3");
+	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
-	  
-	    
+	    cardPanel.add(mapScrollPanel, "6");
+	    //cardPanel.add(mapPlayScroll, "7");
 	    
 	    add(cardPanel);
 	    addKeyListener(panel2);
-	
-	    setVisible(true);
-	   
+	    setVisible(true);  
 	}
 
 	public static void main(String[] args)
@@ -72,20 +71,7 @@ public class Main extends JFrame {
 	{
 		races.add(r);
 	}
-	/**
-	 * Adds a dummy race to the list of races to test.
-	 */
-	public void addDummyRace()
-	{
-		Race dummy = new Race("Dummy");
-		Hint hint1 = new Hint("One", 1);
-		Hint hint2 = new Hint("Two", 2);
-		Hint hint3 = new Hint("Three", 3);
-		dummy.addHint(hint1);
-		dummy.addHint(hint2);
-		dummy.addHint(hint3);
-		addRace(dummy);
-	}
+
 	/**
 	 * Adds a default race to test.
 	 */
@@ -128,5 +114,10 @@ public class Main extends JFrame {
 	public void setRace(Race r)
 	{
 		panel5.setRace(r);
+	}
+	
+	public MapJPanel getMap()
+	{
+		return map;
 	}
 }
