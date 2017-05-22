@@ -97,15 +97,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 		}
         
         g = image.createGraphics();
-<<<<<<< HEAD
-       // g.drawImage(image, 0, 0, this);
-        /*g.setColor(Color.CYAN);
-        drawCenteredCircle(g, 0, 0, 100);
-        g.dispose();*/
  
         add(pauseplay, c);
-=======
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
         p.add(used);
         p.add(unused);
         add(p, c);

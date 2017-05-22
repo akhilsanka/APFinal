@@ -27,10 +27,7 @@ import javax.swing.JTextField;
 
 public class MapJPanel extends JPanel implements MouseListener, KeyListener, ActionListener
 {
-<<<<<<< HEAD
-	Main m;
 	private Race game;
-=======
 	/**
 	 * 
 	 */
@@ -42,7 +39,6 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	private Race createdRace;
 	private String name;
 	private ArrayList<Hint> hints;
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	
 	public MapJPanel(Main m)
 	{
@@ -66,14 +62,10 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	    home.addActionListener(this);
 	    add(home, c);
 		this.m = m;
-<<<<<<< HEAD
 		ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
 		JLabel thumb = new JLabel();
 		thumb.setIcon(icon);
-		add(thumb, c);
-		
-=======
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
+		add(thumb, c);	
 	}
 	
 	protected void paintComponent(Graphics g)
@@ -83,11 +75,6 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-		
-		
-=======
 		Object chooseB = e.getSource();
 		if(chooseB == home)
 		{
@@ -98,7 +85,6 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	    	FileIO writer = new FileIO();
 			writer.writeObject(name + ".sch", createdRace);
 		}
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	}
 
 	@Override
