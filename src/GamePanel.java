@@ -50,7 +50,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		add(home, c);
 	}
 
-
+	/**
+	 * 
+	 */
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
@@ -113,22 +115,41 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 			m.changePanel("1");
 	}
 	
+	/**
+	 * 
+	 * @return long value of the minutes passed
+	 */
 	public long getMins(){
 		return tp.getMins();
 	}
 	
+	/**
+	 * 
+	 * @return long value of the seconds, after each minute, that has passed
+	 */
 	public long getSeconds(){
 		return tp.getSeconds();
 
 	}
 	
+	public TimerPanel getTimer(){
+		return tp;
+	}
 	
 	
+	/**
+	 * 
+	 * @return String of the Race's name
+	 */
 	public String getRaceName(){
 		return nameText;
 		
 	}
 
+	/**
+	 * 
+	 * @param s 
+	 */
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}

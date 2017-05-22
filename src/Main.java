@@ -105,7 +105,7 @@ public class Main extends JFrame {
 	}
 	/**
 	 * 
-	 * @param r
+	 * @param r Race that it will be set to
 	 */
 	public void setRace(Race r)
 	{

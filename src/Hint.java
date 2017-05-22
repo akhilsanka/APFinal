@@ -51,7 +51,15 @@ public class Hint implements Serializable{
 		return answer;
 	}
 	
+<<<<<<< HEAD
+	/**
+	 * 
+	 * @return HintLocation object (the Hint's Location)
+	 */
+	public HintLocation getHintLoc()
+=======
 	public Point getHintLoc()
+>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	{
 		return loc;
 	}
