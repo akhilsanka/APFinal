@@ -14,7 +14,6 @@ public class Race extends JPanel implements Serializable{
 	private String name;
 	private BufferedImage image;
 	private boolean isComplete, hasMap;
-	
 	private Map map;
 
 	/**
@@ -47,6 +46,12 @@ public class Race extends JPanel implements Serializable{
 		hasMap = false;
 	}
 	
+	/**
+	 * This constructs a Race object with the race's name and the Map it's using.
+	 * hasMap is set set to true
+	 * @param name String of the name of the race
+	 * @param m The Map object that the Race will use
+	 */
 	public Race(String name, Map m)
 	{
 		this.name = name;
@@ -151,6 +156,7 @@ public class Race extends JPanel implements Serializable{
 	}
 	
 	/**
+	 * This method adds a new Hint object to the ArrayList of unused Hint objects 
 	 * 
 	 * @param hint new Hint object to be added to the ArrayList of unused hints
 	 */
@@ -160,6 +166,7 @@ public class Race extends JPanel implements Serializable{
 	}
 	
 	/**
+	 * This method adds a Hint object to the ArrayList of unused Hint objects.
 	 * 
 	 * @param location the hint's location on the map stored as a HintLocation object
 	 * @param hint String form of the hint to be added 
@@ -180,9 +187,13 @@ public class Race extends JPanel implements Serializable{
 		return isComplete;
 	}
 	
+	public boolean hasMap()
+	{
+		return hasMap;
+	}
 	/**
-	 * 
-	 * @return int number of hints that have been used up
+	 * This method returns the number of used hints
+	 * @return int number of hints 
 	 */
 	public int getFinishedHints()
 	{

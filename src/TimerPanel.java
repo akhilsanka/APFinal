@@ -12,6 +12,9 @@ public class TimerPanel {
 
 	private long startTime;
 	
+	/**
+	 * Constructs a TimerPanel object, starts the time 
+	 */
 	public TimerPanel()
 	{
 
@@ -19,18 +22,28 @@ public class TimerPanel {
 
 	}
 
-
+	/**
+	 * 
+	 * @return long value of the number of minutes that has passed
+	 */
 	public long getMins()
 	{
 
 		return (System.currentTimeMillis() - startTime) / 60000 ;
 	}
 	
+	/**
+	 * 
+	 * @return long value of the number of seconds that has passed 
+	 */
 	public long getSeconds()
 	{
 		return ((System.currentTimeMillis() - startTime) % 60000) / 1000;
 	}
 
+	/**
+	 * Stops the timer and resets it to 0
+	 */
 	public void reset(){
 		startTime = System.currentTimeMillis();
 	}

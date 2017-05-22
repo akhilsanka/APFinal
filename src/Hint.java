@@ -50,6 +50,10 @@ public class Hint implements Serializable{
 		return answer;
 	}
 	
+	/**
+	 * 
+	 * @return HintLocation object (the Hint's Location)
+	 */
 	public HintLocation getHintLoc()
 	{
 		return loc;

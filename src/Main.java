@@ -99,7 +99,7 @@ public class Main extends JFrame {
 		shelby.addHint(h2);
 		addRace(shelby);
 	}
-	/*
+	/**
 	 * @param name Name of the race to be returned
 	 * @return Race that is asked to return
 	 */
@@ -123,7 +123,7 @@ public class Main extends JFrame {
 	}
 	/**
 	 * 
-	 * @param r
+	 * @param r Race that it will be set to
 	 */
 	public void setRace(Race r)
 	{

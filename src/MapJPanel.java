@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 public class MapJPanel extends JPanel implements KeyListener, ActionListener
 {
 	Main m;
+	private Race game;
 	
 	public MapJPanel(Main m)
 	{
@@ -28,6 +29,7 @@ public class MapJPanel extends JPanel implements KeyListener, ActionListener
 		JLabel thumb = new JLabel();
 		thumb.setIcon(icon);
 		add(thumb, c);
+		
 	}
 	
 	protected void paintComponent(Graphics g)
@@ -40,6 +42,7 @@ public class MapJPanel extends JPanel implements KeyListener, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 

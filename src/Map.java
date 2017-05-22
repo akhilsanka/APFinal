@@ -9,11 +9,10 @@ import processing.core.PApplet;
  * all of these would be labeled with numbers
  * numbers would be the answers to the hint
  */
-public class Map extends PApplet implements MouseListener{
+public class Map extends PApplet {
 	
 	ArrayList<Hint> hints;
 	String name;
-	
 	
 	/**
 	 * 
@@ -56,35 +55,5 @@ public class Map extends PApplet implements MouseListener{
 		*/
 		
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 }
