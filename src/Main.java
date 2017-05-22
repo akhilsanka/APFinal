@@ -16,17 +16,13 @@ public class Main extends JFrame {
 	private GamePanel panel2;
 	MakeGamePanel panel3 ;
 	private OptionPanel panel1;
-	private TabOptionPanelMake panelTabM;
-	private TabOptionPanelPlay panelTabP;
 	private JScrollPane mapScrollPanel;
 	private JScrollPane gameScrollPanel;
 	private MapJPanelPlay panel6;
 	private JScrollPane mapPlayScroll;
-	//private Map map;
 	
 	public Main(String title) {
 		super(title);
-		addDummyRace();
 		addDefaultRace();
 		setBounds(100, 100, 800, 600);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,28 +40,20 @@ public class Main extends JFrame {
 	    panel5 = new PlayGamePanel(this, panel2);
 	    panel6 = new MapJPanelPlay(this, panel2);
 	    mapPlayScroll = new JScrollPane(panel6);
-	    panelTabM = new TabOptionPanelMake(this);
-	    //panelTabP = new TabOptionPanelPlay(this, panel2);
 	    gameScrollPanel = new JScrollPane(panel5);
 	    
 	    
-	    cardPanel.add(panel1,"1"); // Card is named "1"
-	    //cardPanel.add(map, "1");
-	    cardPanel.add(panel2,"2"); // Card is named "2"
+	    cardPanel.add(panel1,"1"); 
+	    cardPanel.add(panel2,"2"); 
 	    cardPanel.add(panel3, "3");
-	    //cardPanel.add(panelTabM,"3");
-	    //cardPanel.add(panelTabP, "5");
 	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
 	    cardPanel.add(mapScrollPanel, "6");
 	    cardPanel.add(mapPlayScroll, "7");
 	    
-	    
 	    add(cardPanel);
 	    addKeyListener(panel2);
-	
-	    setVisible(true);
-	   
+	    setVisible(true);  
 	}
 
 	public static void main(String[] args)
@@ -85,20 +73,7 @@ public class Main extends JFrame {
 	{
 		races.add(r);
 	}
-	/**
-	 * Adds a dummy race to the list of races to test.
-	 */
-	public void addDummyRace()
-	{
-		Race dummy = new Race("Dummy");
-		Hint hint1 = new Hint("One", 1);
-		Hint hint2 = new Hint("Two", 2);
-		Hint hint3 = new Hint("Three", 3);
-		dummy.addHint(hint1);
-		dummy.addHint(hint2);
-		dummy.addHint(hint3);
-		addRace(dummy);
-	}
+
 	/**
 	 * Adds a default race to test.
 	 */
