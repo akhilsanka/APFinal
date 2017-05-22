@@ -137,7 +137,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	currClue = getHint();
     	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
     	if(currHint.equals("Race is Complete!") == false)
-    		hintArea.append(currClue);
+    		hintArea.setText(currClue);
     	if(game.hasMap())
     	{
     		repaint();

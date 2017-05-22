@@ -104,7 +104,6 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	public void mouseClicked(MouseEvent arg0) {
 		Point hintPoint = arg0.getLocationOnScreen();
 		addHint(hintPoint);
-		System.out.println(hintPoint);
 	}
 
 	@Override
@@ -145,9 +144,7 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         	try
         	{
         		int ans = Integer.parseInt( field2.getText());
-        		System.out.println("Hint: " + field1.getText() + "  Answer: " + ans);
         		Hint temp = new Hint(loc, field1.getText(), ans);
-        		System.out.println("temp: " + temp);
         		hints.add(temp);
         	}
         	catch(NumberFormatException ex)
@@ -175,7 +172,6 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         } 
         else 
         {
-            System.out.println("Cancelled");
             m.changePanel("1");
         }
     }
