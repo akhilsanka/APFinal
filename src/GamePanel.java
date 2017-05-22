@@ -147,6 +147,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 
 	}
 	
+	public TimerPanel getTimer(){
+		return tp;
+	}
+	
 	
 	
 	public String getRaceName(){

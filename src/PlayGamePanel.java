@@ -43,6 +43,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JPanel map;
 	private Graphics2D g;
 	private JButton diffRace;
+	
+	private JButton pauseplay;
+	private int pauseCount;
 
 	/**
 	 * Makes a GamePanel object where the game is played
@@ -79,6 +82,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         diffRace.addActionListener(this);
       
         
+        pauseplay = new JButton("Pause/Play");
+        pauseplay.addActionListener(this);
+        
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -104,6 +110,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         drawCenteredCircle(g, 0, 0, 100);
         g.dispose();*/
  
+        add(pauseplay, c);
         p.add(used);
         p.add(unused);
         add(p, c);
@@ -112,6 +119,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(guess, c);
         add(scrollPane2, c);
         add(check, c);
+        
         add(diffRace, c);
         
         setBackground(Color.WHITE);
@@ -234,9 +242,21 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 				answerArea.setText("");
 			}
 		}
-		if(chooseB == diffRace)
+		else if(chooseB == diffRace)
 		{
 			m.changePanel("2");
+		}
+		else if(chooseB == pauseplay ){
+			
+			if(pauseCount % 2 == 0){
+				gp.getTimer().play();
+				check.setEnabled(true);
+			}
+			else{
+				gp.getTimer().pause();
+				check.setEnabled(false);
+			}
+			pauseCount ++;
 		}
 	}
 
