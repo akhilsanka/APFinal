@@ -33,7 +33,6 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	private JLabel picLabel;
 	private JButton home;
 	private Race createdRace;
-	private String nameField;
 	
 	public MapJPanel(Main m)
 	{
@@ -112,8 +111,8 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 		//System.out.println("aksdjf;");
 		// TODO Auto-generated method stub
 		Point hintPoint = arg0.getLocationOnScreen();
-		hintLocationPoints.add(hintPoint);
-		addHint();
+		//hintLocationPoints.add(hintPoint);
+		addHint(hintPoint);
 		System.out.println(hintPoint);
 	}
 
@@ -141,13 +140,13 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 		
 	}
 	
-	private void addHint() {
-        String[] items = {"One", "Two", "Three", "Four", "Five"};
-        JComboBox<String> combo = new JComboBox<>(items);
-        JTextField field1 = new JTextField("1234.56");
-        JTextField field2 = new JTextField("9876.54");
+	private void addHint(Point loc) {
+        //String[] items = {"One", "Two", "Three", "Four", "Five"};
+        //JComboBox<String> combo = new JComboBox<>(items);
+        JTextField field1 = new JTextField("");
+        JTextField field2 = new JTextField("");
         JPanel panel = new JPanel(new GridLayout(0, 1));
-        panel.add(combo);
+        //panel.add(combo);
         panel.add(new JLabel("Hint:"));
         panel.add(field1);
         panel.add(new JLabel("Answer:"));
@@ -158,12 +157,13 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         	try
         	{
         		int ans = Integer.parseInt( field2.getText());
-        		Hint temp = new Hint(field1.getText(), ans);
-            	createdRace.addHint(temp);
+        		System.out.println("Hint: " + field1.getText() + "  Answer: " + ans);
+        		//Hint temp = new Hint(loc, field1.getText(), ans);
+            	createdRace.addHint(new HintLocation(loc), field1.getText(), ans);
         	}
         	catch(NumberFormatException ex)
         	{
-        		
+        		msgbox("Invalid Input, Try Again");
         	}
             /*System.out.println(combo.getSelectedItem()
                 + " " + field1.getText()
@@ -192,4 +192,7 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         }
     }
 	
+	public void msgbox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+		}
 }

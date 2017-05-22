@@ -15,10 +15,10 @@ public class Hint implements Serializable{
 	 * @param myHint the hint message
 	 * @param myAnswers the answer to the hint
 	 */
-	public Hint(HintLocation myLoc, String myHint, int myAnswers)
+	public Hint(HintLocation myLoc, String myHint, int myAnswer)
 	{
 		loc = myLoc;
-		answer = myAnswers;
+		answer = myAnswer;
 		hint = myHint;
 	}
 	/** Creates a constructor that has a hint and answer

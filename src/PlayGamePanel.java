@@ -154,6 +154,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			else
 			{
 				Hint currHint = game.getHint();
+				System.out.println(currHint);
+				System.out.println(currHint.getAnswer());
 				currAnswer = currHint.getAnswer();
 				/*System.out.println("Hint: " + currHint.getHint());
 				System.out.println("Answer: " + currHint.getAnswer());
