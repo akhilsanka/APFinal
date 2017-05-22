@@ -16,12 +16,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextArea answerArea;
 	protected JButton create;
 	private Race createdRace;
-	private final static String newline = "\n";
-	
-	private MapJPanel mapPanel;
-	
-	private Race r;
-	private ArrayList<Hint> hintList = new ArrayList<Hint>();
 	private JButton home;
 	
 	
@@ -35,9 +29,7 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		super(new GridBagLayout());
 		
 		JPanel p = new JPanel(); 
-		
-		mapPanel = new MapJPanel(m);
-		
+				
 		this.m = m;
 		setBackground(Color.WHITE);
 		
@@ -133,7 +125,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if (chooseB == create){
-			//System.out.println("button pressed");
 			String clues[] = hintArea.getText().split("\\r?\\n");
 		    ArrayList<String>hintList = new ArrayList<String>(Arrays.asList(clues));
 		    ArrayList<Hint> hints = new ArrayList<Hint>();
@@ -157,13 +148,12 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		    		Hint temp;
 		    		try
 		    		{
-		    			//temp = new Hint( new HintLocation(mapPanel.getHintLocationPoints().get(i)), hintList.get(i), Integer.parseInt(answerList.get(i)));
 		    			temp = new Hint(hintList.get(i), Integer.parseInt(answerList.get(i)));
 		    		}
 		    		catch(NumberFormatException ex)
 		    		{
 		    			msgbox("Please enter only numbers for answers");
-		    			return; //correct? 
+		    			return; 
 		    		}
 		    		hints.add(temp);
 		    	}
@@ -177,9 +167,6 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 		if (chooseB == home){
 			m.changePanel("1");
 		}
-		
-        //Make sure the new text is visible, even if there
-        //was a selection in the text area.
         hintArea.setCaretPosition(hintArea.getDocument().getLength());
         answerArea.setCaretPosition(answerArea.getDocument().getLength());
 

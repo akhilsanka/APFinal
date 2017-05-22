@@ -24,10 +24,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
 	
-	private GamePanel gp;
-	
-	//private MapJPanelPlay mapPanelPlay;
-	
+	private GamePanel gp;	
 	private BufferedImage image;
 	private Race game;
 	private Hint currHint;
@@ -50,15 +47,11 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
     public PlayGamePanel(Main m, GamePanel gp) 
     {
-    	super(new GridBagLayout());    	
-    	//FileIO reader = new FileIO();
-		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));   
+    	super(new GridBagLayout());    	 
     	this.gp = gp;    	
     	p = new JPanel();
     	this.m = m;
-		
-    	//mapPanelPlay = new MapJPanelPlay(m, true);
-    	
+		    	
 		hintArea = new JTextArea(5, 20);
 		hintArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(hintArea);  
@@ -86,24 +79,18 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         try {
         	map = new JPanel();
 			image = ImageIO.read(new File("HomesteadMap.jpg"));
-			//original = ImageIO.read(new File("HomesteadMap.jpg"));
 			picLabel = new JLabel(new ImageIcon(image));
 			map.add(picLabel);
 			g = image.createGraphics();
 			g.drawImage(image, 0, 0, map);
 			add(map, c);
-			//add(picLabel, c);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+        catch (IOException e)
+        {
 			e.printStackTrace();
 		}
         
         g = image.createGraphics();
-       // g.drawImage(image, 0, 0, this);
-        /*g.setColor(Color.CYAN);
-        drawCenteredCircle(g, 0, 0, 100);
-        g.dispose();*/
- 
         p.add(used);
         p.add(unused);
         add(p, c);
@@ -119,14 +106,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 
     
     
-    //@Override
 	protected void paintComponent(Graphics2D g) {
 		try {
 			image = ImageIO.read(new File("HomesteadMap.jpg"));
 			g = image.createGraphics();
 			picLabel.setIcon(new ImageIcon(image));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 	    g.setColor(Color.CYAN);
@@ -149,9 +136,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     {
     	currClue = getHint();
     	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
-    	if(currHint.equals("Race is Complete!"))
-    		return;
-    	hintArea.append(currClue);
+    	if(currHint.equals("Race is Complete!") == false)
+    		hintArea.append(currClue);
     	if(game.hasMap())
     	{
     		repaint();
@@ -199,10 +185,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	public boolean checkAnswer(int answer)
 	{
 		System.out.println("answer: " + answer);
-		//System.out.println("Current answer: " + currAnswer);
 		if(answer == currAnswer)
 		{
-			//System.out.println("answer: " + answer);
 			hintArea.setText("");
 			if(game.getRemainingHints() == 0)
 				game.finish();

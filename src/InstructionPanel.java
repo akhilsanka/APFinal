@@ -45,7 +45,6 @@ public class InstructionPanel extends JPanel implements KeyListener, ActionListe
 				+ "answer in the answer text box and click check \nanswer. If the answer is correct a "
 				+ "new hint and location will appear.";
 		instructionArea = new JTextArea(message, 30, 40);
-		//instructionArea.append("To make a Scavenger Hunt click the make game button with locations or without");
 		instructionArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(instructionArea);
         
@@ -80,8 +79,6 @@ public class InstructionPanel extends JPanel implements KeyListener, ActionListe
 
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("SansSerif",Font.BOLD,28));
-		//int strWidth = g.getFontMetrics().stringWidth(message);
-		//g.drawString(message, 400-strWidth/2, 300);
 		g2.setTransform(at);
 	}
 
@@ -91,9 +88,7 @@ public class InstructionPanel extends JPanel implements KeyListener, ActionListe
 	* @param arg0  the key that is recorded by the program
 	 */
 	public void keyPressed(KeyEvent arg0) {
-		/*if (arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			m.changePanel("1");
-		}*/
+		
 	}
 
 

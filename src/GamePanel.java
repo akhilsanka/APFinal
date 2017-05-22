@@ -10,7 +10,6 @@ import java.util.*;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener
 {
- // test 
 	private Main m;
 
 	protected JTextField nameField;
@@ -22,12 +21,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextField answerField;
 	protected JTextArea hintArea;
 	protected JTextArea answerArea;
-	private final static String newline = "\n";
 	
-	private JButton button;
 	private JButton game;
-	private ArrayList<JButton> buttons;
-	private ArrayList<Race> races;
 	private JButton home;
 	/**
 	 * Makes a PlayGamePanel object that allows the user to select which game they want to play
@@ -53,19 +48,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		add(nameField, c);
 		add(game, c);
 		add(home, c);
-		
-		races = m.getRaces();
-		//System.out.println((races.size()));
-		buttons = new ArrayList<JButton>();
-		/*for(int i = 0; i < races.size(); i++)
-		{
-			System.out.println("test");
-			 button = new JButton(races.get(i).getName());
-			button.addActionListener(this);
-			add(button, c);
-			buttons.add(button);
-		}*/
-	
 	}
 
 
@@ -126,15 +108,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 				m.setRace(race);
 				m.changePanel("5");
 				tp.reset();
-				//System.out.println(tp.getSeconds());
-				//System.out.println("reset");
-				
 			}
-
 		}
 		if(chooseB == home)
 			m.changePanel("1");
-
 	}
 	
 	public long getMins(){
@@ -142,7 +119,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	}
 	
 	public long getSeconds(){
-		//System.out.println(tp.getSeconds());
 		return tp.getSeconds();
 
 	}

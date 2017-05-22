@@ -8,7 +8,6 @@ public class Hint implements Serializable{
 	private static final long serialVersionUID = 7206532398665898388L;
 	private String hint;
 	private int answer;
-	//private HintLocation loc;
 	private Point loc;
 	
 	/** Creates a constructor that has a hint, location, and answer
@@ -51,11 +50,6 @@ public class Hint implements Serializable{
 	{
 		return answer;
 	}
-	
-	/*public HintLocation getHintLoc()
-	{
-		return loc;
-	}*/
 	
 	public Point getHintLoc()
 	{

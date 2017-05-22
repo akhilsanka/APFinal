@@ -18,8 +18,8 @@ public class Main extends JFrame {
 	private OptionPanel panel1;
 	private JScrollPane mapScrollPanel;
 	private JScrollPane gameScrollPanel;
-	private MapJPanelPlay panel6;
-	private JScrollPane mapPlayScroll;
+	//private MapJPanelPlay panel6;
+	//private JScrollPane mapPlayScroll;
 	
 	public Main(String title) {
 		super(title);
@@ -38,8 +38,6 @@ public class Main extends JFrame {
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this, panel2);
-	    panel6 = new MapJPanelPlay(this, panel2);
-	    mapPlayScroll = new JScrollPane(panel6);
 	    gameScrollPanel = new JScrollPane(panel5);
 	    
 	    
@@ -49,7 +47,7 @@ public class Main extends JFrame {
 	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
 	    cardPanel.add(mapScrollPanel, "6");
-	    cardPanel.add(mapPlayScroll, "7");
+	    //cardPanel.add(mapPlayScroll, "7");
 	    
 	    add(cardPanel);
 	    addKeyListener(panel2);
@@ -87,7 +85,7 @@ public class Main extends JFrame {
 		shelby.addHint(h2);
 		addRace(shelby);
 	}
-	/*
+	/**
 	 * @param name Name of the race to be returned
 	 * @return Race that is asked to return
 	 */
