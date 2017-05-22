@@ -9,11 +9,10 @@ import processing.core.PApplet;
  * all of these would be labeled with numbers
  * numbers would be the answers to the hint
  */
-public class Map extends PApplet implements MouseListener{
+public class Map extends PApplet {
 	
 	ArrayList<Hint> hints;
 	String name;
-	
 	
 	/**
 	 * 
@@ -37,11 +36,11 @@ public class Map extends PApplet implements MouseListener{
 		clear(); //clear any previous circles drawn 
 		background(0, 255, 255);
 		
-		double x = hints.get(index).getHintLoc().getX();
-		double y = hints.get(index).getHintLoc().getY();
-		int radius = 50;
+		int x = hints.get(index).getHintLoc().getX();
+		int y = hints.get(index).getHintLoc().getY();
+		int radius = hints.get(index).getHintLoc().getRad();
 		
-		ellipse((float)x, (float)y, radius, radius);
+		ellipse(x, y, radius, radius);
 		
 		/*
 		int i = 0;
@@ -56,35 +55,5 @@ public class Map extends PApplet implements MouseListener{
 		*/
 		
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 }

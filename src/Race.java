@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Race extends JPanel implements Serializable{
@@ -13,11 +14,13 @@ public class Race extends JPanel implements Serializable{
 	private ArrayList<Hint> unusedHints;
 	private ArrayList<Hint> usedHints;
 	private String name;
-	private BufferedImage image;
 	private boolean isComplete, hasMap;
-	
+<<<<<<< HEAD
 	private Map map;
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	/**
 	 * This constructs a Race object with the race's name and 
 	 * its ArrayList of Hint objects
@@ -48,14 +51,20 @@ public class Race extends JPanel implements Serializable{
 		hasMap = false;
 		System.out.println("No map");
 	}
+<<<<<<< HEAD
 	
+	/**
+	 * This constructs a Race object with the race's name and the Map it's using.
+	 * hasMap is set set to true
+	 * @param name String of the name of the race
+	 * @param m The Map object that the Race will use
+	 */
 	public Race(String name, Map m)
 	{
 		this.name = name;
 		map = m;
 		
 		hasMap = true;
-		System.out.println("Yes map");
 	}
 	
 	public Race(String name, Map m, ArrayList<Hint> h)
@@ -65,9 +74,10 @@ public class Race extends JPanel implements Serializable{
 		unusedHints = h;
 		
 		hasMap = true;
-		System.out.println("Yes map");
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	
 	/**
 	 * @return This method returns the Race's name in a String
@@ -76,31 +86,6 @@ public class Race extends JPanel implements Serializable{
 	{
 		return name;
 	}
-//	public Hint getHint()
-//	{
-//		if(usedHints.size() == hints.size()){
-//			return null;
-//		}
-//		int randHint;
-//		boolean used = false;
-//		do{
-//			randHint = (int)Math.random()*hints.size();
-//			for(int i = 0; i<usedHints.size(); i++){
-//				if(randHint == usedHints.get(i)){
-//					used = true;
-//					break;
-//				}
-//			}
-//			if(used == false){
-//				usedHints.add(randHint);
-//				return hints.get(randHint);
-//			}
-//			
-//		}
-//		while(used == true);
-//		return hints.get(0);
-//		
-//	}
 	/**
 	 * 
 	 * @return return the next hint in the ArrayList of unused Hint objects.
@@ -117,15 +102,9 @@ public class Race extends JPanel implements Serializable{
 		
 		int randHint;
 		randHint = (int)Math.random()*unusedHints.size();
-		System.out.println("RAND HINT: " + randHint);
 		Hint shuffledHint = unusedHints.get(randHint);
 		usedHints.add(unusedHints.get(randHint));
 		unusedHints.remove(randHint);	
-		System.out.println("hasMap: " + hasMap);
-		if(hasMap == true)
-		{
-			//map.draw(unusedHints.indexOf(shuffledHint));
-		}
 		
 		return shuffledHint;
 	}
@@ -139,11 +118,11 @@ public class Race extends JPanel implements Serializable{
 	{
 		if(hint.size() == 0 || answer.size() == 0)
 		{
-			System.out.println("Enter an equal number of hints and answers!");
+			msgbox("Enter an equal number of hints and answers!");
 		}
 		else if(hint.size() != answer.size())
 		{
-			System.out.println("Enter an equal number of hints and answers!");
+			msgbox("Enter an equal number of hints and answers!");
 		}
 		else
 		{
@@ -157,6 +136,7 @@ public class Race extends JPanel implements Serializable{
 	}
 	
 	/**
+	 * This method adds a new Hint object to the ArrayList of unused Hint objects 
 	 * 
 	 * @param hint new Hint object to be added to the ArrayList of unused hints
 	 */
@@ -166,6 +146,7 @@ public class Race extends JPanel implements Serializable{
 	}
 	
 	/**
+	 * This method adds a Hint object to the ArrayList of unused Hint objects.
 	 * 
 	 * @param location the hint's location on the map stored as a HintLocation object
 	 * @param hint String form of the hint to be added 
@@ -188,9 +169,13 @@ public class Race extends JPanel implements Serializable{
 		return isComplete;
 	}
 	
+	public boolean hasMap()
+	{
+		return hasMap;
+	}
 	/**
-	 * 
-	 * @return int number of hints that have been used up
+	 * This method returns the number of used hints
+	 * @return int number of hints 
 	 */
 	public int getFinishedHints()
 	{
@@ -223,4 +208,8 @@ public class Race extends JPanel implements Serializable{
 	{
 		hasMap = true;
 	}
+	
+	public void msgbox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+		}
 }

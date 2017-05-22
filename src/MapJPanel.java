@@ -27,24 +27,27 @@ import javax.swing.JTextField;
 
 public class MapJPanel extends JPanel implements MouseListener, KeyListener, ActionListener
 {
+<<<<<<< HEAD
+	Main m;
+	private Race game;
+=======
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Main m;
-	//private ArrayList<Point> hintLocationPoints;
 	private BufferedImage image;
 	private JLabel picLabel;
 	private JButton home;
 	private Race createdRace;
 	private String name;
 	private ArrayList<Hint> hints;
+>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	
 	public MapJPanel(Main m)
 	{
 		super(new GridBagLayout());
 		
-		//hintLocationPoints = new ArrayList<Point>();
 		hints = new ArrayList<Hint>();
 		GridBagConstraints c = new GridBagConstraints();
 	    c.gridwidth = GridBagConstraints.REMAINDER;
@@ -63,32 +66,28 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	    home.addActionListener(this);
 	    add(home, c);
 		this.m = m;
-		//makeRace();
-		//ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
-		//JLabel thumb = new JLabel();
-		//thumb.setIcon(icon);
-		//add(thumb, c);
+<<<<<<< HEAD
+		ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
+		JLabel thumb = new JLabel();
+		thumb.setIcon(icon);
+		add(thumb, c);
+		
+=======
+>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	}
 	
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		//g.drawImage(w, 0,0, getWidth(), getHeight(), null );
-		/*Image background = Toolkit.getDefaultToolkit().createImage("HomesteadMap.jpg");
-		g.drawImage(background, 0, 0, null);
-		for(int i = 0; i < hintLocationPoints.size(); i++){
-			g.drawOval((int)hintLocationPoints.get(i).getX(), (int)hintLocationPoints.get(i).getY(), 5, 5);
-		}
-		repaint();*/
-
 	}
-	
-	/*public ArrayList<Point> getHintLocationPoints(){
-		//return hintLocationPoints;
-	}*/
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+		
+		
+=======
 		Object chooseB = e.getSource();
 		if(chooseB == home)
 		{
@@ -99,6 +98,7 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	    	FileIO writer = new FileIO();
 			writer.writeObject(name + ".sch", createdRace);
 		}
+>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	}
 
 	@Override
@@ -121,10 +121,7 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		//System.out.println("aksdjf;");
-		// TODO Auto-generated method stub
 		Point hintPoint = arg0.getLocationOnScreen();
-		//hintLocationPoints.add(hintPoint);
 		addHint(hintPoint);
 		System.out.println(hintPoint);
 	}
@@ -154,12 +151,9 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	}
 	
 	private void addHint(Point loc) {
-        //String[] items = {"One", "Two", "Three", "Four", "Five"};
-        //JComboBox<String> combo = new JComboBox<>(items);
         JTextField field1 = new JTextField("");
         JTextField field2 = new JTextField("");
         JPanel panel = new JPanel(new GridLayout(0, 1));
-        //panel.add(combo);
         panel.add(new JLabel("Hint:"));
         panel.add(field1);
         panel.add(new JLabel("Answer:"));
@@ -173,17 +167,15 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         		System.out.println("Hint: " + field1.getText() + "  Answer: " + ans);
         		Hint temp = new Hint(loc, field1.getText(), ans);
         		System.out.println("temp: " + temp);
-            	//createdRace.addHint(new HintLocation(loc), field1.getText(), ans);
         		hints.add(temp);
         	}
         	catch(NumberFormatException ex)
         	{
         		msgbox("Invalid Input, Try Again");
         	}
-            /*System.out.println(combo.getSelectedItem()
-                + " " + field1.getText()
-                + " " + field2.getText());*/
-        } else {
+        } 
+        else
+        {
             System.out.println("Cancelled");
         }
     }
@@ -196,13 +188,12 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         panel.add(field1);
         int result = JOptionPane.showConfirmDialog(null, panel, "Test",
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        if (result == JOptionPane.OK_OPTION) {
+        if (result == JOptionPane.OK_OPTION) 
+        {
         	name = field1.getText();
-        	/*createdRace = new Race(field1.getText());
-	    	m.addRace(createdRace);
-	    	FileIO writer = new FileIO();
-			writer.writeObject(field1.getText() + ".sch", createdRace);*/
-        } else {
+        } 
+        else 
+        {
             System.out.println("Cancelled");
             m.changePanel("1");
         }
