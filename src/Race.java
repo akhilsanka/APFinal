@@ -29,7 +29,6 @@ public class Race extends JPanel implements Serializable{
 		isComplete = false;
 		this.name = name;
 		hasMap = false;
-		System.out.println("No map");
 	}
 	
 	/**
@@ -44,7 +43,6 @@ public class Race extends JPanel implements Serializable{
 		isComplete = false;
 		
 		hasMap = false;
-		System.out.println("No map");
 	}
 	
 	/**
