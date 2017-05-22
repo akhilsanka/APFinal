@@ -1,4 +1,5 @@
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -110,11 +111,13 @@ public class Race extends JPanel implements Serializable{
 	{
 		if(unusedHints.size() == 0){
 			isComplete = true;
+			System.out.println("RACE IS COMPLETE!");
 			return null;
 		}
 		
 		int randHint;
 		randHint = (int)Math.random()*unusedHints.size();
+		System.out.println("RAND HINT: " + randHint);
 		Hint shuffledHint = unusedHints.get(randHint);
 		usedHints.add(unusedHints.get(randHint));
 		unusedHints.remove(randHint);	
@@ -168,10 +171,12 @@ public class Race extends JPanel implements Serializable{
 	 * @param hint String form of the hint to be added 
 	 * @param answer int answer that corresponds with the hint to be added 
 	 */
-	public void addHint(HintLocation location, String hint, int answer)
+	public void addHint(Point location, String hint, int answer)
 	{
 		Hint newHint = new Hint(location, hint, answer);
 		unusedHints.add(newHint);
+		System.out.println("New Hint with location has been added");
+		System.out.println("Number of Remaining Hints: " + unusedHints.size());
 	}
 
 	/**
@@ -207,5 +212,15 @@ public class Race extends JPanel implements Serializable{
 	public void finish()
 	{
 		isComplete = true;
+	}
+	
+	public boolean hasMap()
+	{
+		return hasMap;
+	}
+	
+	public void setMap()
+	{
+		hasMap = true;
 	}
 }

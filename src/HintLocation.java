@@ -6,7 +6,7 @@ import processing.core.*;
 //this class is only used when maps are used 
 
 public class HintLocation {
-	
+	//private static final long serialVersionUID = 1L;
 	private static final int radius = 600;
 	private int x, y; //coordinates of the center of the circle
 	

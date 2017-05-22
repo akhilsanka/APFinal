@@ -20,6 +20,8 @@ public class Main extends JFrame {
 	private TabOptionPanelPlay panelTabP;
 	private JScrollPane mapScrollPanel;
 	private JScrollPane gameScrollPanel;
+	private MapJPanelPlay panel6;
+	private JScrollPane mapPlayScroll;
 	//private Map map;
 	
 	public Main(String title) {
@@ -40,6 +42,8 @@ public class Main extends JFrame {
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this, panel2);
+	    panel6 = new MapJPanelPlay(this);
+	    mapPlayScroll = new JScrollPane(panel6);
 	    panelTabM = new TabOptionPanelMake(this);
 	    //panelTabP = new TabOptionPanelPlay(this, panel2);
 	    gameScrollPanel = new JScrollPane(panel5);
@@ -54,6 +58,7 @@ public class Main extends JFrame {
 	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
 	    cardPanel.add(mapScrollPanel, "6");
+	    cardPanel.add(mapPlayScroll, "7");
 	    
 	    
 	    add(cardPanel);

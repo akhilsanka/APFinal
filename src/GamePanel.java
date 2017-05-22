@@ -120,8 +120,12 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 				msgbox("Race not found");
 			}
 			else{
-				m.setRace((Race)reader.readObject(nameText + ".sch"));
-				m.changePanel("5");
+				Race race = (Race)reader.readObject(nameText + ".sch");
+				m.setRace(race);
+				if(race.hasMap() == true)
+					m.changePanel("7");
+				else
+					m.changePanel("5");
 				tp.reset();
 				System.out.println(tp.getSeconds());
 				System.out.println("reset");

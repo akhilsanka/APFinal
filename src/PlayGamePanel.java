@@ -25,7 +25,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	
 	private GamePanel gp;
 	
-	private MapJPanelPlay mapPanelPlay;
+	//private MapJPanelPlay mapPanelPlay;
 	
 	private BufferedImage image;
 	private Race game;
@@ -52,7 +52,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	p = new JPanel();
     	this.m = m;
 		
-    	mapPanelPlay = new MapJPanelPlay(m, true);
+    	//mapPanelPlay = new MapJPanelPlay(m, true);
     	
     	
 		hintArea = new JTextArea(5, 20);
@@ -80,14 +80,14 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
         
-        try {
+        /*try {
 			image = ImageIO.read(new File("HomesteadMap.jpg"));
 			picLabel = new JLabel(new ImageIcon(image));
 			add(picLabel, c);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
         
         p.add(used);
         p.add(unused);
@@ -154,7 +154,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			else
 			{
 				Hint currHint = game.getHint();
-				System.out.println(currHint);
+				System.out.println("GAME OBJ MEM LOC: " + game);
+				System.out.println("HINT OBJ MEM LOC: " + currHint);
+				System.out.println("Number of Remaining Hints: " + game.getRemainingHints());
 				System.out.println(currHint.getAnswer());
 				currAnswer = currHint.getAnswer();
 				/*System.out.println("Hint: " + currHint.getHint());

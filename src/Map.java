@@ -37,11 +37,11 @@ public class Map extends PApplet implements MouseListener{
 		clear(); //clear any previous circles drawn 
 		background(0, 255, 255);
 		
-		int x = hints.get(index).getHintLoc().getX();
-		int y = hints.get(index).getHintLoc().getY();
-		int radius = hints.get(index).getHintLoc().getRad();
+		double x = hints.get(index).getHintLoc().getX();
+		double y = hints.get(index).getHintLoc().getY();
+		int radius = 50;
 		
-		ellipse(x, y, radius, radius);
+		ellipse((float)x, (float)y, radius, radius);
 		
 		/*
 		int i = 0;

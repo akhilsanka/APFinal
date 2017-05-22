@@ -27,19 +27,25 @@ import javax.swing.JTextField;
 
 public class MapJPanel extends JPanel implements MouseListener, KeyListener, ActionListener
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Main m;
-	private ArrayList<Point> hintLocationPoints;
+	//private ArrayList<Point> hintLocationPoints;
 	private BufferedImage image;
 	private JLabel picLabel;
 	private JButton home;
 	private Race createdRace;
+	private String name;
+	private ArrayList<Hint> hints;
 	
 	public MapJPanel(Main m)
 	{
 		super(new GridBagLayout());
 		
-		hintLocationPoints = new ArrayList<Point>();
-		
+		//hintLocationPoints = new ArrayList<Point>();
+		hints = new ArrayList<Hint>();
 		GridBagConstraints c = new GridBagConstraints();
 	    c.gridwidth = GridBagConstraints.REMAINDER;
 	    c.fill = GridBagConstraints.HORIZONTAL;
@@ -77,15 +83,21 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 
 	}
 	
-	public ArrayList<Point> getHintLocationPoints(){
-		return hintLocationPoints;
-	}
+	/*public ArrayList<Point> getHintLocationPoints(){
+		//return hintLocationPoints;
+	}*/
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if(chooseB == home)
+		{
 			m.changePanel("1");
+			createdRace = new Race(name, hints);
+			m.addRace(createdRace);
+	    	FileIO writer = new FileIO();
+			writer.writeObject(name + ".sch", createdRace);
+		}
 	}
 
 	@Override
@@ -158,8 +170,10 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         	{
         		int ans = Integer.parseInt( field2.getText());
         		System.out.println("Hint: " + field1.getText() + "  Answer: " + ans);
-        		//Hint temp = new Hint(loc, field1.getText(), ans);
-            	createdRace.addHint(new HintLocation(loc), field1.getText(), ans);
+        		Hint temp = new Hint(loc, field1.getText(), ans);
+        		System.out.println("temp: " + temp);
+            	//createdRace.addHint(new HintLocation(loc), field1.getText(), ans);
+        		hints.add(temp);
         	}
         	catch(NumberFormatException ex)
         	{
@@ -182,10 +196,11 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         int result = JOptionPane.showConfirmDialog(null, panel, "Test",
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
-        	createdRace = new Race(field1.getText());
+        	name = field1.getText();
+        	/*createdRace = new Race(field1.getText());
 	    	m.addRace(createdRace);
 	    	FileIO writer = new FileIO();
-			writer.writeObject(field1.getText() + ".sch", createdRace);
+			writer.writeObject(field1.getText() + ".sch", createdRace);*/
         } else {
             System.out.println("Cancelled");
             m.changePanel("1");
