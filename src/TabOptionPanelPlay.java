@@ -17,7 +17,7 @@ public class TabOptionPanelPlay extends JPanel {
     	this.m = m;
 
         gamePanel = new PlayGamePanel(m, gp);
-    	mapPanel = new MapJPanelPlay(m);
+    	mapPanel = new MapJPanelPlay(m, gp);
 
 
         setLayout(new BorderLayout());

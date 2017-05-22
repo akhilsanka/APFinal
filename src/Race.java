@@ -124,7 +124,7 @@ public class Race extends JPanel implements Serializable{
 		System.out.println("hasMap: " + hasMap);
 		if(hasMap == true)
 		{
-			map.draw(unusedHints.indexOf(shuffledHint));
+			//map.draw(unusedHints.indexOf(shuffledHint));
 		}
 		
 		return shuffledHint;

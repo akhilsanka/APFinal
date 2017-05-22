@@ -94,6 +94,7 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 		{
 			m.changePanel("1");
 			createdRace = new Race(name, hints);
+			createdRace.setMap();
 			m.addRace(createdRace);
 	    	FileIO writer = new FileIO();
 			writer.writeObject(name + ".sch", createdRace);

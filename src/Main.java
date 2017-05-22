@@ -42,7 +42,7 @@ public class Main extends JFrame {
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this, panel2);
-	    panel6 = new MapJPanelPlay(this);
+	    panel6 = new MapJPanelPlay(this, panel2);
 	    mapPlayScroll = new JScrollPane(panel6);
 	    panelTabM = new TabOptionPanelMake(this);
 	    //panelTabP = new TabOptionPanelPlay(this, panel2);

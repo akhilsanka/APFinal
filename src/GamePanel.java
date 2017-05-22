@@ -122,9 +122,9 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 			else{
 				Race race = (Race)reader.readObject(nameText + ".sch");
 				m.setRace(race);
-				if(race.hasMap() == true)
-					m.changePanel("7");
-				else
+				//if(race.hasMap() == true)
+				//	m.changePanel("7");
+				//else
 					m.changePanel("5");
 				tp.reset();
 				System.out.println(tp.getSeconds());

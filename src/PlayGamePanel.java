@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -29,7 +30,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	
 	private BufferedImage image;
 	private Race game;
-	private String currHint;
+	private Hint currHint;
+	private String currClue;
 	private int currAnswer;
 	private JTextArea hintArea;
 	private JTextArea answerArea;
@@ -38,6 +40,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JPanel p;
 	private JButton check;
 	private JLabel picLabel;
+	private MapPanel map;
+	private Graphics2D g;
 
 	/**
 	 * Makes a GamePanel object where the game is played
@@ -53,7 +57,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	this.m = m;
 		
     	//mapPanelPlay = new MapJPanelPlay(m, true);
-    	
     	
 		hintArea = new JTextArea(5, 20);
 		hintArea.setEditable(false);
@@ -75,19 +78,24 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
       //  time = new JButton("Start Timer");
        // time.addActionListener(this);
         
-        
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
         
-        /*try {
+        try {
 			image = ImageIO.read(new File("HomesteadMap.jpg"));
 			picLabel = new JLabel(new ImageIcon(image));
 			add(picLabel, c);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
+        
+        g = image.createGraphics();
+       // g.drawImage(image, 0, 0, this);
+        /*g.setColor(Color.CYAN);
+        drawCenteredCircle(g, 0, 0, 100);
+        g.dispose();*/
         
         p.add(used);
         p.add(unused);
@@ -103,9 +111,12 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 
     
     
-    @Override
-    protected void paintComponent(Graphics g) {
-    	super.paintComponent(g);
+    //@Override
+	public void paintComponent(Graphics2D g) {
+		
+	    g.setColor(Color.CYAN);
+	    drawCenteredCircle(g, (int)currHint.getHintLoc().getX(), (int)currHint.getHintLoc().getY(), 100);
+	    //g.dispose();
     }
 	/**
 	 * Sets the race being played to the race object passed in.
@@ -115,6 +126,17 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     {
     	game = race;
     	System.out.println("race: " + game.getName());
+    	if(game.hasMap())
+    	{
+    		/*try {
+    			image = ImageIO.read(new File("HomesteadMap.jpg"));
+    			picLabel = new JLabel(new ImageIcon(image));
+    			add(picLabel);
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}*/
+    	}
     	playGame();
     }
     /**
@@ -122,14 +144,23 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
      */
     public void playGame()
     {
-    	currHint = getHint();
+    	currClue = getHint();
     	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
     	if(currHint.equals("Race is Complete!"))
     		return;
-    	hintArea.append(currHint);
+    	hintArea.append(currClue);
+    	if(game.hasMap())
+    	{
+    		//g.dispose();
+    		this.repaint();
+    		paintComponent(g);
+    	}
     	used.setText("Number of Finished Hints: " + (game.getFinishedHints() - 1));
     	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints() + 1));
+    	//paint(g);
     	//p.repaint();
+    	//map = new MapPanel(currHint);
+    	//add(map);
     	m.changePanel("5");
     }
     
@@ -153,11 +184,11 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			}
 			else
 			{
-				Hint currHint = game.getHint();
-				System.out.println("GAME OBJ MEM LOC: " + game);
+				currHint = game.getHint();
+				/*System.out.println("GAME OBJ MEM LOC: " + game);
 				System.out.println("HINT OBJ MEM LOC: " + currHint);
 				System.out.println("Number of Remaining Hints: " + game.getRemainingHints());
-				System.out.println(currHint.getAnswer());
+				System.out.println(currHint.getAnswer());*/
 				currAnswer = currHint.getAnswer();
 				/*System.out.println("Hint: " + currHint.getHint());
 				System.out.println("Answer: " + currHint.getAnswer());
@@ -165,6 +196,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 				System.out.println("UnusedHints: " + game.getRemainingHints());*/
 				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
 		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
+		    	//if(game.hasMap())
+		    		//paint(g);
 				return currHint.getHint();
 			}
 		}
@@ -249,5 +282,11 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
-		}
+	}
+	
+	public void drawCenteredCircle(Graphics g, int x, int y, int r) {
+		  x = x-(r/2);
+		  y = y-(r/2);
+		  g.fillOval(x,y,r,r);
+	}
 }

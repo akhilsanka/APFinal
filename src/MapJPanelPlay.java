@@ -1,99 +1,223 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-public class MapJPanelPlay extends JPanel implements MouseListener, KeyListener, ActionListener
+public class MapJPanelPlay extends JPanel implements KeyListener, ActionListener
 {
 	private Main m;
-	private ArrayList<Point> hintLocationPoints;
-	private boolean showLoc;
 	
-	public MapJPanelPlay(Main m)
-	{
-		super(new GridBagLayout());
-		
-		hintLocationPoints = new ArrayList<Point>();
-		
-		GridBagConstraints c = new GridBagConstraints();
-	    c.gridwidth = GridBagConstraints.REMAINDER;
-	    c.fill = GridBagConstraints.HORIZONTAL;
-		this.m = m;
-		ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
-		JLabel thumb = new JLabel();
-		thumb.setIcon(icon);
-		add(thumb, c);
-	}
+	private GamePanel gp;
 	
-	public MapJPanelPlay(Main m, boolean show)
-	{
-		super(new GridBagLayout());
-		
-		showLoc = show;
-		hintLocationPoints = new ArrayList<Point>();
-		
-		GridBagConstraints c = new GridBagConstraints();
-	    c.gridwidth = GridBagConstraints.REMAINDER;
-	    c.fill = GridBagConstraints.HORIZONTAL;
-		this.m = m;
-		ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
-		JLabel thumb = new JLabel();
-		thumb.setIcon(icon);
-		add(thumb, c);
-	}
+	//private MapJPanelPlay mapPanelPlay;
 	
-	protected void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-		//g.drawImage(w, 0,0, getWidth(), getHeight(), null );
-		
-		if(showLoc){
-			//draw all circles here
-		}
-		Image background = Toolkit.getDefaultToolkit().createImage("HomesteadMap.jpg");
-		g.drawImage(background, 0, 0, null);
-		for(int i = 0; i < hintLocationPoints.size(); i++){
-			g.drawOval((int)hintLocationPoints.get(i).getX(), (int)hintLocationPoints.get(i).getY(), 5, 5);
-		}
-		repaint();
+	private BufferedImage image;
+	private Race game;
+	private String currHint;
+	private int currAnswer;
+	private JTextArea hintArea;
+	private JTextArea answerArea;
+	private JTextField used;
+	private JTextField unused;
+	private JPanel p;
+	private JButton check;
+	private JLabel picLabel;
 
+	/**
+	 * Makes a GamePanel object where the game is played
+	 * @param m Main Class
+	 */
+    public MapJPanelPlay(Main m, GamePanel gp) 
+    {
+    	super(new GridBagLayout());    	
+    	//FileIO reader = new FileIO();
+		// if((Race)reader.readObject(gp.getRaceName() + ".sch"));   
+    	this.gp = gp;    	
+    	p = new JPanel();
+    	this.m = m;
+		
+    	//mapPanelPlay = new MapJPanelPlay(m, true);
+    	
+    	
+		hintArea = new JTextArea(5, 20);
+		hintArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(hintArea);  
+        answerArea = new JTextArea(5, 20);
+        answerArea.setEditable(true);
+        answerArea.addKeyListener(this);;
+        JScrollPane scrollPane2 = new JScrollPane(answerArea);
+        
+        JLabel hint = new JLabel("Hint:");
+        JLabel guess = new JLabel("Your Guess: ");
+        check = new JButton("Check Answer");
+        check.addActionListener(this);
+        used = new JTextField("Number of Finished Hints: ");
+        unused = new JTextField("Number of Hints Remaining: ");
+        used.setEditable(false);
+        unused.setEditable(false);
+        
+      //  time = new JButton("Start Timer");
+       // time.addActionListener(this);
+        
+        
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        
+        /*try {
+			image = ImageIO.read(new File("HomesteadMap.jpg"));
+			picLabel = new JLabel(new ImageIcon(image));
+			add(picLabel, c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+        
+        p.add(used);
+        p.add(unused);
+        add(p, c);
+        add(hint, c);
+        add(scrollPane, c);
+        add(guess, c);
+        add(scrollPane2, c);
+        add(check, c);
+        
+        setBackground(Color.WHITE);
+    }
+
+    
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+    	super.paintComponent(g);
+    }
+	/**
+	 * Sets the race being played to the race object passed in.
+	 * @param race Race object that user selects to play
+	 */
+    public void setRace(Race race)
+    {
+    	game = race;
+    	System.out.println("race: " + game.getName());
+    	playGame();
+    }
+    /**
+     * Plays the race
+     */
+    public void playGame()
+    {
+    	currHint = getHint();
+    	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
+    	if(currHint.equals("Race is Complete!"))
+    		return;
+    	hintArea.append(currHint);
+    	used.setText("Number of Finished Hints: " + (game.getFinishedHints() - 1));
+    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints() + 1));
+    	//p.repaint();
+    	m.changePanel("7");
+    }
+    
+
+    /**
+     * Gets the next hint in the race.
+     * @return the next hint of the race.
+     */
+	public String getHint()
+	{
+		if(game != null)
+		{
+			if(game.isFinished() == true)
+			{
+				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
+		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
+		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + gp.getMins() + " minutes and " + gp.getSeconds() + " seconds");
+				m.changePanel("1");
+				return "Race is Complete!";
+				
+			}
+			else
+			{
+				Hint currHint = game.getHint();
+				System.out.println("GAME OBJ MEM LOC: " + game);
+				System.out.println("HINT OBJ MEM LOC: " + currHint);
+				System.out.println("Number of Remaining Hints: " + game.getRemainingHints());
+				System.out.println(currHint.getAnswer());
+				currAnswer = currHint.getAnswer();
+				/*System.out.println("Hint: " + currHint.getHint());
+				System.out.println("Answer: " + currHint.getAnswer());
+				System.out.println("UsedHints: " + game.getFinishedHints());
+				System.out.println("UnusedHints: " + game.getRemainingHints());*/
+				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
+		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
+				return currHint.getHint();
+			}
+		}
+		return "Game Not Found";
 	}
-	
-	
-	
-	
-	public ArrayList<Point> getHintLocationPoints(){
-		return hintLocationPoints;
+	/**
+	 * Checks to see if the guess from the user is the same as the answer of the hint.
+	 * @param answer guess made by the user.
+	 * @return true if the answer is correct and false if not.
+	 */
+	public boolean checkAnswer(int answer)
+	{
+		System.out.println("answer: " + answer);
+		System.out.println("Current answer: " + currAnswer);
+		if(answer == currAnswer)
+		{
+			System.out.println("answer: " + answer);
+			hintArea.setText("");
+			if(game.getRemainingHints() == 0)
+				game.finish();
+			playGame();
+			return true;
+		}
+		return false;
 	}
-	
-	@Override
+
+	/**
+	 * Calls checkAnswer method if the checkAnswer button is clicked.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		Object chooseB = e.getSource();
+		if(chooseB == check)
+		{
+			try
+			{
+				int guess = Integer.parseInt(answerArea.getText());
+				checkAnswer(guess);
+			}
+			catch(NumberFormatException ex)
+			{
+	        	msgbox("Invalid input, please change input to a number!");
+			}
+			finally
+			{
+				answerArea.setText("");
+			}
+		}
+//		if(chooseB == time)
+//		{
+//			timer.startTimer();
+//		}
+		//System.out.println("guess: " + guess);
 		
 	}
 
@@ -104,40 +228,26 @@ public class MapJPanelPlay extends JPanel implements MouseListener, KeyListener,
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		System.out.println("aksdjf;");
-		// TODO Auto-generated method stub
-		Point hintPoint = arg0.getLocationOnScreen();
-		hintLocationPoints.add(hintPoint);
-		System.out.println(hintPoint);
+	/**
+	 * Causes a pop up box to appear if the user presses the enter key.
+	 */
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			answerArea.setText("");
+			msgbox("Don't press enter after typing in your answer, just click the button when you are done.");
+		   }
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("aksdjf;");
-		// TODO Auto-generated method stub
-		Point hintPoint = arg0.getLocationOnScreen();
-		hintLocationPoints.add(hintPoint);
-		System.out.println(hintPoint);
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+	/**
+	 * Causes a pop up window to appear.
+	 * @param s message displayed in the pop up window.
+	 */
+	public void msgbox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+		}
 }
