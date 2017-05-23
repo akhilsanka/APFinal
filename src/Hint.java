@@ -14,7 +14,7 @@ public class Hint implements Serializable{
 	 * 
 	 * @param myLoc the location related to the hint
 	 * @param myHint the hint message
-	 * @param myAnswers the answer to the hint
+	 * @param myAnswer the answer to the hint
 	 */
 	public Hint(Point myLoc, String myHint, int myAnswer)
 	{

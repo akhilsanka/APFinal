@@ -47,6 +47,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	/**
 	 * Makes a GamePanel object where the game is played
 	 * @param m Main Class
+	 * @param gp GamePanel object
 	 */
     public PlayGamePanel(Main m, GamePanel gp) 
     {
