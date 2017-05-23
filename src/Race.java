@@ -42,13 +42,8 @@ public class Race extends JPanel implements Serializable{
 		isComplete = false;
 		
 		hasMap = false;
-//<<<<<<< HEAD
 		System.out.println("No map");
 	}
-
-//=======
-//	}
-//>>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	
 	/**
 	 * @return This method returns the Race's name in a String

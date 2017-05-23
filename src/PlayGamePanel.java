@@ -114,7 +114,10 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     }
 
     
-    
+    /**
+     * Repaints the screen to draw a circle of the location of the hint
+     * @param g Graphics2D object
+     */
 	protected void paintComponent(Graphics2D g) {
 		try {
 			image = ImageIO.read(new File("HomesteadMap.jpg"));
@@ -126,7 +129,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			e.printStackTrace();
 		}
 	    g.setColor(Color.CYAN);
-	  //  drawCenteredCircle(g, (int)currHint.getHintLoc().getX(), (int)currHint.getHintLoc().getY(), 100);
+	    drawCenteredCircle(g, (int)currHint.getHintLoc().getX(), (int)currHint.getHintLoc().getY(), 100);
     }
 	/**
 	 * Sets the race being played to the race object passed in.
@@ -135,7 +138,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public void setRace(Race race)
     {
     	game = race;
-    	System.out.println("race: " + game.getName());
     	playGame();
     }
     /**
@@ -144,7 +146,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public void playGame()
     {
     	currClue = getHint();
-    	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
     	if(currHint.equals("Race is Complete!") == false)
     		hintArea.setText(currClue);
     	if(game.hasMap())
@@ -194,7 +195,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public boolean checkAnswer(int answer)
 	{
-		System.out.println("answer: " + answer);
 		if(answer == currAnswer)
 		{
 			hintArea.setText("");
@@ -276,6 +276,13 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 		   JOptionPane.showMessageDialog(null, s);
 	}
 	
+	/**
+	 * Draws a centered circle
+	 * @param g Graphics object
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @param r radius of circle to be drawn
+	 */
 	public void drawCenteredCircle(Graphics g, int x, int y, int r) {
 		  x = x-(r/2);
 		  y = y-(r/2);
