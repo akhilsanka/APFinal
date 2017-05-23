@@ -1,30 +1,21 @@
-
 import java.awt.*;
 import javax.swing.*;
-
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
 
 
 public class OptionPanel extends JPanel implements ActionListener {
 	
 	private Main w;
 	private JButton button, button2, button3, button4;
-
-	//test 
-	/**
-	 * Makes an OptionPanel object which displays the different options the user can make.
-	 * @param w Main class
-	 */
+	
 	public OptionPanel(Main w) {
-		
-		super();
-
-		
 		this.w = w;
 		JPanel p = new JPanel();
+		p.setBackground(new Color(0,0,0,0));  // Panel is transparent
 		
-		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
-		p.add(Box.createVerticalStrut(300));
+		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));	
+		p.add(Box.createVerticalStrut(300));   // Move down by 300 pixels  
 		
 		button = new JButton("Make A New Race Without Locations!");
 		button.addActionListener(this);
@@ -46,9 +37,26 @@ public class OptionPanel extends JPanel implements ActionListener {
 		p.add(button3);
 		add(p);
 	}
-	/**
-	 * Changes the panel based on the button pressed
-	 */
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		double ratioX = getWidth() / 800.0;
+		double ratioY = getHeight() / 600.0;
+		
+		Graphics2D g2 = (Graphics2D)g;
+		
+		AffineTransform af = g2.getTransform();
+		
+		g2.scale(ratioX,ratioY);
+		
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
+		g.drawString("Scavenger", 305, 200);
+		g.drawString("Hunt", 350, 255);
+		
+		g2.setTransform(af);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if (chooseB == button){
@@ -65,7 +73,6 @@ public class OptionPanel extends JPanel implements ActionListener {
 			w.changePanel("6");
 			w.getMap().makeRace();
 		}
-		
 	}
 	
 }
