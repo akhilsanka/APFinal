@@ -1,8 +1,12 @@
-
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 
 public class OptionPanel extends JPanel implements ActionListener {
@@ -23,8 +27,19 @@ public class OptionPanel extends JPanel implements ActionListener {
 		this.w = w;
 		JPanel p = new JPanel();
 		
+		try
+		{
+			BufferedImage image = ImageIO.read(new File("scavengerhunt.jpg"));
+			JLabel picLabel = new JLabel(new ImageIcon(image));
+			add(picLabel);
+		}
+		catch(IOException ex)
+		{
+			ex.printStackTrace();
+		}
+		
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
-		p.add(Box.createVerticalStrut(300));
+		p.add(Box.createVerticalStrut(50));
 		
 		button = new JButton("Make A New Race Without Locations!");
 		button.addActionListener(this);

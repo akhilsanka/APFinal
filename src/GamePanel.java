@@ -102,7 +102,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		if(chooseB == game){
 			FileIO reader = new FileIO();
 			if((Race)reader.readObject(nameText + ".sch") == null){
-				System.out.println("TEST");
 				msgbox("Race not found");
 			}
 			else{
@@ -131,6 +130,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	public long getSeconds(){
 		return tp.getSeconds();
 
+	}
+	
+	public TimerPanel getTimer(){
+		return tp;
 	}
 	
 	

@@ -128,11 +128,9 @@ public class MakeGamePanel extends JPanel implements KeyListener, ActionListener
 			String clues[] = hintArea.getText().split("\\r?\\n");
 		    ArrayList<String>hintList = new ArrayList<String>(Arrays.asList(clues));
 		    ArrayList<Hint> hints = new ArrayList<Hint>();
-		    System.out.println(hintList);
 		    
 		    String answers[] = answerArea.getText().split("\\r?\\n");
 		    ArrayList<String>answerList = new ArrayList<>(Arrays.asList(answers)) ;
-		    System.out.println(answerList);
 		    if(answers.length == 0)
 		    	msgbox("Please enter a value for the answer before clicking finish");
 		    else if(clues.length == 0)

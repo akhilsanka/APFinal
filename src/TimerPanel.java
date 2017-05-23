@@ -11,6 +11,8 @@ import javax.swing.Timer;
 public class TimerPanel {
 
 	private long startTime;
+	private long pauseStart;
+	private long timePassed;
 	
 	/**
 	 * Constructs a TimerPanel object, starts the time 
@@ -19,6 +21,7 @@ public class TimerPanel {
 	{
 
 		startTime = System.currentTimeMillis();
+		timePassed = 0;
 
 	}
 
@@ -29,7 +32,7 @@ public class TimerPanel {
 	public long getMins()
 	{
 
-		return (System.currentTimeMillis() - startTime) / 60000 ;
+		return ((System.currentTimeMillis() - startTime) - timePassed) / 60000 ;
 	}
 	
 	/**
@@ -38,7 +41,7 @@ public class TimerPanel {
 	 */
 	public long getSeconds()
 	{
-		return ((System.currentTimeMillis() - startTime) % 60000) / 1000;
+		return (((System.currentTimeMillis() - startTime) - timePassed) % 60000) / 1000;
 	}
 
 	/**
@@ -47,4 +50,13 @@ public class TimerPanel {
 	public void reset(){
 		startTime = System.currentTimeMillis();
 	}
+	
+	public void pause(){
+		pauseStart = System.currentTimeMillis();
+	}
+	
+	public void play(){
+		timePassed = System.currentTimeMillis() - pauseStart;
+	}
+	
 }

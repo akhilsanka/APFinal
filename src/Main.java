@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main extends JFrame {
-	//test 
 	JPanel cardPanel;
 	ArrayList<Race> races = new ArrayList<Race>();
 	private PlayGamePanel panel5;
@@ -18,8 +17,6 @@ public class Main extends JFrame {
 	private OptionPanel panel1;
 	private JScrollPane mapScrollPanel;
 	private JScrollPane gameScrollPanel;
-	//private MapJPanelPlay panel6;
-	//private JScrollPane mapPlayScroll;
 	
 	public Main(String title) {
 		super(title);
@@ -47,7 +44,6 @@ public class Main extends JFrame {
 	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
 	    cardPanel.add(mapScrollPanel, "6");
-	    //cardPanel.add(mapPlayScroll, "7");
 	    
 	    add(cardPanel);
 	    addKeyListener(panel2);

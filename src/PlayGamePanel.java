@@ -40,6 +40,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	private JPanel map;
 	private Graphics2D g;
 	private JButton diffRace;
+	
+	private JButton pauseplay;
+	private int pauseCount;
 
 	/**
 	 * Makes a GamePanel object where the game is played
@@ -72,6 +75,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         diffRace.addActionListener(this);
       
         
+        pauseplay = new JButton("Pause/Play");
+        pauseplay.addActionListener(this);
+        
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -91,6 +97,8 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 		}
         
         g = image.createGraphics();
+ 
+        add(pauseplay, c);
         p.add(used);
         p.add(unused);
         add(p, c);
@@ -99,6 +107,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
         add(guess, c);
         add(scrollPane2, c);
         add(check, c);
+        
         add(diffRace, c);
         
         setBackground(Color.WHITE);
@@ -137,7 +146,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	currClue = getHint();
     	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
     	if(currHint.equals("Race is Complete!") == false)
-    		hintArea.append(currClue);
+    		hintArea.setText(currClue);
     	if(game.hasMap())
     	{
     		repaint();
@@ -145,7 +154,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	}
     	used.setText("Number of Finished Hints: " + (game.getFinishedHints() - 1));
     	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints() + 1));
-    	m.changePanel("5");
+    //	m.changePanel("5");
     }
     
 
@@ -161,8 +170,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			{
 				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
 		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
+		    	m.changePanel("1");
 		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + gp.getMins() + " minutes and " + gp.getSeconds() + " seconds");
-				m.changePanel("1");
+				
 				return "Race is Complete!";
 				
 			}
@@ -218,9 +228,21 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 				answerArea.setText("");
 			}
 		}
-		if(chooseB == diffRace)
+		else if(chooseB == diffRace)
 		{
 			m.changePanel("2");
+		}
+		else if(chooseB == pauseplay ){
+			
+			if(pauseCount % 2 == 0){
+				gp.getTimer().play();
+				check.setEnabled(true);
+			}
+			else{
+				gp.getTimer().pause();
+				check.setEnabled(false);
+			}
+			pauseCount ++;
 		}
 	}
 
