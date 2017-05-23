@@ -61,8 +61,8 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	    home = new JButton("Return to home screen");
 	    home.addActionListener(this);
 	    add(home, c);
-		/*this.m = m;
-		ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
+		this.m = m;
+		/*ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
 		JLabel thumb = new JLabel();
 		thumb.setIcon(icon);
 		add(thumb, c);*/	

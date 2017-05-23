@@ -67,7 +67,8 @@ public class Race extends JPanel implements Serializable{
 		}
 		
 		int randHint;
-		randHint = (int)Math.random()*unusedHints.size();
+		randHint = (int)(Math.random()*unusedHints.size());
+		//System.out.println("Hint Index: " + Math.random()*unusedHints.size());
 		Hint shuffledHint = unusedHints.get(randHint);
 		usedHints.add(unusedHints.get(randHint));
 		unusedHints.remove(randHint);	
@@ -122,8 +123,8 @@ public class Race extends JPanel implements Serializable{
 	{
 		Hint newHint = new Hint(location, hint, answer);
 		unusedHints.add(newHint);
-		System.out.println("New Hint with location has been added");
-		System.out.println("Number of Remaining Hints: " + unusedHints.size());
+		//System.out.println("New Hint with location has been added");
+		//System.out.println("Number of Remaining Hints: " + unusedHints.size());
 	}
 
 	/**

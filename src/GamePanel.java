@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	protected JTextField answerField;
 	protected JTextArea hintArea;
 	protected JTextArea answerArea;
+	private JButton mapGame;
+	private JButton shelbyGame;
 	
 	private JButton game;
 	private JButton home;
@@ -42,11 +44,18 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
         nameField = new JTextField(20);
 		game = new JButton("Enter this Race");
 		home = new JButton("Return to home screen");
+		mapGame = new JButton("Play Homestead Map Game");
+		shelbyGame = new JButton("Play A211 Game");
+		
+		mapGame.addActionListener(this);
+		shelbyGame.addActionListener(this);
 		nameField.addActionListener(this);
 		game.addActionListener(this);
 		home.addActionListener(this);
 		add(nameField, c);
 		add(game, c);
+		add(mapGame, c);
+		add(shelbyGame, c);
 		add(home, c);
 	}
 
@@ -113,6 +122,32 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		}
 		if(chooseB == home)
 			m.changePanel("1");
+		if(chooseB == shelbyGame)
+		{
+			FileIO reader = new FileIO();
+			if((Race)reader.readObject("A211Race.sch") == null){
+				msgbox("Race not found");
+			}
+			else{
+				Race race = (Race)reader.readObject("A211Race.sch");
+				m.setRace(race);
+				m.changePanel("5");
+				tp.reset();
+			}
+		}
+		if(chooseB == mapGame)
+		{
+			FileIO reader = new FileIO();
+			if((Race)reader.readObject("HomesteadMapRace.sch") == null){
+				msgbox("Race not found");
+			}
+			else{
+				Race race = (Race)reader.readObject("HomesteadMapRace.sch");
+				m.setRace(race);
+				m.changePanel("5");
+				tp.reset();
+			}
+		}
 	}
 	
 	/**

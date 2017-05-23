@@ -135,7 +135,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public void setRace(Race race)
     {
     	game = race;
-    	System.out.println("race: " + game.getName());
     	playGame();
     }
     /**
@@ -144,7 +143,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     public void playGame()
     {
     	currClue = getHint();
-    	System.out.println("Hint: " + currHint + " Answer: " + currAnswer);
     	if(currHint.equals("Race is Complete!") == false)
     		hintArea.setText(currClue);
     	if(game.hasMap())
@@ -194,7 +192,6 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 	 */
 	public boolean checkAnswer(int answer)
 	{
-		System.out.println("answer: " + answer);
 		if(answer == currAnswer)
 		{
 			hintArea.setText("");
