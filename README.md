@@ -1,51 +1,66 @@
-# APFinalHeader: 
+Header: 
 Akhil Sanka, Sanjana Koka, Mikaela Valenciano
 05/22/2017
 Scavenger Hunt
 APCS Final Project, 5th period
 
-
 Description:
-This program lets you create and play scavenger hunts in your local area through the use of maps with hints. To play, the user enters a code for the scavenger hunt they would like to be a part of. If none are chosen, a default one located in HHS can be played. After entering the scavenger hunt, the user will be shown a hint and an approximate location. In order to proceed, the user must enter the correct code (which will be at the location). The scavenger hunt will be completed after the user goes through all the hints and completes them. 
-To create a scavenger hunt, the user clicks, “Create.” They will then be prompted to choose areas within the map of Homestead and give corresponding hints for each location. The program will shuffle these hints and give them to each user to play. To finish creating it, the user will make a code for the scavenger hunt.
 
+This program lets you create and play scavenger hunts in Homestead through the use of maps with hints.
+ To play a race, the user enters the name of the scavenger hunt they would like to play. After entering the scavenger hunt, the user will be shown a hint and an approximate location. In order to proceed, the user must enter the correct code (a number which will be at the location). The scavenger hunt will be completed after the user goes through all the hints and completes them. 
+Users are able to create races that can have locations for each hint. After a user finishes a race, a popup window will appear and display the time it took to finish the race.
 
 Instructions:
-        To play a scavenger hunt, run the program and click “Play”. Enter a code to enter a specific game or enter “0” to play the default one, which will start the timer. The winner will be the person to finish the fastest. After starting, the program will show the first hint and the corresponding location in Homestead for it. To go to the next hint, the user should type the code located at the various places in Homestead. Type the code exactly as seen or the program will not accept it. After going through all the locations, the program will end and give the user their time. 
-        To create a scavenger hunt, run the program and click, “Create”. To choose locations of each hint, click on a starting point and drag the mouse. Release after circling the entire area you would like to choose. After doing so, enter the hint for the location and do the same for the answer, which should be a number from -231 to 231. Click finish when you are done. To add another hint, click “Add” and do the same. Otherwise, click finish. After finishing, enter a unique code of only numbers from -231 to 231. Click enter after you finish and you will be taken back to the home page.
 
+To make a Scavenger Hunt click the make game button with locations or without. If you are making a Scavenger Hunt without locations enter the name in the first text box and all hints and answers into their respective textboxes, then press the finish making race button to 
+make the race. Hints must be strings and answers must be number from -231 to 231. Make sure that each hint has a corresponding answer.  If you are making a Scavenger Hunt with locations, enter the name of the race into the popup window that appears right after clicking the make race with locations button. Then add hints by clicking the spot on the image that contains the location you want the hint to be located at. Next, enter the hints and answers in their respective places in the popup window.
+
+To play a race, click the play race button and enter the name of the race you want to play and press the button that says “Enter this Race”. If a popup window that says “Race Not Found” appears, enter a different race name. When the race starts, see the hint that shows up in the hint text box and the general location of the answer if there are locations in the race. Enter your number guess for the answer in the answer text box and click check 
+answer. If the answer is correct a new hint and location will appear.
 
 Features list:
-Split into 3 categories: Must-have, Want-to-have, and Stretch Features
-Thoroughly describe 5 of each
+
 Must-Have Features: 
-* Map of area where the answers to the hints are located with circles around the area corresponding to each answers
-* Database where race objects created by users can be stored and retrieved
-* Multiple users can play from different computers through networking
-* Local race in CS classroom
-* Allow users to make their own races
+Map of area where the answers to the hints are located with circles around the area corresponding to each answers
+Files where race objects created by users can be stored and retrieved
+Local race in CS classroom (default race: Shelby’s Classroom)
+Allow users to make their own races
+Timer that keeps track of how long each user takes to complete the race.
 Want-to-have Features:
-* Picture hints 
-* Timer that keeps track of how long each user takes to complete the race.
-* High scores for each race in the database
-* Allow games to be paused, resumed, and restarted
-* Allow users to make races on Homestead’s campus or wherever they want using the Google Maps API
+Picture hints 
+High scores for each race in the database
+Allow games to be paused, resumed, and restarted
+Allow users to make races on Homestead’s campus or wherever they want using the Google Maps API
+Multiple users can play from different computers through networking
 Stretch Features:
-* Make an app that users can use to send answers from a phone.
-* Real time leaderboard
-* Allow users to send pictures as an answer and race coordinator can accept or deny the picture
-* Allow users to send pictures and determine if the picture resembles the correct picture
-* Produce a highlight reel of the photo submissions and play at the end of the race
+Make an app that users can use to send answers from a phone.
+Real time leaderboard
+Allow users to send pictures as an answer and race coordinator can accept or deny the picture
+Allow users to send pictures and determine if the picture resembles the correct picture
+Produce a highlight reel of the photo submissions and play at the end of the race
+
+Class list:
+File I/O: Contains all the code required to read and write files.
+GamePanel: JPanel that users use to choose what race they want to play
+Hint: Contains the hint question and answer that
+Main: Switches between the different JPanels
+MakeGamePanel: Makes a game without locations
+MapJPanel: Makes a game using locations on the Homestead Map
+OptionPanel: Contains JButtons for all the panels on the home screen
+PlayGamePanel: Panel where game is played
+Race: Contains an ArrayList of hint strings or images and an ArrayList of answers whose indices correspond to their respective hints
+TimerPanel: Timer that records the time taken to play a race.
+InstructionPanel: JPanel that describes how to play the game with a short tutorial.
+ 
+Responsibility list: 
+
+Sanjana Koka: Was the core code contributor of our team. Developed the initial GUI and program framework, coded all of the working location functionality that is currently part of the final draft of the project. Fixed the bugs and refactored the non-functioning portions of the program to make them functional. The classes I refactored were HintLocation, Map, TabClasses, and User. Worked diligently to ensure that all parts of the project were working correctly and were of good quality. Classes Coded: Main, MakeGamePanel, MapJPanel, OptionPanel, PlayGamePanel, InstructionPanel, Location, Race, Hint, GamePanel.
+
+Akhil Sanka: UML, TimerPanel, File I/O, Race, GamePanel, Hint, Main, OptionPanel, InstructionPanel (only the text field)
+classes/functions not seen in project were deleted/changed: tabs made to use maps with race, another map panel specific to playgamepanel to record hints from the race, clicks from mouse on map recorded and saved in array when race created
+
+Mikaela Valenciano: PowerPoint, UML, Hint, Race, TimerPanel
+Classes not seen in project were deleted: HintLocation, Map, User
 
 
-Class list: Lists the classes within the program and describes what each one represents
-User: Receives shuffled arrayList of hints and answers where the indices correspond to each other. Keeps track of the number of hints the user has completed and determines when the user has finished. 
-Map: Contains an ArrayList of Locations
-Race: Contains an ArrayList of hint strings or images and an ArrayList of answers whose indices correspond to their respective hints. Contains an array of User objects which are currently playing the game.
-Location: contains picture of the area where all the answers are located and coordinates for each location. 
-Main: includes main method and instantiates classes based on race retrieved from database
-Instructions (static page) : JPanel that describes how to play the game with a short tutorial. 
-Responsibility list: Lists the group members and describes how each member contributed to the completion of the final program
-Akhil: User, Map,
-Sanjana: Location, Main
-Mikaela: Race, Instructions
+

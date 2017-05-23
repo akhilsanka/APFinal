@@ -12,10 +12,11 @@ public class Main extends JFrame {
 	private PlayGamePanel panel5;
 	private InstructionPanel panel4;
 	private GamePanel panel2;
-	MakeGamePanel panel3 ;
+	private MakeGamePanel panel3 ;
 	private OptionPanel panel1;
 	private JScrollPane mapScrollPanel;
 	private JScrollPane gameScrollPanel;
+	private MapJPanel map;
 	
 
 	public Main(String title) {
@@ -32,6 +33,8 @@ public class Main extends JFrame {
 		panel2 = new GamePanel(this);
 	    panel4 = new InstructionPanel(this);
 	    panel5 = new PlayGamePanel(this, panel2);
+	    map = new MapJPanel(this);
+	    mapScrollPanel = new JScrollPane(map);
 	    gameScrollPanel = new JScrollPane(panel5);
 	    
 	    
@@ -40,6 +43,7 @@ public class Main extends JFrame {
 	    cardPanel.add(panel3, "3");
 	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
+	    cardPanel.add(mapScrollPanel, "6");
 	    
 	    add(cardPanel);
 	    addKeyListener(panel2);
@@ -98,5 +102,9 @@ public class Main extends JFrame {
 		panel5.setRace(r);
 	}
 	
+	public MapJPanel getMap()
+	{
+		return map;
+	}
 	
 }
