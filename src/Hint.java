@@ -34,7 +34,6 @@ public class Hint implements Serializable{
 	}
 	
 	/** Returns the string hint in the object
-	 * 
 	 * @return the string hint 
 	 */
 	public String getHint()
@@ -42,21 +41,20 @@ public class Hint implements Serializable{
 		return hint;
 	}
 	
-	/** Returns the answer to the hints
-	 * 
-	 * @return the string answer
+	/** Returns the answer of the hint
+	 * @return the number answer
 	 */
 	public int getAnswer()
 	{
 		return answer;
 	}
 	
-<<<<<<< HEAD
-	
-=======
+	/**
+	 * Returns Point where hint is located
+	 * @return Point where hint is located
+	 */
 	public Point getHintLoc()
 	{
 		return loc;
 	}
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 }

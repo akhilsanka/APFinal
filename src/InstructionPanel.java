@@ -22,7 +22,6 @@ public class InstructionPanel extends JPanel implements KeyListener, ActionListe
 
 	/**
 	 * This constructor makes a panel that shows the instructions.
-	 * 
 	 * @param m the main class
 	 */
 	public InstructionPanel (Main m) {
@@ -106,6 +105,9 @@ public class InstructionPanel extends JPanel implements KeyListener, ActionListe
 	}
 
 	@Override
+	/**
+	 * Switches to the home screen when the button is pressed
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object chooseB = e.getSource();

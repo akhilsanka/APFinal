@@ -50,11 +50,15 @@ public class TimerPanel {
 	public void reset(){
 		startTime = System.currentTimeMillis();
 	}
-	
+	/**
+	 * Pauses the timer
+	 */
 	public void pause(){
 		pauseStart = System.currentTimeMillis();
 	}
-	
+	/**
+	 * Starts the timer after it has been paused
+	 */
 	public void play(){
 		timePassed = System.currentTimeMillis() - pauseStart;
 	}

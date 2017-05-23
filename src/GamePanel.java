@@ -59,30 +59,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		add(home, c);
 	}
 
-	/**
-	 * 
-	 */
-	public void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);  // Call JPanel's paintComponent method to paint the background
-
-		Graphics2D g2 = (Graphics2D)g;
-
-		int width = getWidth();
-		int height = getHeight();
-
-		double ratioX = (double)width/800.0;
-		double ratioY = (double)height/600.0;
-
-		AffineTransform at = g2.getTransform();
-		g2.scale(ratioX, ratioY);
-
-		g.setColor(Color.BLACK);
-		g.setFont(new Font("SansSerif",Font.BOLD,28));
-		g2.setTransform(at);
-	}
-
-
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		
@@ -166,7 +142,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 		return tp.getSeconds();
 
 	}
-	
+	/**
+	 * 
+	 * @return timerPanel object
+	 */
 	public TimerPanel getTimer(){
 		return tp;
 	}
@@ -182,8 +161,8 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener
 	}
 
 	/**
-	 * 
-	 * @param s 
+	 * Creates a popup window containing String passed in
+	 * @param s String to be displayed in popup window
 	 */
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);

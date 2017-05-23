@@ -10,7 +10,6 @@ public class Main extends JFrame {
 	JPanel cardPanel;
 	ArrayList<Race> races = new ArrayList<Race>();
 	private PlayGamePanel panel5;
-//	private MapJPanel map;
 	private InstructionPanel panel4;
 	private GamePanel panel2;
 	MakeGamePanel panel3 ;
@@ -18,9 +17,9 @@ public class Main extends JFrame {
 	private JScrollPane mapScrollPanel;
 	private JScrollPane gameScrollPanel;
 	
+
 	public Main(String title) {
 		super(title);
-		addDefaultRace();
 		setBounds(100, 100, 800, 600);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
@@ -28,8 +27,6 @@ public class Main extends JFrame {
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
 	    
-	  //  map = new MapJPanel(this);
-	 //   mapScrollPanel = new JScrollPane(map);
 		panel1 = new OptionPanel(this);    
 		panel3 = new MakeGamePanel(this);
 		panel2 = new GamePanel(this);
@@ -43,7 +40,6 @@ public class Main extends JFrame {
 	    cardPanel.add(panel3, "3");
 	    cardPanel.add(gameScrollPanel, "5");
 	    cardPanel.add(panel4,"4");
-	    cardPanel.add(mapScrollPanel, "6");
 	    
 	    add(cardPanel);
 	    addKeyListener(panel2);
@@ -54,7 +50,10 @@ public class Main extends JFrame {
 	{
 		Main w = new Main("Scavenger Hunt Game");
 	}
-  
+	/**
+	 * Changes the JPanel that the user is viewing
+	 * @param name corresponds to the different JPanels in the GUI
+	 */
 	public void changePanel(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
 		requestFocus();
@@ -68,19 +67,6 @@ public class Main extends JFrame {
 		races.add(r);
 	}
 
-	/**
-	 * Adds a default race to test.
-	 */
-	public void addDefaultRace()
-	{
-		Race shelby = new Race("Shelby's Classroom");
-		Hint h1 = new Hint("Location of Shelby's desk (one)", 1);
-		Hint h2 = new Hint("You pick up the dinosaur at this location before going to the bathroom (three)", 3); 
-		
-		shelby.addHint(h1);
-		shelby.addHint(h2);
-		addRace(shelby);
-	}
 	/**
 	 * @param name Name of the race to be returned
 	 * @return Race that is asked to return

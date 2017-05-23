@@ -27,10 +27,6 @@ import javax.swing.JTextField;
 
 public class MapJPanel extends JPanel implements MouseListener, KeyListener, ActionListener
 {
-	private Race game;
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Main m;
 	private BufferedImage image;
@@ -40,6 +36,10 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 	private String name;
 	private ArrayList<Hint> hints;
 	
+	/**
+	 * Creates JPanel with map that users use to create races that contain locations
+	 * @param m main class
+	 */
 	public MapJPanel(Main m)
 	{
 		super(new GridBagLayout());
@@ -55,25 +55,19 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 			picLabel.addMouseListener(this);
 			add(picLabel, c);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    home = new JButton("Return to home screen");
 	    home.addActionListener(this);
 	    add(home, c);
-		this.m = m;
-		/*ImageIcon icon = new ImageIcon("HomesteadMap.jpg"); 
-		JLabel thumb = new JLabel();
-		thumb.setIcon(icon);
-		add(thumb, c);*/	
+		this.m = m;	
 	}
 	
-	protected void paintComponent(Graphics g)
-	{
-		super.paintComponent(g);
-	}
 	
 	@Override
+	/**
+	 * Makes a race object and stores it in a file when a button is pressed
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object chooseB = e.getSource();
 		if(chooseB == home)
@@ -135,6 +129,10 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
 		
 	}
 	
+	/**
+	 * Adds a hint to the race at a certain location
+	 * @param loc location where hint is located
+	 */
 	private void addHint(Point loc) {
         JTextField field1 = new JTextField("");
         JTextField field2 = new JTextField("");
@@ -163,6 +161,9 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         }
     }
 	
+	/**
+	 * Makes a race object
+	 */
 	public void makeRace() {
         JTextField field1 = new JTextField("");
         field1.setEditable(true);
@@ -181,6 +182,10 @@ public class MapJPanel extends JPanel implements MouseListener, KeyListener, Act
         }
     }
 	
+	/**
+	 * Creates a popup window containing String passed in
+	 * @param s String to be displayed in popup window
+	 */
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}
