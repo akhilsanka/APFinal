@@ -154,7 +154,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
     	}
     	used.setText("Number of Finished Hints: " + (game.getFinishedHints() - 1));
     	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints() + 1));
-    	m.changePanel("5");
+    //	m.changePanel("5");
     }
     
 
@@ -170,8 +170,9 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			{
 				used.setText("Number of Finished Hints: " + (game.getFinishedHints()));
 		    	unused.setText("Number of Remaining Hints: " + (game.getRemainingHints()));
+		    	m.changePanel("1");
 		    	msgbox("Congratulations, You Finished The Race!" + " Time: " + gp.getMins() + " minutes and " + gp.getSeconds() + " seconds");
-				m.changePanel("1");
+				
 				return "Race is Complete!";
 				
 			}

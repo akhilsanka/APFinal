@@ -32,7 +32,7 @@ public class TimerPanel {
 	public long getMins()
 	{
 
-		return ((System.currentTimeMillis() - startTime) + timePassed) / 60000 ;
+		return ((System.currentTimeMillis() - startTime) - timePassed) / 60000 ;
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class TimerPanel {
 	 */
 	public long getSeconds()
 	{
-		return (((System.currentTimeMillis() - startTime) + timePassed) % 60000) / 1000;
+		return (((System.currentTimeMillis() - startTime) - timePassed) % 60000) / 1000;
 	}
 
 	/**
