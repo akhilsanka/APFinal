@@ -15,12 +15,6 @@ public class Race extends JPanel implements Serializable{
 	private ArrayList<Hint> usedHints;
 	private String name;
 	private boolean isComplete, hasMap;
-<<<<<<< HEAD
-	private Map map;
-
-=======
-	
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
 	/**
 	 * This constructs a Race object with the race's name and 
 	 * its ArrayList of Hint objects
@@ -51,33 +45,7 @@ public class Race extends JPanel implements Serializable{
 		hasMap = false;
 		System.out.println("No map");
 	}
-<<<<<<< HEAD
-	
-	/**
-	 * This constructs a Race object with the race's name and the Map it's using.
-	 * hasMap is set set to true
-	 * @param name String of the name of the race
-	 * @param m The Map object that the Race will use
-	 */
-	public Race(String name, Map m)
-	{
-		this.name = name;
-		map = m;
-		
-		hasMap = true;
-	}
-	
-	public Race(String name, Map m, ArrayList<Hint> h)
-	{
-		this.name = name;
-		map = m;
-		unusedHints = h;
-		
-		hasMap = true;
-	}
-	
-=======
->>>>>>> branch 'master' of https://github.com/akhilsanka/APFinal.git
+
 	
 	/**
 	 * @return This method returns the Race's name in a String
@@ -169,10 +137,7 @@ public class Race extends JPanel implements Serializable{
 		return isComplete;
 	}
 	
-	public boolean hasMap()
-	{
-		return hasMap;
-	}
+	
 	/**
 	 * This method returns the number of used hints
 	 * @return int number of hints 

@@ -11,7 +11,7 @@ public class Main extends JFrame {
 	JPanel cardPanel;
 	ArrayList<Race> races = new ArrayList<Race>();
 	private PlayGamePanel panel5;
-	private MapJPanel map;
+//	private MapJPanel map;
 	private InstructionPanel panel4;
 	private GamePanel panel2;
 	MakeGamePanel panel3 ;
@@ -31,8 +31,8 @@ public class Main extends JFrame {
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
 	    
-	    map = new MapJPanel(this);
-	    mapScrollPanel = new JScrollPane(map);
+	  //  map = new MapJPanel(this);
+	 //   mapScrollPanel = new JScrollPane(map);
 		panel1 = new OptionPanel(this);    
 		panel3 = new MakeGamePanel(this);
 		panel2 = new GamePanel(this);
@@ -116,8 +116,5 @@ public class Main extends JFrame {
 		panel5.setRace(r);
 	}
 	
-	public MapJPanel getMap()
-	{
-		return map;
-	}
+	
 }

@@ -117,7 +117,7 @@ public class PlayGamePanel extends JPanel implements KeyListener, ActionListener
 			e.printStackTrace();
 		}
 	    g.setColor(Color.CYAN);
-	    drawCenteredCircle(g, (int)currHint.getHintLoc().getX(), (int)currHint.getHintLoc().getY(), 100);
+	  //  drawCenteredCircle(g, (int)currHint.getHintLoc().getX(), (int)currHint.getHintLoc().getY(), 100);
     }
 	/**
 	 * Sets the race being played to the race object passed in.
