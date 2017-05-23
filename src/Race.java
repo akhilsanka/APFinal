@@ -42,7 +42,6 @@ public class Race extends JPanel implements Serializable{
 		isComplete = false;
 		
 		hasMap = false;
-		System.out.println("No map");
 	}
 	
 	/**
@@ -67,7 +66,8 @@ public class Race extends JPanel implements Serializable{
 		}
 		
 		int randHint;
-		randHint = (int)Math.random()*unusedHints.size();
+		randHint = (int)(Math.random()*unusedHints.size());
+		//System.out.println("Hint Index: " + Math.random()*unusedHints.size());
 		Hint shuffledHint = unusedHints.get(randHint);
 		usedHints.add(unusedHints.get(randHint));
 		unusedHints.remove(randHint);	
@@ -122,8 +122,8 @@ public class Race extends JPanel implements Serializable{
 	{
 		Hint newHint = new Hint(location, hint, answer);
 		unusedHints.add(newHint);
-		System.out.println("New Hint with location has been added");
-		System.out.println("Number of Remaining Hints: " + unusedHints.size());
+		//System.out.println("New Hint with location has been added");
+		//System.out.println("Number of Remaining Hints: " + unusedHints.size());
 	}
 
 	/**
@@ -134,6 +134,7 @@ public class Race extends JPanel implements Serializable{
 	{
 		return isComplete;
 	}
+	
 	/**
 	 * This method returns the number of used hints
 	 * @return int number of hints 
@@ -160,16 +161,28 @@ public class Race extends JPanel implements Serializable{
 		isComplete = true;
 	}
 	
+	/**
+	 * Checks to see if Race has a map or not
+	 * @return true if there is a Map
+	 * @return false if there is no map
+	 */
 	public boolean hasMap()
 	{
 		return hasMap;
 	}
 	
+	/**
+	 * Makes the race contain a map
+	 */
 	public void setMap()
 	{
 		hasMap = true;
 	}
 	
+	/**
+	 * Creates a popup window containing String passed in
+	 * @param s String to be displayed in popup window
+	 */
 	public void msgbox(String s){
 		   JOptionPane.showMessageDialog(null, s);
 		}
